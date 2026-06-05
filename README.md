@@ -6,6 +6,3 @@ coverage/
 *.log
 .env*
 !.env.example
-"# veil_stels" 
-"# veil_stels" 
-"# veil_web" 

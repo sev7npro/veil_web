@@ -137,7 +137,7 @@ export default function FooterSection({
               </svg>
             </a>
             <a
-              href="https://t.me"
+              href="https://t.me/veilstels_bot"
               target="_blank"
               rel="noopener noreferrer"
               className="text-stone-500 hover:text-[#EDEAE2] transition-all duration-300"

@@ -258,6 +258,7 @@ export default function Home({ isPreloaded }: HomeProps) {
             >
               {/* Action 1: Launch App (Inert styled cursor feedback) */}
               <button
+                 onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
                  className="group relative flex items-center justify-center h-[44px] rounded-full bg-[#EAE2D0] hover:bg-[#F5F0E8] text-[#0A0A0C] font-sans text-[10px] md:text-[11px] tracking-[0.12em] md:tracking-[0.2em] uppercase font-semibold transition-all duration-300 shadow-[0_4px_24px_rgba(234,226,208,0.055)] cursor-pointer text-center whitespace-nowrap overflow-hidden"
                 id="btn-launch-app"
               >
@@ -277,7 +278,7 @@ export default function Home({ isPreloaded }: HomeProps) {
 
               {/* Action 2: System Documentation */}
               <button
-                onClick={() => navigate("/docs")}
+                onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
                 className="flex items-center justify-center h-[44px] rounded-full bg-transparent border border-[#EDEAE2]/28 hover:border-[#EDEAE2]/55 hover:bg-[#EDEAE2]/4 text-[#EDEAE2]/75 hover:text-[#EDEAE2] font-sans text-[10px] md:text-[11px] tracking-[0.12em] md:tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer text-center whitespace-nowrap overflow-hidden"
                 id="btn-readme-docs"
               >
