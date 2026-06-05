@@ -1,0 +1,6 @@
+{
+  "name": "VEIL",
+  "description": "A non-custodial, private, MEV-protected trading terminal built on Solana.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
