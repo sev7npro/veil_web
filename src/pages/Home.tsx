@@ -8,7 +8,6 @@ import AdvantagesSection from "../components/AdvantagesSection";
 import VeilStackSection from "../components/VeilStackSection";
 import VeilStatsSection from "../components/VeilStatsSection";
 import PrivacyFirstSection from "../components/PrivacyFirstSection";
-import VeilMetrics from "../components/VeilMetrics";
 import VeilManifesto from "../components/VeilManifesto";
 
 interface HomeProps {
@@ -317,7 +316,7 @@ export default function Home({ isPreloaded }: HomeProps) {
       <VeilStatsSection lang={lang} />
 
       {/* Module 3.5: Quiet Luxury Metrics Visual Bridge */}
-      <VeilMetrics lang={lang} />
+      <VeilLines lang={lang} />
 
       {/* Module 4: Privacy First Interactive Contour Flow Section */}
       <PrivacyFirstSection lang={lang} />

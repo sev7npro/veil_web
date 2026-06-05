@@ -107,8 +107,18 @@ export default function PrivacyFirstSection({
     let animationFrameId: number;
     let t_time = 0;
     let smoothProgress = 0.5;
+    let lastTime = 0;
+    const fps = isMobile ? 30 : 60;
+    const interval = 1000 / fps;
 
-    const drawCascadingLobes = () => {
+    const drawCascadingLobes = (timestamp: number) => {
+      const delta = timestamp - lastTime;
+      if (delta < interval) {
+        animationFrameId = requestAnimationFrame(drawCascadingLobes);
+        return;
+      }
+      lastTime = timestamp - (delta % interval);
+
       const W = canvas.width;
       const H = canvas.height;
 
@@ -168,7 +178,7 @@ export default function PrivacyFirstSection({
         ctx.lineWidth = (0.75 + (1 - p) * 0.85) * scale;
 
         ctx.beginPath();
-        const points = 200; // Perfect, silky smooth curve representation
+        const points = isMobile ? 100 : 200; // Efficient curve representation to save on mobile math operations
 
         // Pinched peanut/hourglass factor with slow breeding wave in the pinch
         const breathingPinch = (0.50 - p * 0.12) + Math.sin(t_time * 0.4 + p * Math.PI) * 0.015;
@@ -211,7 +221,10 @@ export default function PrivacyFirstSection({
       animationFrameId = requestAnimationFrame(drawCascadingLobes);
     };
 
-    drawCascadingLobes();
+    animationFrameId = requestAnimationFrame((t) => {
+      lastTime = t;
+      drawCascadingLobes(t);
+    });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
