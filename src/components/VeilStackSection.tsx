@@ -1,5 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface BlockData {
   id: number;
@@ -23,90 +25,17 @@ export default function VeilStackSection({
 }: VeilStackSectionProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobile, React_useState_isMobile] = React.useState(false);
+  // Avoid named conflicts by preserving original or similar state setter names if needed:
+  const setIsMobile = React_useState_isMobile;
 
   // High-fidelity animation progress state for the 10 blocks (1-indexed for convenience or 0-9)
   const [animateProgress, setAnimateProgress] = React.useState<number[]>(
     new Array(11).fill(0),
   );
 
-  const t = {
-    EN: {
-      stackTitle: "The VEIL",
-      stackTitleItalic: "Stack",
-      solanaPlatform: "SOLANA FOUNDATION",
-      veilCore: "VEIL CORE",
-      veilAppLayer: "VEIL APP LAYER",
-      heroSystem: "HERO SYSTEM",
-      block1_meta: "CURRENT STATE // PRIVACY COGNITO",
-      block1_title: "Absolute privacy.",
-      block1_desc:
-        "Private trading without compromise. Transaction routing via private Jito bundles bypassing the public mempool using hidden STELS addresses. Transactions are fully protected against sandwich attacks and front-running.",
-      block2_meta: "CURRENT STATE // SECURE BASTION",
-      block2_title: "Sovereign custody.",
-      block2_desc:
-        "Two-wallet model (Master/Stels) with local key generation and AES-256-GCM encryption on the basis of Argon2id right in your device. Autonomous control of the database with encrypted backups. Your keys — your rules.",
-      block3_meta: "STAGE // 03   -   TELEGRAM ACCESS DESK",
-      block3_title: "MINI APP & BOT TERMINAL",
-      block3_desc:
-        "Complete independence from centralized servers. Your messenger is your sovereign trading gateway. Two parallel interfaces (bot text-based FSM console and graphical Mini App) guarantee 100% fault tolerance and liquidity management freedom.",
-      nexus_meta: "CURRENT STATE // NEXUS V3 - DERIVATIVES TRACK",
-      nexus_title: "Perpetual trading.",
-      nexus_desc:
-        "Professional derivative track for perpetual contracts. Direct backend integration with the Jupiter Perpetuals protocol is launched and successfully functioning. Local risk engine ensures margin and liquidation control, isolated positions operate via Stels wallets, and fee payments are processed via private relayers without binding Master and Stels addresses.",
-    },
-    RU: {
-      stackTitle: "Архитектура",
-      stackTitleItalic: "VEIL",
-      solanaPlatform: "БАЗА SOLANA",
-      veilCore: "ЯДРО VEIL",
-      veilAppLayer: "УРОВЕНЬ ПРИЛОЖЕНИЙ",
-      heroSystem: "ГЛАВНЫЙ МОДУЛЬ",
-      block1_meta: "CURRENT STATE // PRIVACY COGNITO",
-      block1_title: "Абсолютная приватность.",
-      block1_desc:
-        "Приватный трейдинг без компромиссов. Маршрутизация транзакций через приватные бандлы Jito в обход публичного мемпула с использованием скрытых STELS-адресов. Сделки защищены от сэндвич-атак и фронтраннинга.",
-      block2_meta: "CURRENT STATE // SECURE BASTION",
-      block2_title: "Суверенное хранение.",
-      block2_desc:
-        "Двухкошельковая модель (Master/Stels) с локальной генерацией ключей и шифрованием по алгоритму AES-256-GCM на базе Argon2id прямо в твоем девайсе. Автономный контроль базы данных с зашифрованными бэкапами. Твои ключи — твои правила.",
-      block3_meta: "STAGE // 03   -   TELEGRAM ACCESS DESK",
-      block3_title: "MINI APP И БОТ-ТЕРМИНАЛ",
-      block3_desc:
-        "Полная независимость от централизованных серверов. Ваш мессенджер — ваш суверенный торговый шлюз. Два параллельных интерфейса (текстовая FSM-консоль бота и графическое Mini App) гарантируют 100% отказоустойчивость и свободу управления ликвидностью.",
-      nexus_meta: "CURRENT STATE // NEXUS V3 - DERIVATIVES TRACK",
-      nexus_title: "Бессрочная торговля.",
-      nexus_desc:
-        "Профессиональный деривативный трек для бессрочных контрактов. Прямая бэкенд-интеграция с протоколом Jupiter Perpetuals запущена и успешно функционирует. Локальный движок рисков обеспечивает контроль маржи и ликвидаций, изолированные позиции работают через STELS-кошельки, а оплата комиссий обрабатывается через приватные ретрансляторы (relayers) без привязки Master и STELS адресов.",
-    },
-  }[lang];
-
-  const blockLabels = {
-    EN: {
-      b1: "Private RPC",
-      b2: "MEV Shield",
-      b3: "MINI APP TERMINAL",
-      b4: "Order Router",
-      b5: "Liquidity Agg.",
-      b6: "Spot Trading",
-      b7: "NEXUS",
-      b8: "Analytics",
-      b9: "Portfolio",
-      b10: "More Apps",
-    },
-    RU: {
-      b1: "Приватный RPC",
-      b2: "MEV Щит",
-      b3: "MINI APP TERMINAL",
-      b4: "Маршрутизатор",
-      b5: "Агрегатор ликв.",
-      b6: "Спот-торговля",
-      b7: "NEXUS",
-      b8: "Аналитика",
-      b9: "Портфолио",
-      b10: "Другие аппы",
-    },
-  }[lang];
+  const t = lang === "RU" ? ru.veilStack : en.veilStack;
+  const blockLabels = t.blockLabels;
 
   // Determine if mobile
   React.useEffect(() => {

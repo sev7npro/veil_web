@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
 import TerminalMockup from "./TerminalMockup";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface AdvantagesSectionProps {
   lang?: "EN" | "RU";
@@ -9,36 +11,7 @@ interface AdvantagesSectionProps {
 export default function AdvantagesSection({
   lang = "EN",
 }: AdvantagesSectionProps) {
-  const t = {
-    EN: {
-      adv1_title: "Zero MEV",
-      adv1_desc:
-        "Your orders are fully protected from front-running and sandwich attacks. Execute with confidence.",
-      adv2_title: "Non-Custodial",
-      adv2_desc:
-        "Your keys, your assets. VEIL is a fully self-custodial terminal. Your secure wallets are generated and encrypted locally on your device. We never hold your funds",
-      adv3_title: "Silent Routing",
-      adv3_desc:
-        "Intelligent order routing across Solana liquidity. Maximum fill, minimum slippage, zero noise.",
-      adv4_title: "Instant Execution",
-      adv4_desc:
-        "Sub-400ms execution on Solana. No waiting, no delays. Your edge is preserved every trade.",
-    },
-    RU: {
-      adv1_title: "Нулевой MEV",
-      adv1_desc:
-        "Ваши ордера полностью защищены от опережающих сделок (front-running) и сэндвич-атак. Торгуйте уверенно.",
-      adv2_title: "Некастодиальный",
-      adv2_desc:
-        "Ваши ключи — ваши активы. VEIL — это полностью некастодиальный терминал. Ваши защищенные кошельки генерируются и шифруются локально на вашем устройстве. Мы никогда не храним ваши средства.",
-      adv3_title: "Бесшумный роутинг",
-      adv3_desc:
-        "Умная маршрутизация ордеров по всей ликвидности Solana. Максимальное исполнение, минимальное проскальзывание, ноль шума.",
-      adv4_title: "Мгновенное исполнение",
-      adv4_desc:
-        "Исполнение менее 400 мс на Solana. Никакого ожидания, никаких задержек. Преимущество сохраняется в каждой сделке.",
-    },
-  }[lang];
+  const t = lang === "RU" ? ru.advantages : en.advantages;
 
   return (
     <section
@@ -100,10 +73,10 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-t border-b border-[#0E523D]/15 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-[#8B5CF6]/[0.05] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-t border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
               >
                 {/* SVG Shield icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#8B5CF6] md:text-[#0E523D]">
+                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
                     <path
                       d="M20 6L32 10V18C32 25 27 29.5 20 34C13 29.5 8 25 8 18V10L20 6Z"
@@ -118,7 +91,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#2D1F47] md:text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -127,7 +100,7 @@ export default function AdvantagesSection({
                     {t.adv1_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-[#4A3E5D] md:text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv1_desc}
@@ -141,10 +114,10 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-b border-[#0E523D]/15 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-[#8B5CF6]/[0.05] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
               >
                 {/* SVG Key-like / Lock icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#8B5CF6] md:text-[#0E523D]">
+                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
                     <rect
                       x="11"
@@ -167,7 +140,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#2D1F47] md:text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -176,7 +149,7 @@ export default function AdvantagesSection({
                     {t.adv2_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-[#4A3E5D] md:text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv2_desc}
@@ -208,10 +181,10 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-t border-b border-[#0E523D]/15 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-[#8B5CF6]/[0.05] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-t border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
               >
                 {/* SVG Flowing Path Lines */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#8B5CF6] md:text-[#0E523D]">
+                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
                     <path
                       d="M10 32C10 26 14 20 20 20C26 20 30 14 30 8"
@@ -233,7 +206,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#2D1F47] md:text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -242,7 +215,7 @@ export default function AdvantagesSection({
                     {t.adv3_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-[#4A3E5D] md:text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv3_desc}
@@ -256,10 +229,10 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-b border-[#0E523D]/15 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-[#8B5CF6]/[0.05] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
               >
                 {/* SVG Lightning Bolt icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#8B5CF6] md:text-[#0E523D]">
+                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
                     <path
                       d="M23 6L11 22H21L17 34L29 18H19L23 6Z"
@@ -273,7 +246,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#2D1F47] md:text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -282,7 +255,7 @@ export default function AdvantagesSection({
                     {t.adv4_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-[#4A3E5D] md:text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv4_desc}

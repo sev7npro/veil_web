@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface PrivacyProps {
   lang?: "EN" | "RU";
@@ -11,140 +13,11 @@ interface PrivacyProps {
   ) => void;
 }
 
-const privacyContent = {
-  EN: {
-    hero: "PRIVACY POLICY",
-    subhero: "VEIL",
-    sections: [
-      {
-        num: "1.0",
-        title: "WHAT WE DO NOT COLLECT",
-        desc: "No names. No emails. No phone numbers. No IP addresses.\n\nYour profile is your public Solana address. Nothing more.",
-      },
-      {
-        num: "2.0",
-        title: "HOW KEYS ARE PROCESSED",
-        subsections: [
-          {
-            title: "2.1.",
-            items: [
-              "Private keys are encrypted via AES-256-GCM. Your PIN is processed via Argon2id + HKDF. The derived key exists only in RAM at the moment of signing.",
-            ],
-          },
-          {
-            title: "2.2.",
-            items: [
-              "The server receives only ciphertext and nonce. Without your PIN — decryption is mathematically impossible.",
-            ],
-          },
-          {
-            title: "2.3.",
-            items: [
-              "We do not have access to your funds. Not technically. Not legally. Not in any way.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "3.0",
-        title: "TRANSACTION PRIVACY",
-        subsections: [
-          {
-            title: "3.1.",
-            items: [
-              "Veil Flow obfuscates the transaction routing. Logs connecting the main wallet and ephemeral nodes are not kept.",
-            ],
-          },
-          {
-            title: "3.2.",
-            items: [
-              "Jito Block Engine makes your intents invisible in the public mempool until confirmed on-chain.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "4.0",
-        title: "LOCAL STORAGE",
-        desc: "Operation history, address book, and settings are stored in an encrypted SQLite database within the isolated container of your account.\n\nThe /purge command or account deletion destroys data without the possibility of recovery. Irreversible.",
-      },
-      {
-        num: "5.0",
-        title: "TRACKING",
-        desc: "The terminal does not use third-party trackers.\n\nNo Google Analytics. No Facebook Pixel. No geolocation. No device fingerprinting.\n\nZero.",
-      },
-    ],
-  },
-  RU: {
-    hero: "ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ",
-    subhero: "VEIL",
-    sections: [
-      {
-        num: "1.0",
-        title: "ЧТО МЫ НЕ СОБИРАЕМ",
-        desc: "Никаких имён. Никаких email. Никаких телефонов. Никаких IP-адресов.\n\nТвой профиль — это твой публичный адрес Solana. Ничего больше.",
-      },
-      {
-        num: "2.0",
-        title: "КАК ОБРАБАТЫВАЮТСЯ КЛЮЧИ",
-        subsections: [
-          {
-            title: "2.1.",
-            items: [
-              "Приватные ключи шифруются через AES-256-GCM. Твой PIN обрабатывается через Argon2id + HKDF. Производный ключ существует только в RAM в момент подписания.",
-            ],
-          },
-          {
-            title: "2.2.",
-            items: [
-              "Сервер получает только ciphertext и nonce. Без твоего PIN — расшифровка математически невозможна.",
-            ],
-          },
-          {
-            title: "2.3.",
-            items: [
-              "Мы не имеем доступа к твоим средствам. Не технически. Не юридически. Никак.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "3.0",
-        title: "ПРИВАТНОСТЬ ТРАНЗАКЦИЙ",
-        subsections: [
-          {
-            title: "3.1.",
-            items: [
-              "Veil Flow обфусцирует маршрут транзакций. Логи связи между основным кошельком и эфемерными узлами не ведутся.",
-            ],
-          },
-          {
-            title: "3.2.",
-            items: [
-              "Jito Block Engine делает твои намерения невидимыми в публичном мемпуле до подтверждения ончейн.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "4.0",
-        title: "ЛОКАЛЬНОЕ ХРАНЕНИЕ",
-        desc: "История операций, адресная книга и настройки хранятся в зашифрованной SQLite в изолированном контейнере твоего аккаунта.\n\nКоманда /purge или удаление аккаунта — данные уничтожаются без возможности восстановления. Необратимо.",
-      },
-      {
-        num: "5.0",
-        title: "ТРЕКИНГ",
-        desc: "Терминал не использует сторонние трекеры.\n\nНикакого Google Analytics. Никакого Facebook Pixel. Никакой геолокации. Никакого fingerprinting устройств.\n\nНоль.",
-      },
-    ],
-  },
-};
-
 export default function Privacy({ lang: propLang, onNavigate }: PrivacyProps) {
   const { lang: contextLang } = useLanguage();
   const lang = propLang || contextLang;
   const navigate = useNavigate();
-  const content = privacyContent[lang];
+  const content = lang === "RU" ? ru.privacy : en.privacy;
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

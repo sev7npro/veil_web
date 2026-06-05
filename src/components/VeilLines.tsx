@@ -6,6 +6,9 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     height: typeof window !== "undefined" ? window.innerHeight : 800,
   });
 
+  const [isVisible, setIsVisible] = React.useState(true);
+  const containerRef = React.useRef<SVGSVGElement | null>(null);
+
   React.useEffect(() => {
     let resizeTimeout: number;
     const handleResize = () => {
@@ -24,6 +27,25 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     };
   }, []);
 
+  // Intersection Observer for efficient scrolling culling
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.01 }
+    );
+
+    observer.observe(container);
+    return () => {
+      observer.unobserve(container);
+    };
+  }, []);
+
   const isMobile = dimensions.width < 768;
   const N = 18; // 18 symmetric pairs
 
@@ -31,11 +53,12 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     const styles = [];
     for (let i = 0; i < N; i++) {
       const f = i / (N - 1); // 0 to 1
-      // Inner lines are thinner and more precise, outer lines are thicker and softer
-      const thickness = isMobile ? 0.35 + f * 0.6 : 0.45 + f * 1.0;
-      const opacity = isMobile ? 0.1 + (1 - f) * 0.3 : 0.14 + (1 - f) * 0.45;
+      // Ultra-thin 0.5px threads on mobile. Richer variance on desktop
+      const thickness = isMobile ? 0.5 : 0.45 + f * 1.0;
+      // Precision delicate translucent 0.25 opacity on mobile
+      const opacity = isMobile ? 0.25 : 0.14 + (1 - f) * 0.45;
 
-      // We will define specific glowing attributes
+      // We will define specific glowing attributes (only used on desktop)
       const isGlow = i >= 4 && i <= 8;
 
       styles.push({
@@ -62,6 +85,8 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
   }, []);
 
   React.useEffect(() => {
+    if (!isVisible) return; // Culling: fully idle when out of view
+
     let animFrameId: number;
     let lastTime = 0;
     const fps = isMobile ? 30 : 60;
@@ -152,24 +177,27 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
       updatePaths(t);
     });
     return () => cancelAnimationFrame(animFrameId);
-  }, [dimensions, isMobile]);
+  }, [dimensions, isMobile, isVisible]);
 
   return (
     <svg
+      ref={containerRef}
       className="absolute top-0 left-0 w-full h-full pointer-events-none select-none z-1 overflow-hidden"
       style={{ willChange: "transform" }}
     >
       <defs>
-        {/* Luminous glow blur effect */}
-        <filter
-          id="veil-glow-blur"
-          x="-20%"
-          y="-20%"
-          width="140%"
-          height="140%"
-        >
-          <feGaussianBlur stdDeviation="3.5" />
-        </filter>
+        {/* Glow filters rendered only on non-mobile screens */}
+        {!isMobile && (
+          <filter
+            id="veil-glow-blur"
+            x="-20%"
+            y="-20%"
+            width="140%"
+            height="140%"
+          >
+            <feGaussianBlur stdDeviation="3.5" />
+          </filter>
+        )}
 
         {lineStyles.map((line) => {
           const i = line.id;
@@ -227,41 +255,42 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
         })}
       </defs>
 
-      {/* Glow path duplicates below the lines */}
-      {lineStyles.map((line) => {
-        if (!line.isGlow) return null;
-        const i = line.id;
-        return (
-          <g key={`glow-group-${i}`}>
-            <path
-              ref={(el) => {
-                if (upperGlowPathsRef.current)
-                  upperGlowPathsRef.current[i] = el;
-              }}
-              fill="none"
-              stroke={`url(#veil-custom-grad-${i})`}
-              strokeWidth={line.thickness * 2.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#veil-glow-blur)"
-              opacity={0.25}
-            />
-            <path
-              ref={(el) => {
-                if (lowerGlowPathsRef.current)
-                  lowerGlowPathsRef.current[i] = el;
-              }}
-              fill="none"
-              stroke={`url(#veil-custom-grad-${i})`}
-              strokeWidth={line.thickness * 2.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#veil-glow-blur)"
-              opacity={0.25}
-            />
-          </g>
-        );
-      })}
+      {/* Glow path duplicates - Completely bypassed on mobile for dramatic performance gains */}
+      {!isMobile &&
+        lineStyles.map((line) => {
+          if (!line.isGlow) return null;
+          const i = line.id;
+          return (
+            <g key={`glow-group-${i}`}>
+              <path
+                ref={(el) => {
+                  if (upperGlowPathsRef.current)
+                    upperGlowPathsRef.current[i] = el;
+                }}
+                fill="none"
+                stroke={`url(#veil-custom-grad-${i})`}
+                strokeWidth={line.thickness * 2.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#veil-glow-blur)"
+                opacity={0.25}
+              />
+              <path
+                ref={(el) => {
+                  if (lowerGlowPathsRef.current)
+                    lowerGlowPathsRef.current[i] = el;
+                }}
+                fill="none"
+                stroke={`url(#veil-custom-grad-${i})`}
+                strokeWidth={line.thickness * 2.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#veil-glow-blur)"
+                opacity={0.25}
+              />
+            </g>
+          );
+        })}
 
       {/* Main crisp high fidelity line vectors */}
       {lineStyles.map((line) => {
@@ -294,3 +323,4 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     </svg>
   );
 }
+

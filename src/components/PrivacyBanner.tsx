@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface PrivacyBannerProps {
   lang: "EN" | "RU";
   triggerShow: boolean;
 }
 
-const content = {
-  EN: {
-    title: "ZERO TRACE // COOKIE ANNIHILATION PROTOCOL",
-    desc: "We refuse to store your presence. This space collects zero metadata, records no IPs, and leaves no cookies. To enforce absolute anonymity, every page refresh instantly zeroizes the session state, rendering your previous connection an unrecoverable void. To the network, you are always a ghost.",
-    button: "PROCEED",
-  },
-  RU: {
-    title: "НУЛЕВОЙ СЛЕД // АННИГИЛЯЦИЯ COOKIE",
-    desc: "Мы принципиально отвергаем сбор данных. Это пространство собирает ровно ноль метаданных, не ведет логи IP-адресов и полностью исключает cookie-файлы. Ради абсолютной анонимности любое обновление страницы мгновенно аннигилирует состояние сессии, превращая историю вашего визита в безвозвратный вакуум. Для сети вы всегда — цифровой фантом.",
-    button: "ПОДТВЕРЖДАЮ",
-  },
-};
-
 export default function PrivacyBanner({ lang, triggerShow }: PrivacyBannerProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const t = content[lang];
+  const t = lang === "RU" ? ru.privacyBanner : en.privacyBanner;
 
   useEffect(() => {
     if (triggerShow) {

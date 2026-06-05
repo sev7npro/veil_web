@@ -1,51 +1,14 @@
 import React from "react";
 import { motion } from "motion/react";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface VeilStatsSectionProps {
   lang?: "EN" | "RU";
 }
 
 export default function VeilStatsSection({ lang = "EN" }: VeilStatsSectionProps) {
-  const t = {
-    EN: [
-      {
-        value: "< 400 ms",
-        subtext: "EXECUTION SPEED // JITO PRIVATE ROUTE",
-      },
-      {
-        value: "0.00%",
-        subtext: "MEMPOOL EXPOSURE // SANDWICH PROTECTION",
-      },
-      {
-        value: "0 bytes",
-        subtext: "IP & METADATA LOGS // ZERO-TRACE STATUS",
-      },
-      {
-        value: "None",
-        subtext: "BACKDOORS // ARGON2ID STORAGE",
-      },
-    ],
-    RU: [
-      {
-        value: "< 400 мс",
-        subtext: "СКОРОСТЬ ИСПОЛНЕНИЯ // ПРИВАТНЫЙ МАРШРУТ JITO",
-      },
-      {
-        value: "0.00%",
-        subtext: "ЭКСПОЗИЦИЯ МЕМПУЛА // ЗАЩИТА ОТ СЭНДВИЧЕЙ",
-      },
-      {
-        value: "0 байт",
-        subtext: "ЛОГИ IP И МЕТАДАННЫХ // СТАТУС НУЛЕВОГО СЛЕДА",
-      },
-      {
-        value: "Нет",
-        subtext: "БЭКДОРЫ // ХРАНЕНИЕ ARGON2ID",
-      },
-    ],
-  }[lang] || { EN: [] };
-
-  const stats = Array.isArray(t) ? t : [];
+  const stats = lang === "RU" ? ru.stats : en.stats;
 
   return (
     <section 

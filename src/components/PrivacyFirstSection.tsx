@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface PrivacyFirstSectionProps {
   lang?: "EN" | "RU";
@@ -13,24 +15,7 @@ export default function PrivacyFirstSection({
   const [isMobile, setIsMobile] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
-  const t = {
-    EN: {
-      topLabel: "No VCs. No paid insiders. No extraction.",
-      mainTitle: "Privacy first",
-      subline: "Built for traders who move without leaving traces.",
-      stat1: "VC Allocation",
-      stat2: "On-Chain",
-      stat3: "Execution",
-    },
-    RU: {
-      topLabel: "Без инсайдеров. Без фондов. Без скрытых поборов.",
-      mainTitle: "Приватность прежде всего",
-      subline: "Для трейдеров, которые меняют балансы, не оставляя следов.",
-      stat1: "Доля венчурных фондов",
-      stat2: "Он-чейн",
-      stat3: "Исполнение ордеров",
-    },
-  }[lang];
+  const t = lang === "RU" ? ru.privacyFirst : en.privacyFirst;
 
   // Resize and screen-type detection
   useEffect(() => {

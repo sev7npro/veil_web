@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import VeilLinesLogo from "./VeilLinesLogo";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface FooterSectionProps {
   lang?: "EN" | "RU";
@@ -21,22 +23,7 @@ export default function FooterSection({
   const logoRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
-  const t = {
-    EN: {
-      terms: "Terms of Service",
-      privacy: "Privacy Policy",
-      risks: "Risk Disclosure",
-      disclaimer:
-        "Veil provides non-custodial routing software. We do not hold, manage, or control user assets. Trading cryptocurrencies involves substantial risk. By accessing the terminal, you agree to our strict execution policies. Verify everything. Trust math.",
-    },
-    RU: {
-      terms: "Условия использования",
-      privacy: "Политика конфиденциальности",
-      risks: "Раскрытие рисков",
-      disclaimer:
-        "Veil предоставляет программное обеспечение для некастодиальной маршрутизации. Мы не храним, не управляем и не контролируем активы пользователей. Торговля криптовалютами связана со значительным риском. Получая доступ к терминалу, вы соглашаетесь с нашими строгими политиками исполнения. Проверяйте всё. Доверяйте математике.",
-    },
-  }[lang];
+  const t = lang === "RU" ? ru.footer : en.footer;
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import en from "../locales/en.json";
+import ru from "../locales/ru.json";
 
 interface RisksProps {
   lang?: "EN" | "RU";
@@ -11,128 +13,11 @@ interface RisksProps {
   ) => void;
 }
 
-const risksContent = {
-  EN: {
-    hero: "RISK DISCLOSURE",
-    subhero: "VEIL",
-    sections: [
-      {
-        num: "1.0",
-        title: "MARKET VOLATILITY",
-        desc: "Digital assets can go to zero. Fast. Past performance means nothing.\n\nYou already know this — but it needs to be written here.",
-      },
-      {
-        num: "2.0",
-        title: "NETWORK RISKS",
-        subsections: [
-          {
-            title: "2.1.",
-            items: [
-              "Solana — the protocol depends on network stability. Delays, forks, or L1 failures can make transaction execution temporarily impossible.",
-            ],
-          },
-          {
-            title: "2.2.",
-            items: [
-              "Helius, Jito, Jupiter — external infrastructure. Failures on their side can temporarily restrict access to market data and execution.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "3.0",
-        title: "SMART CONTRACT RISKS",
-        desc: "During swaps, funds interact with third-party liquidity pools — Raydium, Orca, and others.\n\nVEIL is not responsible for bugs, exploits, or hacks of these protocols. Verify what you are signing.",
-      },
-      {
-        num: "4.0",
-        title: "LOSS OF ACCESS",
-        subsections: [
-          {
-            title: "4.1.",
-            items: [
-              "Loss of PIN — irreversible loss of access to funds. No backdoor. No recovery. No support that will fix it. Write down your PIN. Store it offline.",
-            ],
-          },
-          {
-            title: "4.2.",
-            items: [
-              "You are responsible for the security of your device and Telegram account. Compromised device — compromised assets.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "5.0",
-        title: "EXPERIMENTAL TECHNOLOGIES",
-        desc: "Veil Flow and integration Arcium TEE — early-stage technologies.\n\nUsage implies accepting the risks that accompany any frontier protocol. Do not invest what you are not prepared to lose.",
-      },
-    ],
-  },
-  RU: {
-    hero: "РАСКРЫТИЕ РИСКОВ",
-    subhero: "VEIL",
-    sections: [
-      {
-        num: "1.0",
-        title: "РЫНОЧНАЯ ВОЛАТИЛЬНОСТЬ",
-        desc: "Цифровые активы могут уйти в ноль. Быстро. Прошлые результаты ничего не значат.\n\nТы уже это знаешь — но это должно быть написано здесь.",
-      },
-      {
-        num: "2.0",
-        title: "СЕТЕВЫЕ РИСКИ",
-        subsections: [
-          {
-            title: "2.1.",
-            items: [
-              "Solana — протокол зависит от стабильности сети. Задержки, форки или сбои L1 могут сделать исполнение транзакций временно невозможным.",
-            ],
-          },
-          {
-            title: "2.2.",
-            items: [
-              "Helius, Jito, Jupiter — внешняя инфраструктура. Сбои на их стороне могут временно ограничить доступ к рыночным данным и исполнению.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "3.0",
-        title: "РИСКИ СМАРТ-КОНТРАКТОВ",
-        desc: "При свопах средства взаимодействуют со сторонними пулами ликвидности — Raydium, Orca и другими.\n\nVEIL не несёт ответственности за баги, эксплойты или взломы этих протоколов. Проверяй что подписываешь.",
-      },
-      {
-        num: "4.0",
-        title: "ПОТЕРЯ ДОСТУПА",
-        subsections: [
-          {
-            title: "4.1.",
-            items: [
-              "Потеря PIN — необратимая потеря доступа к средствам. Никакого бэкдора. Никакого восстановления. Никакой поддержки которая это исправит. Запиши PIN. Храни офлайн.",
-            ],
-          },
-          {
-            title: "4.2.",
-            items: [
-              "Ты несёшь ответственность за безопасность своего устройства и аккаунта Telegram. Скомпрометированное устройство — скомпрометированные активы.",
-            ],
-          },
-        ],
-      },
-      {
-        num: "5.0",
-        title: "ЭКСПЕРИМЕНТАЛЬНЫЕ ТЕХНОЛОГИИ",
-        desc: "Veil Flow и интеграция Arcium TEE — технологии на ранней стадии.\n\nИспользование подразумевает принятие рисков, которые сопровождают любой frontier-протокол. Не вкладывай то, что не готов потерять.",
-      },
-    ],
-  },
-};
-
 export default function Risks({ lang: propLang, onNavigate }: RisksProps) {
   const { lang: contextLang } = useLanguage();
   const lang = propLang || contextLang;
   const navigate = useNavigate();
-  const content = risksContent[lang];
+  const content = lang === "RU" ? ru.risks : en.risks;
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

@@ -41,6 +41,30 @@ export default function Navbar({
   const currentPage = propCurrentPage || currentPageCode;
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const menuRef = React.useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleOutsideClick = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        menuRef.current?.contains(target) ||
+        triggerRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setMobileMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("touchstart", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [mobileMenuOpen]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -145,6 +169,7 @@ export default function Navbar({
 
         {/* Mobile menu trigger - Only on mobile */}
         <button
+          ref={triggerRef}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="flex sm:hidden items-center justify-center w-8 h-8 rounded-full text-[#0A0A0C] transition-all duration-250 cursor-pointer -mr-1"
           title="Menu"
@@ -169,6 +194,7 @@ export default function Navbar({
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.98 }}

@@ -1,0 +1,411 @@
+{
+  "home": {
+    "tagline": "EXECUTE SILENTLY. ROUTE INTELLIGENTLY.",
+    "launch": "LAUNCH APP",
+    "docs": "DOCUMENTATION"
+  },
+  "advantages": {
+    "adv1_title": "Zero MEV",
+    "adv1_desc": "Your orders are fully protected from front-running and sandwich attacks. Execute with confidence.",
+    "adv2_title": "Non-Custodial",
+    "adv2_desc": "Your keys, your assets. VEIL is a fully self-custodial terminal. Your secure wallets are generated and encrypted locally on your device. We never hold your funds",
+    "adv3_title": "Silent Routing",
+    "adv3_desc": "Intelligent order routing across Solana liquidity. Maximum fill, minimum slippage, zero noise.",
+    "adv4_title": "Instant Execution",
+    "adv4_desc": "Sub-400ms execution on Solana. No waiting, no delays. Your edge is preserved every trade."
+  },
+  "stats": [
+    {
+      "value": "< 400 ms",
+      "subtext": "EXECUTION SPEED // JITO PRIVATE ROUTE"
+    },
+    {
+      "value": "0.00%",
+      "subtext": "MEMPOOL EXPOSURE // SANDWICH PROTECTION"
+    },
+    {
+      "value": "0 bytes",
+      "subtext": "IP & METADATA LOGS // ZERO-TRACE STATUS"
+    },
+    {
+      "value": "None",
+      "subtext": "BACKDOORS // ARGON2ID STORAGE"
+    }
+  ],
+  "manifesto": {
+    "headline": "SOVEREIGNTY IS NOT GIVEN.\nIT IS TAKEN.",
+    "core": "Protect, trade, and route your capital through VEIL — the only financial bastion on the Solana network built for total control over liquidity.",
+    "subhead": "Cut out intermediaries. Eliminate surveillance. Become the Operator of your destiny today.",
+    "btn1": "TERMINAL",
+    "btn2": "MANIFESTO"
+  },
+  "veilStack": {
+    "stackTitle": "The VEIL",
+    "stackTitleItalic": "Stack",
+    "solanaPlatform": "SOLANA FOUNDATION",
+    "veilCore": "VEIL CORE",
+    "veilAppLayer": "VEIL APP LAYER",
+    "heroSystem": "HERO SYSTEM",
+    "block1_meta": "CURRENT STATE // PRIVACY COGNITO",
+    "block1_title": "Absolute privacy.",
+    "block1_desc": "Private trading without compromise. Transaction routing via private Jito bundles bypassing the public mempool using hidden STELS addresses. Transactions are fully protected against sandwich attacks and front-running.",
+    "block2_meta": "CURRENT STATE // SECURE BASTION",
+    "block2_title": "Sovereign custody.",
+    "block2_desc": "Two-wallet model (Master/Stels) with local key generation and AES-256-GCM encryption on the basis of Argon2id right in your device. Autonomous control of the database with encrypted backups. Your keys — your rules.",
+    "block3_meta": "STAGE // 03   -   TELEGRAM ACCESS DESK",
+    "block3_title": "MINI APP & BOT TERMINAL",
+    "block3_desc": "Complete independence from centralized servers. Your messenger is your sovereign trading gateway. Two parallel interfaces (bot text-based FSM console and graphical Mini App) guarantee 100% fault tolerance and liquidity management freedom.",
+    "nexus_meta": "CURRENT STATE // NEXUS V3 - DERIVATIVES TRACK",
+    "nexus_title": "Perpetual trading.",
+    "nexus_desc": "Professional derivative track for perpetual contracts. Direct backend integration with the Jupiter Perpetuals protocol is launched and successfully functioning. Local risk engine ensures margin and liquidation control, isolated positions operate via Stels wallets, and fee payments are processed via private relayers without binding Master and Stels addresses.",
+    "blockLabels": {
+      "b1": "Private RPC",
+      "b2": "MEV Shield",
+      "b3": "MINI APP TERMINAL",
+      "b4": "Order Router",
+      "b5": "Liquidity Agg.",
+      "b6": "Spot Trading",
+      "b7": "NEXUS",
+      "b8": "Analytics",
+      "b9": "Portfolio",
+      "b10": "More Apps"
+    }
+  },
+  "footer": {
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "risks": "Risk Disclosure",
+    "disclaimer": "Veil provides non-custodial routing software. We do not hold, manage, or control user assets. Trading cryptocurrencies involves substantial risk. By accessing the terminal, you agree to our strict execution policies. Verify everything. Trust math."
+  },
+  "privacyBanner": {
+    "title": "ZERO TRACE // COOKIE ANNIHILATION PROTOCOL",
+    "desc": "We refuse to store your presence. This space collects zero metadata, records no IPs, and leaves no cookies. To enforce absolute anonymity, every page refresh instantly zeroizes the session state, rendering your previous connection an unrecoverable void. To the network, you are always a ghost.",
+    "button": "PROCEED"
+  },
+  "privacyFirst": {
+    "topLabel": "No VCs. No paid insiders. No extraction.",
+    "mainTitle": "Privacy first",
+    "subline": "Built for traders who move without leaving traces.",
+    "stat1": "VC Allocation",
+    "stat2": "On-Chain",
+    "stat3": "Execution"
+  },
+  "faq": {
+    "hero": "FAQ",
+    "subhero": "FREQUENTLY ASKED QUESTIONS",
+    "groups": [
+      {
+        "title": "SECURITY & KEYS",
+        "items": [
+          {
+            "num": "01",
+            "title": "DO YOU STORE MY PRIVATE KEYS?",
+            "desc": "No. Never. Your PIN derives your keys locally via Argon2id + HKDF. Only ciphertext and nonce are stored on the server. Without your PIN — it is just encrypted noise."
+          },
+          {
+            "num": "02",
+            "title": "CAN YOU STEAL MY FUNDS?",
+            "desc": "After PIN setup — no. Mathematically. We do not have access to your keys. Not technically. Not legally. Not in any way."
+          },
+          {
+            "num": "03",
+            "title": "WHAT HAPPENS TO KEYS AFTER A TRANSACTION?",
+            "desc": "Immediately after Ed25519 signing, the key is wiped from RAM via the Zeroize trait. A full memory dump of the server at that moment yields nothing."
+          },
+          {
+            "num": "04",
+            "title": "WHAT IF YOU GET HACKED?",
+            "desc": "The attacker gets only encrypted bytes. Without the PIN, decryption is impossible. Your funds stay with you."
+          },
+          {
+            "num": "05",
+            "title": "WHAT IS A STELS WALLET?",
+            "desc": "A second wallet inside the terminal. Used as a transit node in Veil Flow. Generated once, for a single operation. Destroyed afterwards. Your main wallet never appears in the final on-chain transaction."
+          }
+        ]
+      },
+      {
+        "title": "IF SOMETHING GOES WRONG",
+        "items": [
+          {
+            "num": "06",
+            "title": "I LOST MY PIN. WHAT DO I DO?",
+            "desc": "Nothing. Access to funds is lost permanently. No backdoor. No recovery. This is not a flaw — it is the guarantee that no one but you can access them.\n\nWrite your PIN down. Store it offline."
+          },
+          {
+            "num": "07",
+            "title": "I ACCIDENTALLY RAN /PURGE. CAN THE DATA BE RECOVERED?",
+            "desc": "No. Purge is irreversible. All keys, operation history, and settings are destroyed. That is exactly how it is supposed to work."
+          },
+          {
+            "num": "08",
+            "title": "MY TRANSACTION IS STUCK. WHAT SHOULD I DO?",
+            "desc": "Jito Block Engine operates atomically — either the bundle executes in full or it is cancelled. Stuck transactions do not exist. Funds are not lost. If you see a delay, it is a network issue on Solana's side. Retry the operation."
+          },
+          {
+            "num": "09",
+            "title": "SOLANA WENT DOWN. ARE MY FUNDS SAFE?",
+            "desc": "Yes. Your funds are on the blockchain — not with us. A network outage means temporary terminal unavailability. Not asset loss."
+          }
+        ]
+      },
+      {
+        "title": "HOW IT WORKS",
+        "items": [
+          {
+            "num": "10",
+            "title": "WHAT IS MEV AND HOW DOES VEIL PROTECT AGAINST IT?",
+            "desc": "MEV (Maximal Extractable Value) — bots that see your transaction in the mempool and insert theirs before it. You get a worse price. The bot takes the difference.\n\nVeil routes all orders through Jito Block Engine directly to slot leaders. The public mempool is bypassed entirely. Sandwich attacks are structurally impossible."
+          },
+          {
+            "num": "11",
+            "title": "WHAT IS VEIL FLOW?",
+            "desc": "Stealth routing — a mechanism for breaking the on-chain graph. Your amount is split and routed through a series of one-time ephemeral addresses inside a single Jito bundle. Analytics see the transactions. The link between you and the recipient — they do not."
+          },
+          {
+            "num": "12",
+            "title": "IS THIS LEGAL?",
+            "desc": "Yes. Transaction privacy is a legitimate right. The protocol must not be used for money laundering, terrorist financing, or sanctions evasion. By using Veil, you confirm that the origin of your assets is lawful."
+          }
+        ]
+      },
+      {
+        "title": "FEES & PRACTICAL",
+        "items": [
+          {
+            "num": "13",
+            "title": "WHAT IS THE FEE?",
+            "desc": "0.8% of the volume of each operation. Solana network fees and Jito tips are on top, paid separately. No hidden fees."
+          },
+          {
+            "num": "14",
+            "title": "IS THERE A SUBSCRIPTION FEE?",
+            "desc": "No. You pay only for operations."
+          },
+          {
+            "num": "15",
+            "title": "HOW FAST ARE ORDERS EXECUTED?",
+            "desc": "Via Jito Block Engine — within a single slot. Solana produces a block every ~400 ms."
+          },
+          {
+            "num": "16",
+            "title": "WHICH ASSETS ARE SUPPORTED?",
+            "desc": "All tokens on Solana available through Jupiter V6 — SOL, USDC, USDT, and the full long tail of SPL tokens including memecoins."
+          },
+          {
+            "num": "17",
+            "title": "IS THERE SUPPORT?",
+            "desc": "Telegram. We respond there. Security questions are priority."
+          }
+        ]
+      }
+    ]
+  },
+  "risks": {
+    "hero": "RISK DISCLOSURE",
+    "subhero": "VEIL",
+    "sections": [
+      {
+        "num": "1.0",
+        "title": "MARKET VOLATILITY",
+        "desc": "Digital assets can go to zero. Fast. Past performance means nothing.\n\nYou already know this — but it needs to be written here."
+      },
+      {
+        "num": "2.0",
+        "title": "NETWORK RISKS",
+        "subsections": [
+          {
+            "title": "2.1.",
+            "items": [
+              "Solana — the protocol depends on network stability. Delays, forks, or L1 failures can make transaction execution temporarily impossible."
+            ]
+          },
+          {
+            "title": "2.2.",
+            "items": [
+              "Helius, Jito, Jupiter — external infrastructure. Failures on their side can temporarily restrict access to market data and execution."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "3.0",
+        "title": "SMART CONTRACT RISKS",
+        "desc": "During swaps, funds interact with third-party liquidity pools — Raydium, Orca, and others.\n\nVEIL is not responsible for bugs, exploits, or hacks of these protocols. Verify what you are signing."
+      },
+      {
+        "num": "4.0",
+        "title": "LOSS OF ACCESS",
+        "subsections": [
+          {
+            "title": "4.1.",
+            "items": [
+              "Loss of PIN — irreversible loss of access to funds. No backdoor. No recovery. No support that will fix it. Write down your PIN. Store it offline."
+            ]
+          },
+          {
+            "title": "4.2.",
+            "items": [
+              "You are responsible for the security of your device and Telegram account. Compromised device — compromised assets."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "5.0",
+        "title": "EXPERIMENTAL TECHNOLOGIES",
+        "desc": "Veil Flow and integration Arcium TEE — early-stage technologies.\n\nUsage implies accepting the risks that accompany any frontier protocol. Do not invest what you are not prepared to lose."
+      }
+    ]
+  },
+  "privacy": {
+    "hero": "PRIVACY POLICY",
+    "subhero": "VEIL",
+    "sections": [
+      {
+        "num": "1.0",
+        "title": "WHAT WE DO NOT COLLECT",
+        "desc": "No names. No emails. No phone numbers. No IP addresses.\n\nYour profile is your public Solana address. Nothing more."
+      },
+      {
+        "num": "2.0",
+        "title": "HOW KEYS ARE PROCESSED",
+        "subsections": [
+          {
+            "title": "2.1.",
+            "items": [
+              "Private keys are encrypted via AES-256-GCM. Your PIN is processed via Argon2id + HKDF. The derived key exists only in RAM at the moment of signing."
+            ]
+          },
+          {
+            "title": "2.2.",
+            "items": [
+              "The server receives only ciphertext and nonce. Without your PIN — decryption is mathematically impossible."
+            ]
+          },
+          {
+            "title": "2.3.",
+            "items": [
+              "We do not have access to your funds. Not technically. Not legally. Not in any way."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "3.0",
+        "title": "TRANSACTION PRIVACY",
+        "subsections": [
+          {
+            "title": "3.1.",
+            "items": [
+              "Veil Flow obfuscates the transaction routing. Logs connecting the main wallet and ephemeral nodes are not kept."
+            ]
+          },
+          {
+            "title": "3.2.",
+            "items": [
+              "Jito Block Engine makes your intents invisible in the public mempool until confirmed on-chain."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "4.0",
+        "title": "LOCAL STORAGE",
+        "desc": "Operation history, address book, and settings are stored in an encrypted SQLite database within the isolated container of your account.\n\nThe /purge command or account deletion destroys data without the possibility of recovery. Irreversible."
+      },
+      {
+        "num": "5.0",
+        "title": "TRACKING",
+        "desc": "The terminal does not use third-party trackers.\n\nNo Google Analytics. No Facebook Pixel. No geolocation. No device fingerprinting.\n\nZero."
+      }
+    ]
+  },
+  "terms": {
+    "hero": "TERMS OF USE",
+    "subhero": "VEIL",
+    "sections": [
+      {
+        "num": "1.0",
+        "title": "WHAT THIS IS",
+        "desc": "VEIL is a software interface for interacting with the Solana blockchain. Not a bank. Not a custodian. Not a financial advisor. Not an exchange.\n\nThis is a tool. You decide what to do with it."
+      },
+      {
+        "num": "2.0",
+        "title": "YOUR KEYS — YOUR RESPONSIBILITY",
+        "desc": "We do not store your keys. Your PIN derives your keys. We store only encrypted bytes. Without your PIN — decryption is mathematically impossible.",
+        "subsections": [
+          {
+            "title": "2.1.",
+            "items": [
+              "You bear full responsibility for the safety of your PIN. Write it down. Store it offline. Do not share it with anyone."
+            ]
+          },
+          {
+            "title": "2.2.",
+            "items": [
+              "If you lose your PIN, your funds are inaccessible. No backdoor. No recovery. Mathematics makes no exceptions."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "3.0",
+        "title": "TRANSACTION EXECUTION",
+        "desc": "VEIL provides access to third-party execution infrastructure — Jito Block Engine, Jupiter V6.",
+        "subsections": [
+          {
+            "title": "3.1.",
+            "items": [
+              "MEV protection reduces the risk of frontrunning. There is no 100% execution guarantee during extreme network congestion."
+            ]
+          },
+          {
+            "title": "3.2.",
+            "items": [
+              "Network fees and Jito tips are paid by you. They are not refundable under any circumstances."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "4.0",
+        "title": "VEIL FLOW AND PRIVACY",
+        "desc": "Stealth routing protects the privacy of legitimate trading strategies.",
+        "subsections": [
+          {
+            "title": "4.1.",
+            "items": [
+              "The protocol must not be used for money laundering, terrorist financing, or sanctions evasion."
+            ]
+          },
+          {
+            "title": "4.2.",
+            "items": [
+              "By using the protocol, you confirm the legal origin of your assets."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "5.0",
+        "title": "LIMITATION OF LIABILITY",
+        "desc": "The software is provided \"as is\".",
+        "subsections": [
+          {
+            "title": "5.1.",
+            "items": [
+              "VEIL is not responsible for losses from market volatility, smart contract bugs of third-party DEXs, or Solana network failures."
+            ]
+          },
+          {
+            "title": "5.2.",
+            "items": [
+              "Trading digital assets carries the risk of losing 100% of your capital. You know this."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
