@@ -278,7 +278,7 @@ export default function Home({ isPreloaded }: HomeProps) {
 
               {/* Action 2: System Documentation */}
               <button
-                onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
+                onClick={() => navigate("/docs")}
                 className="flex items-center justify-center h-[44px] rounded-full bg-transparent border border-[#EDEAE2]/28 hover:border-[#EDEAE2]/55 hover:bg-[#EDEAE2]/4 text-[#EDEAE2]/75 hover:text-[#EDEAE2] font-sans text-[10px] md:text-[11px] tracking-[0.12em] md:tracking-[0.2em] uppercase transition-all duration-300 cursor-pointer text-center whitespace-nowrap overflow-hidden"
                 id="btn-readme-docs"
               >

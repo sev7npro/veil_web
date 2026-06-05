@@ -47,7 +47,7 @@ export default function VeilManifesto({ lang }: VeilManifestoProps) {
           </button>
 
           <button
-            onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
+            onClick={() => navigate("/manifesto")}
             className="flex items-center justify-center h-[44px] md:h-auto rounded-full bg-transparent border border-[#EDEAE2]/28 hover:border-[#EDEAE2]/55 md:border-[#221C1A] text-[#EDEAE2]/75 md:text-[#A8A29E] font-sans uppercase text-[10px] md:text-xs tracking-[0.12em] md:tracking-[0.2em] font-light px-4 md:px-10 py-0 md:py-4 transition-all duration-300 ease-out hover:bg-[#EDEAE2]/4 md:hover:bg-transparent md:hover:border-[#E5D9C4] hover:text-[#EDEAE2] md:hover:text-white outline-none focus:outline-none focus:ring-0 cursor-pointer text-center whitespace-nowrap overflow-hidden"
           >
             {content.btn2}
