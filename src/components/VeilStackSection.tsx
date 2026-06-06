@@ -1,7 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface BlockData {
   id: number;
@@ -21,8 +20,8 @@ interface VeilStackSectionProps {
 }
 
 export default function VeilStackSection({
-  lang = "EN",
-}: VeilStackSectionProps) {
+  lang: propLang,
+}: VeilStackSectionProps = {}) {
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   const [isMobile, React_useState_isMobile] = React.useState(false);
@@ -34,7 +33,9 @@ export default function VeilStackSection({
     new Array(11).fill(0),
   );
 
-  const t = lang === "RU" ? ru.veilStack : en.veilStack;
+  const { lang: contextLang, t: translationsDict } = useLanguage();
+  const lang = propLang || contextLang;
+  const t = translationsDict.veilStack;
   const blockLabels = t.blockLabels;
 
   // Determine if mobile

@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "motion/react";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface VeilStatsSectionProps {
   lang?: "EN" | "RU";
 }
 
-export default function VeilStatsSection({ lang = "EN" }: VeilStatsSectionProps) {
-  const stats = lang === "RU" ? ru.stats : en.stats;
+export default function VeilStatsSection({ lang }: VeilStatsSectionProps = {}) {
+  const { t } = useLanguage();
+  const stats = t.stats;
 
   return (
     <section 

@@ -1,17 +1,14 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
 
 interface FAQProps {
   lang?: "EN" | "RU";
 }
 
 export default function FAQ({ lang: propLang }: FAQProps = {}) {
-  const { lang: contextLang } = useLanguage();
-  const lang = propLang || contextLang;
-  const content = lang === "RU" ? ru.faq : en.faq;
+  const { lang: contextLang, t } = useLanguage();
+  const content = t.faq;
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

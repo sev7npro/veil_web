@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface PrivacyBannerProps {
-  lang: "EN" | "RU";
+  lang?: "EN" | "RU";
   triggerShow: boolean;
 }
 
-export default function PrivacyBanner({ lang, triggerShow }: PrivacyBannerProps) {
+export default function PrivacyBanner({ lang, triggerShow }: PrivacyBannerProps = { triggerShow: false }) {
   const [isVisible, setIsVisible] = useState(false);
-  const t = lang === "RU" ? ru.privacyBanner : en.privacyBanner;
+  const { t: translationsDict } = useLanguage();
+  const t = translationsDict.privacyBanner;
 
   useEffect(() => {
     if (triggerShow) {

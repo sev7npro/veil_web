@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { translations, TranslationSchema } from "../locales/i18n";
 
 type Language = "EN" | "RU";
 
@@ -6,6 +7,7 @@ interface LanguageContextType {
   lang: Language;
   setLang: (lang: Language) => void;
   toggleLanguage: () => void;
+  t: TranslationSchema;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -26,8 +28,10 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setLang(lang === "EN" ? "RU" : "EN");
   };
 
+  const t = translations[lang];
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLanguage }}>
+    <LanguageContext.Provider value={{ lang, setLang, toggleLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

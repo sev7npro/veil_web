@@ -1,21 +1,23 @@
 import React from "react";
 import { motion } from "motion/react";
 import TerminalMockup from "./TerminalMockup";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface AdvantagesSectionProps {
   lang?: "EN" | "RU";
 }
 
 export default function AdvantagesSection({
-  lang = "EN",
-}: AdvantagesSectionProps) {
-  const t = lang === "RU" ? ru.advantages : en.advantages;
+  lang: propLang,
+}: AdvantagesSectionProps = {}) {
+  const { lang: contextLang, t: translationsDict } = useLanguage();
+  const lang = propLang || contextLang;
+  const t = translationsDict.advantages;
+  const isRu = lang === "RU";
 
   return (
     <section
-      className="relative w-full bg-[#FFFFFF] border-t border-stone-200 select-none text-left z-20 py-16 md:py-[120px]"
+      className="relative w-full bg-[#FFFFFF] border-t border-stone-200 select-none text-left z-20 pt-16 pb-0 md:py-[120px]"
       id="advantages-module"
     >
       <div className="w-full flex flex-col justify-center items-center overflow-hidden">
@@ -29,33 +31,31 @@ export default function AdvantagesSection({
           id="advantages-header"
         >
           {lang === "RU" ? (
-            <h2
-              className="font-sans font-light text-[#4A4F4C]"
-              style={{
-                fontSize: "clamp(20px, 2.5vw, 34px)",
-                letterSpacing: "0.02em",
-              }}
-            >
-              Приватный терминал: абсолютное{" "}
-              <span className="text-[#0E523D] font-medium tracking-wide mx-1">
-                бесшумное исполнение
-              </span>{" "}
-              на дексах
-            </h2>
+            <div className="flex flex-col items-center">
+              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-500 font-medium mb-3 block">
+                Приватный терминал:
+              </span>
+              <h2 className="font-serif font-light text-[#1A2521] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
+                абсолютное{" "}
+                <span className="text-[#0E523D] font-normal italic pr-1">
+                  бесшумное исполнение
+                </span>{" "}
+                на дексах
+              </h2>
+            </div>
           ) : (
-            <h2
-              className="font-sans font-light text-[#4A4F4C]"
-              style={{
-                fontSize: "clamp(20px, 2.5vw, 34px)",
-                letterSpacing: "0.02em",
-              }}
-            >
-              The private terminal: absolute{" "}
-              <span className="text-[#0E523D] font-medium tracking-wide mx-1">
-                silent execution
-              </span>{" "}
-              exchange
-            </h2>
+            <div className="flex flex-col items-center">
+              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-500 font-medium mb-3 block">
+                The private terminal:
+              </span>
+              <h2 className="font-serif font-light text-[#1A2521] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
+                absolute{" "}
+                <span className="text-[#0E523D] font-normal italic pr-1">
+                  silent execution
+                </span>{" "}
+                exchange
+              </h2>
+            </div>
           )}
         </motion.div>
 
@@ -66,18 +66,25 @@ export default function AdvantagesSection({
         >
           {/* Left Column: Advantages 1 & 2 (Right-aligned text) */}
           <div className="flex flex-col gap-0 md:gap-12 text-center md:text-right order-2 md:order-1 items-center md:items-end w-full">
-            <div className="max-w-[300px] w-full flex flex-col gap-0 md:gap-12 items-center md:items-end">
+            <div className="w-full md:max-w-[300px] flex flex-col gap-0 md:gap-12 items-center md:items-end">
               {/* Advantage 1: Zero MEV */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-t border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent -mt-[30px] md:mt-0 relative z-10"
               >
                 {/* SVG Shield icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
+                  {/* Concentric ripples around the icon for mobile */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
+                  </div>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
                       d="M20 6L32 10V18C32 25 27 29.5 20 34C13 29.5 8 25 8 18V10L20 6Z"
                       stroke="currentColor"
@@ -114,11 +121,18 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-end w-full text-left md:text-right border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Key-like / Lock icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
+                  {/* Concentric ripples around the icon for mobile */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
+                  </div>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <rect
                       x="11"
                       y="18"
@@ -165,7 +179,7 @@ export default function AdvantagesSection({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="order-1 md:order-2 flex justify-center w-full min-w-0 mt-0 mb-8 md:mt-0 md:mb-0"
+            className="order-1 md:order-2 flex justify-center w-full min-w-0 mt-0 mb-0 md:mt-0 md:mb-0 relative z-0"
           >
             <div className="w-full max-w-[155px] md:max-w-[310px]">
               <TerminalMockup lang={lang} />
@@ -174,18 +188,25 @@ export default function AdvantagesSection({
 
           {/* Right Column: Advantages 3 & 4 (Left-aligned text) */}
           <div className="flex flex-col gap-0 md:gap-12 text-center md:text-left order-3 items-center md:items-start w-full">
-            <div className="max-w-[300px] w-full flex flex-col gap-0 md:gap-12 items-center md:items-start">
+            <div className="w-full md:max-w-[300px] flex flex-col gap-0 md:gap-12 items-center md:items-start">
               {/* Advantage 3: Silent Routing */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-t border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Flowing Path Lines */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
+                  {/* Concentric ripples around the icon for mobile */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
+                  </div>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
                       d="M10 32C10 26 14 20 20 20C26 20 30 14 30 8"
                       stroke="currentColor"
@@ -229,11 +250,18 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-start md:items-start w-full text-left border-b border-stone-200/60 md:border-none py-[14px] px-4 md:px-0 md:py-0 bg-stone-50/60 md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Lightning Bolt icon */}
-                <div className="w-[28px] h-[28px] md:w-[40px] md:h-[40px] mt-0.5 md:mt-0 flex items-center justify-center shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-300 text-[#0E523D]">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-full h-full">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
+                  {/* Concentric ripples around the icon for mobile */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
+                  </div>
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
                       d="M23 6L11 22H21L17 34L29 18H19L23 6Z"
                       stroke="currentColor"

@@ -183,7 +183,8 @@ export default function Navbar({
 
         {/* "Launch App" Mini Action Button (inert for now as requested) - Hidden on mobile */}
         <button
-          className="hidden sm:flex items-center justify-center h-8 sm:h-9 px-3 sm:px-4 md:px-5 rounded-full bg-[#0A0A0C] opacity-90 text-[#EDEAE2] font-semibold text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] uppercase transition-all duration-300"
+          onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
+          className="hidden sm:flex items-center justify-center h-8 sm:h-9 px-3 sm:px-4 md:px-5 rounded-full bg-[#0A0A0C] opacity-90 text-[#EDEAE2] font-semibold text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer"
           id="nav-btn-launch"
         >
           LAUNCH

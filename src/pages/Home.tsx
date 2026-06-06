@@ -9,8 +9,6 @@ import VeilStackSection from "../components/VeilStackSection";
 import VeilStatsSection from "../components/VeilStatsSection";
 import PrivacyFirstSection from "../components/PrivacyFirstSection";
 import VeilManifesto from "../components/VeilManifesto";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
 
 interface HomeProps {
   isPreloaded: boolean;
@@ -135,7 +133,8 @@ export default function Home({ isPreloaded }: HomeProps) {
   };
 
   // Direct precise translations for dynamic visual transition
-  const t = lang === "RU" ? ru.home : en.home;
+  const { t: translationsDict } = useLanguage();
+  const t = translationsDict.home;
 
   return (
     <>

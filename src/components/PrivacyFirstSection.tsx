@@ -1,21 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface PrivacyFirstSectionProps {
   lang?: "EN" | "RU";
 }
 
 export default function PrivacyFirstSection({
-  lang = "EN",
-}: PrivacyFirstSectionProps) {
+  lang,
+}: PrivacyFirstSectionProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scrollProgressRef = useRef<number>(0.5);
   const [isMobile, setIsMobile] = useState(false);
   const [isInView, setIsInView] = useState(false);
 
-  const t = lang === "RU" ? ru.privacyFirst : en.privacyFirst;
+  const { t: translationsDict } = useLanguage();
+  const t = translationsDict.privacyFirst;
 
   // Resize and screen-type detection
   useEffect(() => {

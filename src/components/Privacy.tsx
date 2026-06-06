@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
 
 interface PrivacyProps {
   lang?: "EN" | "RU";
@@ -14,10 +12,10 @@ interface PrivacyProps {
 }
 
 export default function Privacy({ lang: propLang, onNavigate }: PrivacyProps) {
-  const { lang: contextLang } = useLanguage();
+  const { lang: contextLang, t } = useLanguage();
   const lang = propLang || contextLang;
   const navigate = useNavigate();
-  const content = lang === "RU" ? ru.privacy : en.privacy;
+  const content = t.privacy;
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface VeilManifestoProps {
-  lang: "EN" | "RU";
+  lang?: "EN" | "RU";
 }
 
-export default function VeilManifesto({ lang }: VeilManifestoProps) {
+export default function VeilManifesto({ lang }: VeilManifestoProps = {}) {
   const navigate = useNavigate();
-  const content = lang === "RU" ? ru.manifesto : en.manifesto;
+  const { t } = useLanguage();
+  const content = t.manifesto;
   
   // Dynamically break the headline by newline to preserve the visual flow across different viewports
   const headlineParts = content.headline.split("\n");

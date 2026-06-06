@@ -47,7 +47,7 @@ const roadmapContent = {
         features: [
           {
             name: "Veil Flow (Beta)",
-            desc: "Ephemeral transit node generation. 1000 SOL → split into 5 parts → routed through 5 Stels Wallets → assembled at the destination address. The on-chain graph is broken. The link is untraceable.",
+            desc: "Introducing controlled entropy into Solana transaction chains. Flows fragment on-the-fly and pass through ephemeral cryptographic circuits, eliminating any possibility of end-to-end balance monitoring by third parties.",
           },
           {
             name: "Veil Core (NLP)",
@@ -151,7 +151,7 @@ const roadmapContent = {
         features: [
           {
             name: "Veil Flow (Beta)",
-            desc: "Генерация эфемерных транзитных узлов. 1000 SOL → разбиваются на 5 частей → маршрутизируются через 5 STELS-кошельков → собираются на адресе назначения. Ончейн-граф разрывается. Связь не отслеживается.",
+            desc: "Внедрение контролируемой энтропии в транзакционные цепочки Solana. Потоки фрагментируются на лету и проходят через эфемерные криптографические контуры, исключая возможность сквозного мониторинга балансов со стороны третьих лиц.",
           },
           {
             name: "Veil Core (NLP)",

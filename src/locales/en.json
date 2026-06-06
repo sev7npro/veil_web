@@ -407,5 +407,118 @@
         ]
       }
     ]
+  },
+  "documentation": {
+    "hero": "DOCUMENTATION",
+    "subhero": "TRADING TERMINAL ON SOLANA",
+    "sections": [
+      {
+        "num": "01",
+        "title": "THE PROBLEM",
+        "desc": "Solana is fast and cheap. Its architecture is also completely transparent. Three problems arise from this:",
+        "items": [
+          "Custodial risk: Most trading bots in Telegram store private keys on centralized servers in plaintext.",
+          "MEV extraction: Transactions in the public mempool are subject to sandwich attacks. You pay the spread to bots, not the market.",
+          "On-chain tracking: Analytical platforms (Nansen, Arkham) link sender and receiver addresses in real-time. Your strategy is visible.",
+          "Veil addresses all three through local encryption, private mempool bundling, and multi-hop routing. Your keys stay on your device, orders are shielded until confirmed, and transaction graphs are fragmented."
+        ]
+      },
+      {
+        "num": "02",
+        "title": "KEY SECURITY",
+        "desc": "Zero-trust by default. Since encryption is performed entirely on your device, we have no technical or mathematical way to access your files or keys.",
+        "subsections": [
+          {
+            "title": "2.1. HOW KEYS ARE STORED",
+            "items": [
+              "When creating a secure container (Vault), your private key is encrypted locally using AES-256-GCM.",
+              "Your PIN is processed via Argon2id. The resulting key is passed to HKDF.",
+              "Only the encrypted payload and salt/nonce are stored in your secure local client-side database (IndexedDB) or encrypted folder.",
+              "Decryption occurs exclusively in random-access memory (RAM) during the signing process. The PIN is never saved."
+            ]
+          },
+          {
+            "title": "2.2. DELETION AFTER SIGNING",
+            "items": [
+              "Immediately after Ed25519 signing, raw key bytes are completely zeroed out in RAM using active security standards. A memory dump of the active application process yields zero plaintext secrets.",
+              "A local device compromise does not expose your funds without your active master PIN."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "03",
+        "title": "EXECUTION MECHANISM",
+        "desc": "Speed. MEV protection. Shielded from public mempool vulnerability.",
+        "subsections": [
+          {
+            "title": "3.1. JITO BLOCK ENGINE",
+            "items": [
+              "All orders (swaps, sniping) are routed through Jito Block Engine as atomic bundles.",
+              "Your transactions are invisible to public RPC nodes until they land on-chain.",
+              "Atomic execution: either the entire sequence executes as requested, or it is safely reverted. Front-running and sandwich attacks are effectively prevented."
+            ]
+          },
+          {
+            "title": "3.2. JUPITER V6 ROUTING",
+            "items": [
+              "Jupiter V6 automatically finds the optimal swap paths across all Solana DEXs. Minimal price impact. No manual route selection."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "04",
+        "title": "VEIL FLOW (BETA)",
+        "desc": "Introducing controlled entropy into Solana transaction chains. Flows fragment on-the-fly and pass through ephemeral cryptographic circuits, eliminating any possibility of end-to-end balance monitoring by third parties."
+      },
+      {
+        "num": "05",
+        "title": "INTERFACES",
+        "desc": "Graphical User Interface (GUI) for visual-oriented traders. Command Line Interface (CLI) for those who think in commands.",
+        "subsections": [
+          {
+            "title": "5.1. TELEGRAM TERMINAL (MINI APP)",
+            "items": [
+              "A fully functional graphical interface inside a Telegram WebView.",
+              "Real-time charts and order books.",
+              "Portfolio overview. Slippage configuration. One-click execution."
+            ]
+          },
+          {
+            "title": "5.2. VEIL CORE — COMMAND LINE",
+            "items": [
+              "Text and voice input.",
+              "Natural language parsing: instruct the assistant in plain words, review the compiled trade parameters on-screen, and approve the signature locally on your device.",
+              "\"Swap 50 SOL to USDC with 0.5% slippage via Jito\" — the bundle compiles and gets signed automatically."
+            ]
+          }
+        ]
+      },
+      {
+        "num": "06",
+        "title": "PROTOCOL \"PURGE\" (ERASURE)",
+        "desc": "One button. Irreversible.",
+        "subsections": [
+          {
+            "title": "WHAT IS DESTROYED:",
+            "items": [
+              "Master Wallet (main wallet) — wiped.",
+              "STELS wallets — wiped.",
+              "Address book — cleared.",
+              "PIN code and session keys — deleted.",
+              "RAM — cleared using Zeroize."
+            ]
+          },
+          {
+            "title": "WHY IT MATTERS:",
+            "items": [
+              "Most wallets offer no exit. Data accumulates and remains.",
+              "PURGE is a hard guarantee. Once activated — there is nothing to steal. Nothing to extract. Nothing to demand."
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

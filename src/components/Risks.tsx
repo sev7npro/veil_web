@@ -3,8 +3,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
 
 interface RisksProps {
   lang?: "EN" | "RU";
@@ -14,10 +12,10 @@ interface RisksProps {
 }
 
 export default function Risks({ lang: propLang, onNavigate }: RisksProps) {
-  const { lang: contextLang } = useLanguage();
+  const { lang: contextLang, t } = useLanguage();
   const lang = propLang || contextLang;
   const navigate = useNavigate();
-  const content = lang === "RU" ? ru.risks : en.risks;
+  const content = t.risks;
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

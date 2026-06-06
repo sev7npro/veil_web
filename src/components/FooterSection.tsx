@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
 import VeilLinesLogo from "./VeilLinesLogo";
-import en from "../locales/en.json";
-import ru from "../locales/ru.json";
 
 interface FooterSectionProps {
   lang?: "EN" | "RU";
@@ -16,14 +14,14 @@ export default function FooterSection({
   lang: propLang,
   onNavigate,
 }: FooterSectionProps) {
-  const { lang: contextLang } = useLanguage();
+  const { lang: contextLang, t: translationsDict } = useLanguage();
   const lang = propLang || contextLang;
   const navigate = useNavigate();
   const containerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
-  const t = lang === "RU" ? ru.footer : en.footer;
+  const t = translationsDict.footer;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
