@@ -1,6 +1,6 @@
-import { Canvas, useFrame, useThree, Object3DNode, extend } from '@react-three/fiber';
+import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 
 // Custom shader material extending THREE.ShaderMaterial
 class VeilShaderMaterial extends THREE.ShaderMaterial {
@@ -11,7 +11,8 @@ class VeilShaderMaterial extends THREE.ShaderMaterial {
         u_resolution: { value: new THREE.Vector2(800, 600) },
         u_mouse: { value: new THREE.Vector2(400, 300) },
         u_speed: { value: 1.0 },
-        u_intensity: { value: 1.0 }
+        u_intensity: { value: 1.0 },
+        u_is_mobile: { value: 0.0 }
       },
       vertexShader: `
         varying vec2 v_uv;
@@ -26,6 +27,7 @@ class VeilShaderMaterial extends THREE.ShaderMaterial {
         uniform vec2 u_mouse;
         uniform float u_speed;
         uniform float u_intensity;
+        uniform float u_is_mobile;
         varying vec2 v_uv;
 
         // Cosine-based color palette generator by Inigo Quilez
@@ -51,17 +53,19 @@ class VeilShaderMaterial extends THREE.ShaderMaterial {
             return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
         }
 
-        // Fractal Brownian Motion (5 octaves) for fluidic flow dynamics
+        // Fractal Brownian Motion with mobile LOD for fluidic flow performance
         float fbm(vec2 p, float time_scaled) {
             float v = 0.0;
             float a = 0.5;
             vec2 shift = vec2(100.0);
-            // Rotate each octave to combat grid artifacts
             mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
             for (int i = 0; i < 5; ++i) {
                 v += a * noise(p);
                 p = rot * p * 2.0 + shift;
                 a *= 0.5;
+                if (u_is_mobile > 0.5 && i == 3) {
+                    break; // Keep 4 octaves on mobile for better detail, while saving a bit of performance
+                }
             }
             return v;
         }
@@ -69,10 +73,18 @@ class VeilShaderMaterial extends THREE.ShaderMaterial {
         void main() {
             // Screen coordinates normalized
             vec2 uv = gl_FragCoord.xy / u_resolution.xy;
-            vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
+            float min_res = min(u_resolution.x, u_resolution.y);
+            vec2 p = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / min_res;
+            
+            if (u_is_mobile > 0.5) {
+                p *= 1.5; // Zoom out on mobile by 1.5x (меньше в полтора раза)
+            }
             
             // Mouse coordinates mapping with reactive push influence
-            vec2 m = (u_mouse - 0.5 * u_resolution.xy) / u_resolution.y;
+            vec2 m = (u_mouse - 0.5 * u_resolution.xy) / min_res;
+            if (u_is_mobile > 0.5) {
+                m *= 1.5;
+            }
             float distToMouse = length(p - m);
             float mouseReaction = smoothstep(0.45, 0.0, distToMouse) * 0.18;
             
@@ -120,10 +132,30 @@ class VeilShaderMaterial extends THREE.ShaderMaterial {
             // High contrast boost of color density
             mixedGlowColor = pow(mixedGlowColor, vec3(1.18));
             
-            // Elegant screen boundary gradient vignette to keep edges deep and immersive
-            float vignetteScale = uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y);
-            float vignetteIntensity = clamp(pow(16.0 * vignetteScale, 0.38), 0.0, 1.0);
-            mixedGlowColor *= vignetteIntensity;
+            // Elegant screen boundary gradient vignette to keep lateral/top edges deep and immersive
+            // Left, Right, & Top edges get a standard vignette
+            float horizontalVignette = smoothstep(0.0, 0.12, uv.x) * smoothstep(1.0, 0.88, uv.x);
+            float topVignette = smoothstep(1.0, 0.85, uv.y);
+            
+            // For the bottom edge (uv.y -> 0.0), create a ragged, organic, misty dissolve transitioning to deep void.
+            // Under layer noise (fbm-based) modulates the cutoff boundary to prevent any clinical linear line!
+            float bottomNoiseVal = fbm(p * 2.2 - vec2(0.0, scaled_time * 0.03), scaled_time);
+            
+            // Dynamic non-linear threshold boundary that is wavy & ragged:
+            // The fade starts organically between y = 0.42 and fully dissolves by y = 0.02
+            float bottomDissolveEdge = 0.28 + 0.16 * bottomNoiseVal;
+            float lowerDissolveLimit = 0.02;
+            
+            if (u_is_mobile > 0.5) {
+                // Fade out much higher up on mobile so it doesn't take over the screen
+                bottomDissolveEdge = 0.48 + 0.16 * bottomNoiseVal;
+                lowerDissolveLimit = 0.22; // Below ~22% of screen height, smoke is completely gone.
+            }
+            
+            float bottomVignette = smoothstep(lowerDissolveLimit, bottomDissolveEdge, uv.y);
+            
+            float premiumVignette = horizontalVignette * topVignette * bottomVignette;
+            mixedGlowColor *= premiumVignette;
             
             gl_FragColor = vec4(mixedGlowColor, 1.0);
         }
@@ -138,7 +170,7 @@ extend({ VeilShaderMaterial });
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      veilShaderMaterial: Object3DNode<VeilShaderMaterial, typeof VeilShaderMaterial>;
+      veilShaderMaterial: any;
     }
   }
 }
@@ -185,6 +217,7 @@ function LiquidPlane({ speed, intensity, interactive }: LiquidPlaneProps) {
       materialRef.current.uniforms.u_resolution.value.set(size.width, size.height);
       materialRef.current.uniforms.u_speed.value = speed;
       materialRef.current.uniforms.u_intensity.value = intensity;
+      materialRef.current.uniforms.u_is_mobile.value = window.innerWidth < 768 ? 1.0 : 0.0;
 
       // Handle nice smooth LERPed inertia logic for mouse coordinates
       if (interactive) {
@@ -195,10 +228,12 @@ function LiquidPlane({ speed, intensity, interactive }: LiquidPlaneProps) {
     }
   });
 
+  const material = useMemo(() => new VeilShaderMaterial(), []);
+
   return (
     <mesh>
       <planeGeometry args={[2, 2]} />
-      <veilShaderMaterial ref={materialRef} key={VeilShaderMaterial.name} />
+      <primitive object={material} ref={materialRef} attach="material" />
     </mesh>
   );
 }
@@ -219,6 +254,8 @@ export default function VeilLiquidNeon({
   opacity = 1.0,
 }: VeilLiquidNeonProps) {
   const [webGLSupported, setWebGLSupported] = useState<boolean | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
 
   // Safe client-side WebGL detection to prevent crashes in sandboxed environments
   useEffect(() => {
@@ -232,6 +269,24 @@ export default function VeilLiquidNeon({
     } catch {
       setWebGLSupported(false);
     }
+  }, []);
+
+  // Performance Optimization: IntersectionObserver to pause rendering when off-screen
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.01, rootMargin: '100px' }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.unobserve(el);
+    };
   }, []);
 
   if (webGLSupported === false) {
@@ -248,14 +303,18 @@ export default function VeilLiquidNeon({
     );
   }
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   return (
     <div 
+      ref={containerRef}
       id="veil-liquid-neon-container"
       className={`absolute inset-0 overflow-hidden pointer-events-none select-none ${className}`}
       style={{ opacity, backgroundColor: 'transparent' }}
     >
-      {webGLSupported !== null && (
+      {webGLSupported !== null && isVisible && (
         <Canvas
+          dpr={isMobile ? 0.65 : [1, 1.5]}
           gl={{ 
             antialias: false,
             powerPreference: 'high-performance',

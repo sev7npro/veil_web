@@ -166,7 +166,7 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden">
+    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden content-visibility-auto">
       {/* 
         ========================================================================
         SPECTACULAR SCI-FI PAGE ASSEMBLY SYSTEM

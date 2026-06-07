@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 
 interface VeilBlockchainRoutesProps {
@@ -7,6 +7,17 @@ interface VeilBlockchainRoutesProps {
 
 export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockchainRoutesProps) {
   const [isMobile, setIsMobile] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Animation state triggers
+  const [_, setRenderTrigger] = useState(0);
+  const timeRef = useRef(0);
+  
+  // High fidelity mouse trackers
+  const targetMouse = useRef({ x: 960, y: 540 });
+  const currentMouse = useRef({ x: 960, y: 540 });
+  const mouseActive = useRef(false);
+  const activeStrength = useRef(0.0); // Smooth LERP controller for mouse weight
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,10 +38,11 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
   const xTranslation = useSpring(useTransform(mouseX, [-400, 400], [-18, 18]), springConfig);
   const yTranslation = useSpring(useTransform(mouseY, [-400, 400], [-18, 18]), springConfig);
 
+  // Parallax tracking mouse tracker
   useEffect(() => {
     if (isMobile) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMoveParallax = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
       const offsetX = clientX - innerWidth / 2;
@@ -39,74 +51,164 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
       mouseY.set(offsetY);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMoveParallax);
+    return () => window.removeEventListener("mousemove", handleMouseMoveParallax);
   }, [isMobile, mouseX, mouseY]);
 
-  // Number of beautifully parallel, smooth lines forming the quantum wave ribbon
-  const lineCount = 46;
-  const paths = Array.from({ length: lineCount }).map((_, i) => {
-    // Spans from -1.0 to 1.0 (with a tiny cluster near the central index)
-    const t = (i - (lineCount - 1) / 2) / ((lineCount - 1) / 2);
+  // Infinite, high-performance requestAnimationFrame loop to calculate elastic physics
+  useEffect(() => {
+    let animId: number;
     
-    // Non-linear shaping to cluster the lines naturally around the center line and edges,
-    // creating that beautiful, high-tech dimensional wireframe cluster.
-    const signedPower = (val: number) => Math.sign(val) * Math.pow(Math.abs(val), 1.12);
-    const tShaped = signedPower(t);
+    const tick = () => {
+      // Advance time clock
+      timeRef.current += 0.007;
 
-    // Left outer spread Y spacing from center (540 in a 1080 canvas)
-    const leftSpread = 420;
-    // Central bottleneck tight pinch spacing (increased to untangle the middle lines so they don't look like a single blended light beam)
-    const centerSpread = 80;
-    // Right outer spread Y spacing from center (540 in a 1080 canvas)
-    const rightSpread = 420;
+      // Smooth inertia LERP for mouse tracking
+      currentMouse.current.x += (targetMouse.current.x - currentMouse.current.x) * 0.09;
+      currentMouse.current.y += (targetMouse.current.y - currentMouse.current.y) * 0.09;
 
-    const yStart_base = 540 + tShaped * leftSpread;
-    const yCenter_base = 540 + tShaped * centerSpread;
-    const yEnd_base = 540 + tShaped * rightSpread;
+      // Smooth transition for when mouse enters or leaves area
+      const targetStrength = mouseActive.current ? 1.0 : 0.0;
+      activeStrength.current += (targetStrength - activeStrength.current) * 0.06;
 
-    const startX = -100;
-    const centerX = 960;
-    const endX = 2020;
+      // Force render frame
+      setRenderTrigger((prev) => prev + 1);
+      animId = requestAnimationFrame(tick);
+    };
 
-    // Advanced Bezier control points to produce a pure Sin-squared taper transition
-    const cp1X = 420;
-    const cp2X = 720;
-    const cp3X = 1200;
-    const cp4X = 1500;
+    animId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animId);
+  }, []);
 
-    // Sway offsets for organic individual movement (desynchronized by index)
-    const swayAmpCenter = 32 + Math.abs(Math.sin(i * 0.15)) * 18;
-    const swayAmpEnds = 12 + Math.abs(Math.cos(i * 0.15)) * 12;
+  // Global mouse move & leave trackers on window for elastic line manipulation
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const rawX = e.clientX - rect.left;
+      const rawY = e.clientY - rect.top;
 
-    const phaseA_offset_center = Math.sin(i * 0.45) * swayAmpCenter;
-    const phaseA_offset_start = Math.cos(i * 0.3) * swayAmpEnds;
-    const phaseA_offset_end = Math.sin(i * 0.35) * swayAmpEnds;
+      // Projected coordinates into 1920x1080 viewBox space
+      const svgX = (rawX / rect.width) * 1920;
+      const svgY = (rawY / rect.height) * 1080;
 
-    const phaseB_offset_center = -phaseA_offset_center * 0.95;
-    const phaseB_offset_start = -phaseA_offset_start * 0.95;
-    const phaseB_offset_end = -phaseA_offset_end * 0.95;
+      targetMouse.current = { x: svgX, y: svgY };
+      mouseActive.current = true;
+    };
 
-    const yStart_A = yStart_base + phaseA_offset_start;
-    const yCenter_A = yCenter_base + phaseA_offset_center;
-    const yEnd_A = yEnd_base + phaseA_offset_end;
+    const handleGlobalMouseLeave = () => {
+      mouseActive.current = false;
+    };
 
-    const yStart_B = yStart_base + phaseB_offset_start;
-    const yCenter_B = yCenter_base + phaseB_offset_center;
-    const yEnd_B = yEnd_base + phaseB_offset_end;
+    const container = containerRef.current;
+    if (container) {
+      window.addEventListener("mousemove", handleGlobalMouseMove, { passive: true });
+      document.addEventListener("mouseleave", handleGlobalMouseLeave);
+    }
 
-    const d_base = `M ${startX},${yStart_base} C ${cp1X},${yStart_base} ${cp2X},${yCenter_base} ${centerX},${yCenter_base} C ${cp3X},${yCenter_base} ${cp4X},${yEnd_base} ${endX},${yEnd_base}`;
-    const d_A = `M ${startX},${yStart_A} C ${cp1X},${yStart_A} ${cp2X},${yCenter_A} ${centerX},${yCenter_A} C ${cp3X},${yCenter_A} ${cp4X},${yEnd_A} ${endX},${yEnd_A}`;
-    const d_B = `M ${startX},${yStart_B} C ${cp1X},${yStart_B} ${cp2X},${yCenter_B} ${centerX},${yCenter_B} C ${cp3X},${yCenter_B} ${cp4X},${yEnd_B} ${endX},${yEnd_B}`;
+    return () => {
+      window.removeEventListener("mousemove", handleGlobalMouseMove);
+      document.removeEventListener("mouseleave", handleGlobalMouseLeave);
+    };
+  }, []);
 
-    // Desynchronized speeds for natural movement
-    const duration = 14 + (i % 6) * 2.5;
+  // Structural parameters of lines
+  const lineCount = 46;
+  
+  // Calculate dynamic path strings for this frame
+  const renderPaths = () => {
+    const t_elapsed = timeRef.current;
+    const mx = currentMouse.current.x;
+    const my = currentMouse.current.y;
+    const currentWeight = activeStrength.current;
 
-    return { id: `wave-line-${i}`, d_base, d_A, d_B, duration, index: i };
-  });
+    return Array.from({ length: lineCount }).map((_, i) => {
+      const t = (i - (lineCount - 1) / 2) / ((lineCount - 1) / 2);
+      const signedPower = (val: number) => Math.sign(val) * Math.pow(Math.abs(val), 1.12);
+      const tShaped = signedPower(t);
+
+      // Distances & spacing metrics
+      const leftSpread = 420;
+      const centerSpread = 80;
+      const rightSpread = 420;
+
+      const yStart_base = 540 + tShaped * leftSpread;
+      const yCenter_base = 540 + tShaped * centerSpread;
+      const yEnd_base = 540 + tShaped * rightSpread;
+
+      // Base nodes
+      const startX = -100;
+      const centerX = 960;
+      const endX = 2020;
+
+      const cp1X_base = 420;
+      const cp2X_base = 720;
+      const cp3X_base = 1200;
+      const cp4X_base = 1500;
+
+      // Slow organic sways
+      const swayAmpCenter = 32 + Math.abs(Math.sin(i * 0.15)) * 18;
+      const swayAmpEnds = 12 + Math.abs(Math.cos(i * 0.15)) * 12;
+
+      // Calculate time-varying sways
+      const phase_center = Math.sin(t_elapsed * 1.5 + i * 0.45) * swayAmpCenter;
+      const phase_start = Math.cos(t_elapsed * 1.2 + i * 0.3) * swayAmpEnds;
+      const phase_end = Math.sin(t_elapsed * 1.35 + i * 0.35) * swayAmpEnds;
+
+      // Baseline control nodes for this line
+      let ptStart = { x: startX, y: yStart_base + phase_start };
+      let ptCp1 = { x: cp1X_base, y: yStart_base + phase_start };
+      let ptCp2 = { x: cp2X_base, y: yCenter_base + phase_center };
+      let ptCenter = { x: centerX, y: yCenter_base + phase_center };
+      let ptCp3 = { x: cp3X_base, y: yCenter_base + phase_center };
+      let ptCp4 = { x: cp4X_base, y: yEnd_base + phase_end };
+      let ptEnd = { x: endX, y: yEnd_base + phase_end };
+
+      // Helper for elastic mouse attraction / pull distortion
+      const applyGlowPull = (pt: { x: number; y: number }, basePull = 0.6) => {
+        const dx = mx - pt.x;
+        const dy = my - pt.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const influenceRadius = 480; // Larger physical drag radius
+
+        if (dist < influenceRadius) {
+          // Dynamic bell-curve decay for elastic string feeling
+          const strength = Math.pow(1.0 - dist / influenceRadius, 1.4);
+          const pullFactor = strength * basePull * currentWeight;
+          return {
+            x: pt.x + dx * pullFactor,
+            y: pt.y + dy * pullFactor,
+          };
+        }
+        return pt;
+      };
+
+      // Anchor endpoints to edges of the screen to make cables stretch instead of shifting uniformly
+      const ptStart_d = ptStart;
+      const ptEnd_d = ptEnd;
+
+      // Outer control points maintain tension, while inner segments stretch deep with mouse
+      const ptCp1_d = applyGlowPull(ptCp1, 0.3);
+      const ptCp2_d = applyGlowPull(ptCp2, 0.65);
+      const ptCenter_d = applyGlowPull(ptCenter, 0.85); // Center element is main flex point
+      const ptCp3_d = applyGlowPull(ptCp3, 0.65);
+      const ptCp4_d = applyGlowPull(ptCp4, 0.3);
+
+      // Build Bezier SVG Path D attribute with beautiful curves
+      const pathD = `M ${ptStart_d.x},${ptStart_d.y} C ${ptCp1_d.x},${ptCp1_d.y} ${ptCp2_d.x},${ptCp2_d.y} ${ptCenter_d.x},${ptCenter_d.y} C ${ptCp3_d.x},${ptCp3_d.y} ${ptCp4_d.x},${ptCp4_d.y} ${ptEnd_d.x},${ptEnd_d.y}`;
+
+      return { id: `elastic-line-${i}`, pathD, index: i };
+    });
+  };
+
+  const calculatedPaths = renderPaths();
 
   return (
-    <div className="absolute inset-0 w-full h-[100vh] min-h-screen pointer-events-none select-none z-0 overflow-hidden bg-transparent">
+    <div 
+      ref={containerRef}
+      className="absolute inset-0 w-full h-[100vh] min-h-screen pointer-events-none select-none z-0 overflow-hidden bg-transparent"
+    >
       {/* 3D Cinematic Parallax container spanning the entire viewport */}
       <motion.div
         style={{
@@ -162,57 +264,36 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
             </filter>
           </defs>
 
-          {/* 1. UNDERLYING VOLUMETRIC FLOWS: Static, beautifully glowing blurred ribbon contours that project soft light from underneath */}
+          {/* 1. UNDERLYING VOLUMETRIC FLOWS: Glow paths */}
           <g filter="url(#luxuryHaze)">
-            {paths.map((path, idx) => {
-              // Standard static glowing lines to keep rendering extremely quiet, clean, and luxurious
+            {calculatedPaths.map((path, idx) => {
               if (idx % 2 !== 0) return null;
               return (
                 <path
                   key={`glow-under-${path.id}`}
-                  d={path.d_base}
+                  d={path.pathD}
                   fill="none"
                   stroke="url(#hourglassGlowGrad)"
                   strokeWidth="6"
                   strokeLinecap="round"
                   className="opacity-25"
-                >
-                  <animate
-                    attributeName="d"
-                    dur={`${path.duration}s`}
-                    repeatCount="indefinite"
-                    values={`${path.d_base}; ${path.d_A}; ${path.d_B}; ${path.d_base}`}
-                    keyTimes="0; 0.33; 0.66; 1"
-                    calcMode="spline"
-                    keySplines="0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1"
-                  />
-                </path>
+                />
               );
             })}
           </g>
 
-          {/* 2. CRISP RUNNING CHANNELS: High-definition precise lanes stacked beautifully on top of the glowing aura */}
+          {/* 2. CRISP RUNNING CHANNELS: Crisp cables */}
           <g>
-            {paths.map((path) => (
+            {calculatedPaths.map((path) => (
               <path
                 key={`sharp-line-${path.id}`}
-                d={path.d_base}
+                d={path.pathD}
                 fill="none"
                 stroke="url(#hourglassGrad)"
                 strokeWidth="0.95"
                 strokeOpacity="0.75"
                 strokeLinecap="round"
-              >
-                <animate
-                  attributeName="d"
-                  dur={`${path.duration}s`}
-                  repeatCount="indefinite"
-                  values={`${path.d_base}; ${path.d_A}; ${path.d_B}; ${path.d_base}`}
-                  keyTimes="0; 0.33; 0.66; 1"
-                  calcMode="spline"
-                  keySplines="0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1"
-                />
-              </path>
+              />
             ))}
           </g>
         </svg>
