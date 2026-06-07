@@ -700,7 +700,7 @@ export default function VeilStackSection({
           {/* ================= THE SVG CANVAS ================= */}
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Ambient Violet Glow under the isometric stack */}
-            <div className="absolute w-[600px] h-[300px] bg-indigo-900/10 rounded-full filter blur-[120px] pointer-events-none" />
+            {/* Blur removed */}
 
             <svg
               viewBox="0 0 1200 700"

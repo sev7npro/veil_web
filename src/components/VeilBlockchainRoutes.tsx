@@ -188,12 +188,12 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
       const ptStart_d = ptStart;
       const ptEnd_d = ptEnd;
 
-      // Outer control points maintain tension, while inner segments stretch deep with mouse
-      const ptCp1_d = applyGlowPull(ptCp1, 0.3);
-      const ptCp2_d = applyGlowPull(ptCp2, 0.65);
-      const ptCenter_d = applyGlowPull(ptCenter, 0.85); // Center element is main flex point
-      const ptCp3_d = applyGlowPull(ptCp3, 0.65);
-      const ptCp4_d = applyGlowPull(ptCp4, 0.3);
+      // Outer control points maintain tension, without stretching with mouse
+      const ptCp1_d = ptCp1;
+      const ptCp2_d = ptCp2;
+      const ptCenter_d = ptCenter; // Center element is main flex point
+      const ptCp3_d = ptCp3;
+      const ptCp4_d = ptCp4;
 
       // Build Bezier SVG Path D attribute with beautiful curves
       const pathD = `M ${ptStart_d.x},${ptStart_d.y} C ${ptCp1_d.x},${ptCp1_d.y} ${ptCp2_d.x},${ptCp2_d.y} ${ptCenter_d.x},${ptCenter_d.y} C ${ptCp3_d.x},${ptCp3_d.y} ${ptCp4_d.x},${ptCp4_d.y} ${ptEnd_d.x},${ptEnd_d.y}`;
@@ -225,7 +225,7 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
         className="absolute inset-[0.5%] w-[99%] h-[99%] flex items-center justify-center"
       >
         {/* Soft, volumetric central backlight glow that anchors the hourglass ribbon */}
-        <div className="absolute top-[25%] left-[25%] w-[50%] h-[50%] bg-radial from-[#00E8FA]/10 via-[#9945FF]/3 to-transparent blur-[160px] pointer-events-none select-none" />
+        {/* Background glow removed */}
 
         <svg
           viewBox="0 0 1920 1080"
@@ -274,7 +274,7 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
                   d={path.pathD}
                   fill="none"
                   stroke="url(#hourglassGlowGrad)"
-                  strokeWidth="6"
+                  strokeWidth="3"
                   strokeLinecap="round"
                   className="opacity-25"
                 />
@@ -290,7 +290,7 @@ export default function VeilBlockchainRoutes({ isPreloaded = true }: VeilBlockch
                 d={path.pathD}
                 fill="none"
                 stroke="url(#hourglassGrad)"
-                strokeWidth="0.95"
+                strokeWidth="0.45"
                 strokeOpacity="0.75"
                 strokeLinecap="round"
               />

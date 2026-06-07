@@ -54,7 +54,7 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     for (let i = 0; i < N; i++) {
       const f = i / (N - 1); // 0 to 1
       // Thinner, elegant, dynamic stroke width on mobile resembling PC variant but scaled down
-      const thickness = isMobile ? 0.22 + f * 0.35 : 0.45 + f * 1.0;
+      const thickness = isMobile ? 0.1 + f * 0.15 : 0.2 + f * 0.5;
       // Translucent varied opacity like PC version
       const opacity = isMobile ? 0.14 + (1 - f) * 0.32 : 0.14 + (1 - f) * 0.45;
 

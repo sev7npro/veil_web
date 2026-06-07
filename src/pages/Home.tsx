@@ -9,7 +9,6 @@ import VeilStatsSection from "../components/VeilStatsSection";
 import PrivacyFirstSection from "../components/PrivacyFirstSection";
 import VeilManifesto from "../components/VeilManifesto";
 import VeilBlockchainRoutes from "../components/VeilBlockchainRoutes";
-import VeilLiquidNeon from "../components/VeilLiquidNeon";
 
 const PROT_ITEMS = [
   {
@@ -236,29 +235,10 @@ export default function Home({ isPreloaded }: HomeProps) {
 
   return (
     <div className="relative w-full bg-[#050505] overflow-x-hidden">
-      {/* Background radial haze gradient - beautiful dark emerald and indigo liquid glow at center */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isPreloaded ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] as const }}
-        className="absolute inset-0 pointer-events-none select-none z-0"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 15%, rgba(16, 185, 129, 0.09) 0%, rgba(59, 130, 246, 0.04) 30%, rgba(5, 5, 5, 0) 75%)",
-        }}
-      />
+      {/* Background radial haze gradient - removed */}
 
-      {/* Procedural liquid neon interactive atmosphere (WebGL visual) stretching over BOTH modules! */}
-      {isPreloaded && (
-        <div className="absolute top-0 left-0 w-full h-[220vh] md:h-[245vh] pointer-events-none z-0 overflow-hidden">
-          <VeilLiquidNeon
-            speed={0.35}
-            intensity={0.6}
-            opacity={0.4}
-            interactive={true}
-          />
-        </div>
-      )}
+      {/* Procedural liquid neon interactive atmosphere disabled as requested */}
+
 
       {/* Hero View Container with smooth slow scale/opacity focus pull */}
       <motion.div
