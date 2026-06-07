@@ -3,7 +3,6 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
-import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production';
@@ -11,20 +10,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       mdx(),
       react(),
-      tailwindcss(),
-      // Pre-gzip and Pre-brotli compress assets in production builds for fast serving and minimal bandwidth
-      viteCompression({
-        algorithm: 'gzip',
-        ext: '.gz',
-        threshold: 1024,
-        deleteOriginFile: false
-      }),
-      viteCompression({
-        algorithm: 'brotliCompress',
-        ext: '.br',
-        threshold: 1024,
-        deleteOriginFile: false
-      })
+      tailwindcss()
     ],
     resolve: {
       alias: {
