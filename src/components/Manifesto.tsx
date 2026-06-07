@@ -10,6 +10,56 @@ interface ManifestoProps {
   ) => void;
 }
 
+// Sophisticated cryptographic text scramble component for page assembly effect
+function ScrambledText({ text, delay = 0, duration = 1100 }: { text: string; delay?: number; duration?: number }) {
+  const [displayedText, setDisplayedText] = React.useState("");
+
+  React.useEffect(() => {
+    let timerId: NodeJS.Timeout;
+    let frameId: number;
+    
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789X///###_";
+    const run = () => {
+      const startTime = performance.now();
+      
+      const update = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const currentLength = Math.floor(progress * text.length);
+        let result = text.substring(0, currentLength);
+        
+        for (let i = currentLength; i < text.length; i++) {
+          if (text[i] === " " || text[i] === "\n") {
+            result += text[i];
+          } else {
+            result += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        
+        setDisplayedText(result);
+        
+        if (progress < 1) {
+          frameId = requestAnimationFrame(update);
+        } else {
+          setDisplayedText(text);
+        }
+      };
+      
+      frameId = requestAnimationFrame(update);
+    };
+
+    timerId = setTimeout(run, delay);
+
+    return () => {
+      clearTimeout(timerId);
+      cancelAnimationFrame(frameId);
+    };
+  }, [text, delay, duration]);
+
+  return <span>{displayedText}</span>;
+}
+
 const manifestoContent = {
   EN: {
     hero: "VEIL MANIFESTO",
@@ -116,7 +166,13 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden">
+    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden content-visibility-auto">
+      {/* 
+        ========================================================================
+        SPECTACULAR SCI-FI PAGE ASSEMBLY SYSTEM
+        ========================================================================
+      */}
+      
       {/* Decorative dot grid background for the vertical right navigation */}
       <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 w-48 h-80 pointer-events-none opacity-20 -z-5">
         <div 
@@ -162,22 +218,22 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
         })}
       </div>
 
-      <div className="max-w-4xl mx-auto py-16">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-20 text-center"
-        >
+      <div className="max-w-4xl mx-auto py-16 relative z-10">
+        {/* Header with high-tech decryption scrambler animations */}
+        <div className="mb-20 text-center">
           <h1 className="font-sans text-3xl sm:text-4xl md:text-5xl font-light tracking-wide mb-4 text-[#FFFFFF] uppercase">
-            {content.hero}
+            <ScrambledText text={content.hero} delay={50} />
           </h1>
           <p className="font-sans text-[10px] sm:text-xs tracking-[0.25em] uppercase text-[#E5D9C4]">
-            {content.subhero}
+            <ScrambledText text={content.subhero} delay={450} duration={800} />
           </p>
-          <div className="mt-8 w-px h-16 bg-[#121212] mx-auto" />
-        </motion.div>
+          <motion.div 
+            initial={{ height: 0 }}
+            animate={{ height: 64 }}
+            transition={{ delay: 0.9, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 w-px bg-gradient-to-b from-[#E5D9C4]/35 to-transparent mx-auto" 
+          />
+        </div>
 
         {/* Flat Rows of Manifesto */}
         <div className="flex flex-col border-t border-[#121212]">
@@ -185,12 +241,11 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
             <motion.div
               key={idx}
               id={`sect-${section.num}`}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-120px" }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{
-                duration: 0.6,
-                delay: idx * 0.05,
+                duration: 0.8,
+                delay: 0.4 + idx * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="border-b border-[#121212] py-8 md:py-10 scroll-mt-24"
@@ -204,7 +259,7 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
                   //
                 </span>
                 <h3 className="font-sans text-white text-lg sm:text-xl font-light tracking-[0.08em] uppercase">
-                  {section.title}
+                  <ScrambledText text={section.title} delay={550 + idx * 100} duration={750} />
                 </h3>
               </div>
 
@@ -221,17 +276,16 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
         {/* Footnote Signature Back */}
         <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.2 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 1.2 }}
           className="mt-32 pt-16 flex flex-col items-center justify-center text-center"
         >
           <div className="flex flex-col items-center justify-center">
             <span className="font-mono text-[10px] sm:text-xs tracking-[0.35em] text-[#52525B] uppercase font-light mb-3">
-              {content.closing}
+              <ScrambledText text={content.closing} delay={1200} duration={800} />
             </span>
             <span className="font-sans text-xs sm:text-base tracking-[0.45em] text-[#E5D9C4] uppercase font-light">
-              {content.motto}
+              <ScrambledText text={content.motto} delay={1600} duration={1000} />
             </span>
           </div>
         </motion.div>
@@ -239,3 +293,4 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
     </div>
   );
 }
+

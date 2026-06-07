@@ -91,16 +91,12 @@ export default function Navbar({
       style={{
         maxWidth: "1140px",
         minWidth: "280px",
-        backgroundColor: scrolled
-          ? "rgba(255, 255, 255, 0.94)"
-          : "rgba(255, 255, 255, 0.82)",
+        backgroundColor: "rgba(255, 255, 255, 1.0)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        border: scrolled
-          ? "1px solid rgba(0, 0, 0, 0.12)"
-          : "1px solid rgba(0, 0, 0, 0.08)",
+        border: "1px solid rgba(0, 0, 0, 0.08)",
         boxShadow:
-          "0 10px 30px -10px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.05)",
+          "0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.05)",
       }}
       id="veil-floating-navbar"
     >
@@ -184,7 +180,7 @@ export default function Navbar({
         {/* "Launch App" Mini Action Button (inert for now as requested) - Hidden on mobile */}
         <button
           onClick={() => window.open("https://t.me/veilstels_bot", "_blank")}
-          className="hidden sm:flex items-center justify-center h-8 sm:h-9 px-3 sm:px-4 md:px-5 rounded-full bg-[#0A0A0C] opacity-90 text-[#EDEAE2] font-semibold text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer"
+          className="hidden sm:flex items-center justify-center h-8 sm:h-9 px-3 sm:px-4 md:px-5 rounded-full bg-[#0A0A0C] hover:bg-[#1C1C1F] text-[#EDEAE2] font-semibold text-[10px] sm:text-[11px] md:text-[12px] tracking-[0.12em] sm:tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer"
           id="nav-btn-launch"
         >
           LAUNCH
@@ -224,17 +220,6 @@ export default function Navbar({
                 }`}
               >
                 ROADMAP
-              </span>
-              <span
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  navigate("/docs");
-                }}
-                className={`py-2 px-1 border-b border-stone-100 uppercase cursor-pointer ${
-                  currentPage === "DOCS" ? "text-[#0A0A0C]" : ""
-                }`}
-              >
-                DOCUMENTATION
               </span>
             </div>
 

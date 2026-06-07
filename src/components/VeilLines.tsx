@@ -53,12 +53,12 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     const styles = [];
     for (let i = 0; i < N; i++) {
       const f = i / (N - 1); // 0 to 1
-      // Ultra-thin 0.5px threads on mobile. Richer variance on desktop
-      const thickness = isMobile ? 0.5 : 0.45 + f * 1.0;
-      // Precision delicate translucent 0.25 opacity on mobile
-      const opacity = isMobile ? 0.25 : 0.14 + (1 - f) * 0.45;
+      // Thinner, elegant, dynamic stroke width on mobile resembling PC variant but scaled down
+      const thickness = isMobile ? 0.22 + f * 0.35 : 0.45 + f * 1.0;
+      // Translucent varied opacity like PC version
+      const opacity = isMobile ? 0.14 + (1 - f) * 0.32 : 0.14 + (1 - f) * 0.45;
 
-      // We will define specific glowing attributes (only used on desktop)
+      // Glow effect enabled on both PC and mobile for consistent premium neon styling
       const isGlow = i >= 4 && i <= 8;
 
       styles.push({
@@ -89,7 +89,7 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
 
     let animFrameId: number;
     let lastTime = 0;
-    const fps = isMobile ? 30 : 60;
+    const fps = isMobile ? 45 : 60; // 45 FPS on mobile provides high fluidity while saving on power consumption
     const interval = 1000 / fps;
 
     const updatePaths = (timestamp: number) => {
@@ -105,8 +105,9 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
       const H = dimensions.height;
       const scaleX = Math.max(W, 1000) / 2;
 
-      const baseGap = isMobile ? 8 : 14;
-      const lineSpacing = isMobile ? 2.0 : 3.8;
+      // Reallocate spacings closer to PC parameters for a majestic spaced out display
+      const baseGap = isMobile ? 11 : 14;
+      const lineSpacing = isMobile ? 3.1 : 3.8;
 
       // Precompute time variables outside current loops
       const time0_8 = time * 0.8;
@@ -115,7 +116,7 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
       const time2_2 = time * 2.2;
 
       const breath = 1.0 + 0.05 * Math.sin(time0_8);
-      const numPoints = isMobile ? 30 : 60; // Throttled on mobile
+      const numPoints = isMobile ? 48 : 60; // High frequency points on mobile for pristine high-fidelity curves
       const yCenter = H / 2;
 
       for (let i = 0; i < N; i++) {
@@ -123,10 +124,10 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
 
         // Optimizations: Math factor precomputations outside inner point-loop
         const lineHumpOffset =
-          Math.sin(time1_9 - i * 0.25) * (isMobile ? 3.0 : 7.0);
+          Math.sin(time1_9 - i * 0.25) * (isMobile ? 5.0 : 7.0);
         const animPhase = time2_2 + i * 0.15;
         const customAmplitude =
-          (isMobile ? 24 : 48) + i * (isMobile ? 9 : 17.5) + lineHumpOffset;
+          (isMobile ? 38 : 48) + i * (isMobile ? 13.5 : 17.5) + lineHumpOffset;
 
         let dUpper = "";
         let dLower = "";
@@ -186,18 +187,16 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
       style={{ willChange: "transform" }}
     >
       <defs>
-        {/* Glow filters rendered only on non-mobile screens */}
-        {!isMobile && (
-          <filter
-            id="veil-glow-blur"
-            x="-20%"
-            y="-20%"
-            width="140%"
-            height="140%"
-          >
-            <feGaussianBlur stdDeviation="3.5" />
-          </filter>
-        )}
+        {/* Glow filters rendered with adaptive standard deviation for beautiful neon rendering */}
+        <filter
+          id="veil-glow-blur"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="140%"
+        >
+          <feGaussianBlur stdDeviation={isMobile ? "1.6" : "3.5"} />
+        </filter>
 
         {lineStyles.map((line) => {
           const i = line.id;
@@ -255,42 +254,41 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
         })}
       </defs>
 
-      {/* Glow path duplicates - Completely bypassed on mobile for dramatic performance gains */}
-      {!isMobile &&
-        lineStyles.map((line) => {
-          if (!line.isGlow) return null;
-          const i = line.id;
-          return (
-            <g key={`glow-group-${i}`}>
-              <path
-                ref={(el) => {
-                  if (upperGlowPathsRef.current)
-                    upperGlowPathsRef.current[i] = el;
-                }}
-                fill="none"
-                stroke={`url(#veil-custom-grad-${i})`}
-                strokeWidth={line.thickness * 2.8}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                filter="url(#veil-glow-blur)"
-                opacity={0.25}
-              />
-              <path
-                ref={(el) => {
-                  if (lowerGlowPathsRef.current)
-                    lowerGlowPathsRef.current[i] = el;
-                }}
-                fill="none"
-                stroke={`url(#veil-custom-grad-${i})`}
-                strokeWidth={line.thickness * 2.8}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                filter="url(#veil-glow-blur)"
-                opacity={0.25}
-              />
-            </g>
-          );
-        })}
+      {/* Glow path duplicates - Enabled on both but optimized/thinned down on mobile */}
+      {lineStyles.map((line) => {
+        if (!line.isGlow) return null;
+        const i = line.id;
+        return (
+          <g key={`glow-group-${i}`}>
+            <path
+              ref={(el) => {
+                if (upperGlowPathsRef.current)
+                  upperGlowPathsRef.current[i] = el;
+              }}
+              fill="none"
+              stroke={`url(#veil-custom-grad-${i})`}
+              strokeWidth={line.thickness * (isMobile ? 1.8 : 2.8)}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#veil-glow-blur)"
+              opacity={isMobile ? 0.16 : 0.25}
+            />
+            <path
+              ref={(el) => {
+                if (lowerGlowPathsRef.current)
+                  lowerGlowPathsRef.current[i] = el;
+              }}
+              fill="none"
+              stroke={`url(#veil-custom-grad-${i})`}
+              strokeWidth={line.thickness * (isMobile ? 1.8 : 2.8)}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter="url(#veil-glow-blur)"
+              opacity={isMobile ? 0.16 : 0.25}
+            />
+          </g>
+        );
+      })}
 
       {/* Main crisp high fidelity line vectors */}
       {lineStyles.map((line) => {
