@@ -156,16 +156,3 @@ body {
     -ms-overflow-style: none;
   }
 }
-
-/* Off-screen paint and layout rendering optimization */
-.content-visibility-auto {
-  content-visibility: auto;
-  contain-intrinsic-size: 0 500px;
-}
-
-/* Hard-accelerated linear gradient mask for partners brand ticker */
-.marquee-fade-mask {
-  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
-}
-

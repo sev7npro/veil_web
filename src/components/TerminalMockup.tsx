@@ -77,29 +77,23 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
 
   if (!imageFailed) {
     return (
-      <div className="relative overflow-hidden rounded-2xl bg-transparent border border-[#EDEAE2]/10 shadow-[0_32px_80px_rgba(0,0,0,0.9),_0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300 min-h-[300px]">
-        <picture>
-          {/* Optimistic high-performance fallbacks for responsive asset loaders */}
-          <source srcSet={screenshotUrl} type="image/png" />
-          <img
-            src={screenshotUrl}
-            onError={() => setImageFailed(true)}
-            className="w-full h-auto block select-none"
-            alt="VEIL Terminal Mockup"
-            loading="lazy"
-            decoding="async"
-            referrerPolicy="no-referrer"
-          />
-        </picture>
+      <div className="relative overflow-hidden rounded-2xl bg-white border border-stone-200/80 shadow-[0_24px_68px_rgba(0,0,0,0.08),_0_8px_24px_rgba(0,0,0,0.04)] transition-all duration-300">
+        <img
+          src={screenshotUrl}
+          onError={() => setImageFailed(true)}
+          className="w-full h-auto block select-none"
+          alt="VEIL Terminal Mockup"
+          referrerPolicy="no-referrer"
+        />
       </div>
     );
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-[#0A0D0C] border border-[#2A1B4E]/30 shadow-[0_32px_80px_rgba(0,0,0,0.9),_0_8px_32px_rgba(0,0,0,0.6)] transition-all duration-300">
-      <div className="relative w-full aspect-[9/16] max-h-[490px] overflow-hidden flex flex-col font-sans bg-[#0A0D0C]">
+    <div className="relative overflow-hidden rounded-2xl bg-white border border-stone-200/80 shadow-[0_24px_68px_rgba(0,0,0,0.08),_0_8px_24px_rgba(0,0,0,0.04)] transition-all duration-300">
+      <div className="relative w-full aspect-[9/16] max-h-[490px] overflow-hidden flex flex-col font-sans bg-white">
         {/* Top Header / Stats Bar */}
-        <div className="flex-none h-12 border-b border-white/[0.06] flex items-center justify-between px-4">
+        <div className="flex-none h-12 border-b border-stone-100 flex items-center justify-between px-4">
           {/* Left Stats */}
           <motion.div
             className="flex items-center gap-6"
@@ -112,7 +106,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
                 {lang === "RU" ? "ОБЪЕМ (24Ч)" : "VOL (24H)"}
               </span>
-              <span className="text-xs text-stone-100 font-mono font-medium">
+              <span className="text-xs text-stone-950 font-mono font-medium">
                 $24.5M
               </span>
             </motion.div>
@@ -120,7 +114,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
                 {lang === "RU" ? "МАКС (24Ч)" : "HIGH (24H)"}
               </span>
-              <span className="text-xs text-[#14F195] font-mono font-semibold">
+              <span className="text-xs text-[#00A875] font-mono font-semibold">
                 83.45
               </span>
             </motion.div>
@@ -128,7 +122,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
                 {lang === "RU" ? "МИН (24Ч)" : "LOW (24H)"}
               </span>
-              <span className="text-xs text-[#F43F5E] font-mono font-semibold">
+              <span className="text-xs text-[#E04F4F] font-mono font-semibold">
                 81.40
               </span>
             </motion.div>
@@ -140,12 +134,12 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex items-center gap-2 opacity-80 text-stone-200"
+            className="flex items-center gap-2 opacity-80 text-stone-800"
           >
-            <div className="w-4 h-4 rounded text-stone-200 flex items-center justify-center">
+            <div className="w-4 h-4 rounded text-stone-800 flex items-center justify-center">
               <VeilLinesLogo />
             </div>
-            <span className="text-[10px] tracking-[0.2em] font-semibold text-stone-200">
+            <span className="text-[10px] tracking-[0.2em] font-semibold text-stone-800">
               VEIL
             </span>
           </motion.div>
@@ -197,11 +191,11 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
                 return (
                   <>
                     {/* Horizontal Grid lines aligned to prices */}
-                    <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                    <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                    <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                    <line x1="0%" y1="70%" x2="100%" y2="70%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                    <line x1="0%" y1="90%" x2="100%" y2="90%" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+                    <line x1="0%" y1="10%" x2="100%" y2="10%" stroke="rgba(0,0,0,0.04)" strokeWidth="1" />
+                    <line x1="0%" y1="30%" x2="100%" y2="30%" stroke="rgba(0,0,0,0.04)" strokeWidth="1" />
+                    <line x1="0%" y1="50%" x2="100%" y2="50%" stroke="rgba(0,0,0,0.04)" strokeWidth="1" />
+                    <line x1="0%" y1="70%" x2="100%" y2="70%" stroke="rgba(0,0,0,0.04)" strokeWidth="1" />
+                    <line x1="0%" y1="90%" x2="100%" y2="90%" stroke="rgba(0,0,0,0.04)" strokeWidth="1" />
                     
                     {/* Dashed Indicator Line for Current Price 82.67 */}
                     <line x1="0%" y1={`${mapPriceToY(82.67)}%`} x2="100%" y2={`${mapPriceToY(82.67)}%`} stroke="#00A875" strokeWidth="1" strokeDasharray="3 3" opacity={0.6} />

@@ -9,7 +9,6 @@ import VeilStatsSection from "../components/VeilStatsSection";
 import PrivacyFirstSection from "../components/PrivacyFirstSection";
 import VeilManifesto from "../components/VeilManifesto";
 import VeilBlockchainRoutes from "../components/VeilBlockchainRoutes";
-import VeilLiquidNeon from "../components/VeilLiquidNeon";
 
 const PROT_ITEMS = [
   {
@@ -235,38 +234,26 @@ export default function Home({ isPreloaded }: HomeProps) {
   const t = translationsDict.home;
 
   return (
-    <div className="relative w-full bg-[#050505] overflow-x-hidden">
-      {/* Background radial haze gradient - beautiful dark emerald and indigo liquid glow at center */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isPreloaded ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] as const }}
-        className="absolute inset-0 pointer-events-none select-none z-0"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 15%, rgba(16, 185, 129, 0.09) 0%, rgba(59, 130, 246, 0.04) 30%, rgba(5, 5, 5, 0) 75%)",
-        }}
-      />
-
-      {/* Procedural liquid neon interactive atmosphere (WebGL visual) stretching over BOTH modules! */}
-      {isPreloaded && (
-        <div className="absolute top-0 left-0 w-full h-[220vh] md:h-[245vh] pointer-events-none z-0 overflow-hidden">
-          <VeilLiquidNeon
-            speed={0.35}
-            intensity={0.6}
-            opacity={0.4}
-            interactive={true}
-          />
-        </div>
-      )}
-
+    <>
       {/* Hero View Container with smooth slow scale/opacity focus pull */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={isPreloaded ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] as const }}
-        className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden shrink-0 bg-transparent"
+        className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden shrink-0 bg-[#050505]"
       >
+        {/* Background radial haze gradient - beautiful dark emerald and indigo liquid glow at center */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isPreloaded ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 3.5, ease: [0.16, 1, 0.3, 1] as const }}
+          className="absolute inset-0 pointer-events-none select-none z-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 35%, rgba(16, 185, 129, 0.09) 0%, rgba(59, 130, 246, 0.04) 50%, rgba(5, 5, 5, 0) 100%)",
+          }}
+        />
+
         {/* Ambient background cryptographic cyber routes animation with interactive 3D sway */}
         <VeilBlockchainRoutes isPreloaded={isPreloaded} />
 
@@ -274,13 +261,13 @@ export default function Home({ isPreloaded }: HomeProps) {
 
         {/* Content Vertical Stack with flawless padding for mobile */}
         <div
-          className="relative flex flex-col items-center justify-center text-center z-10 px-6 max-w-4xl pt-24 sm:pt-0 translate-y-[20px] sm:translate-y-0"
+          className="relative flex flex-col items-center justify-center text-center z-10 px-6 max-w-4xl pt-16 sm:pt-0 -translate-y-[50px] sm:translate-y-0"
           id="veil-content-wrapper"
         >
           {/* Premium minimal vertical lines curtain logo - cleanly positioned without negative overlaps on mobile */}
           <motion.div
-            initial={{ opacity: 0, y: isMobile ? -65 : 15, scale: 0.95 }}
-            animate={isPreloaded ? { opacity: 1, y: isMobile ? -80 : 0, scale: 1 } : { opacity: 0, y: isMobile ? -65 : 15, scale: 0.95 }}
+            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+            animate={isPreloaded ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
             transition={{
               duration: 2.5,
               ease: [0.16, 1, 0.3, 1],
@@ -304,12 +291,12 @@ export default function Home({ isPreloaded }: HomeProps) {
               variants={containerVariants}
               initial="hidden"
               animate={isPreloaded ? "visible" : "hidden"}
-              className="flex justify-center items-center font-serif text-[#EDEAE2] font-extralight -translate-y-[35px] sm:translate-y-0"
+              className="flex justify-center items-center font-serif text-[#EDEAE2] font-extralight"
               style={{
                 fontSize: "clamp(54px, 15vw, 180px)",
                 gap: isMobile ? "0.22em" : "0.45em",
                 lineHeight: "1.0",
-                marginTop: isMobile ? "10px" : "-80px",
+                marginTop: isMobile ? "-20px" : "-80px",
               }}
               id="veil-wordmark-container"
             >
@@ -325,50 +312,39 @@ export default function Home({ isPreloaded }: HomeProps) {
               ))}
             </motion.div>
 
-            {/* Tagline: split and stacked on mobile, single elegant line on desktop */}
-            <motion.div
+            {/* Tagline */}
+            <motion.p
               variants={taglineVariants}
               initial="hidden"
               animate={isPreloaded ? "visible" : "hidden"}
-              className="mt-8 sm:mt-8 w-full flex flex-col items-center justify-center px-4"
+              className="mt-6 sm:mt-8 font-sans font-light text-white text-center uppercase px-4"
+              style={{
+                fontSize: "clamp(9px, 1.1vw, 12px)",
+                letterSpacing: "0.25em",
+                lineHeight: "1.6",
+              }}
               id="veil-tagline"
             >
               <AnimatePresence mode="wait">
-                <motion.div
+                <motion.span
                   key={lang}
                   initial={{ opacity: 0, y: 3 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -3 }}
                   transition={{ duration: 0.3 }}
-                  className="flex flex-col items-center select-none"
+                  className="inline-block"
                 >
-                  {isMobile ? (
-                    <div className="flex flex-col items-center gap-1.5 text-center font-sans font-light tracking-[0.20em] uppercase text-white/70 text-[10px] min-[375px]:text-[11px] leading-relaxed">
-                      <span>{lang === "RU" ? "БЕСШУМНОЕ ИСПОЛНЕНИЕ." : "QUIET EXECUTION."}</span>
-                      <span>{lang === "RU" ? "ИНТЕЛЛЕКТУАЛЬНАЯ МАРШРУТИЗАЦИЯ." : "INTELLIGENT ROUTING."}</span>
-                    </div>
-                  ) : (
-                    <span
-                      className="font-sans font-light text-white text-center uppercase"
-                      style={{
-                        fontSize: "clamp(9px, 1.1vw, 12px)",
-                        letterSpacing: "0.25em",
-                        lineHeight: "1.6",
-                      }}
-                    >
-                      {t.tagline}
-                    </span>
-                  )}
-                </motion.div>
+                  {t.tagline}
+                </motion.span>
               </AnimatePresence>
-            </motion.div>
+            </motion.p>
 
             {/* Action Buttons arranged side-by-side on mobile to match the premium Hyperliquid layout */}
             <motion.div
               variants={buttonsVariants}
               initial="hidden"
               animate={isPreloaded ? "visible" : "hidden"}
-              className="mt-14 sm:mt-10 grid grid-cols-2 gap-3 w-full max-w-[340px] px-2 md:flex md:flex-row md:justify-center md:items-center md:gap-4 md:max-w-none md:px-0"
+              className="mt-10 grid grid-cols-2 gap-3 w-full max-w-[340px] px-2 md:flex md:flex-row md:justify-center md:items-center md:gap-4 md:max-w-none md:px-0"
               id="veil-cta-actions"
             >
               {/* Action 1: Launch App (Inert styled cursor feedback) */}
@@ -417,11 +393,15 @@ export default function Home({ isPreloaded }: HomeProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={isPreloaded ? { opacity: 0.6, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ delay: 1.0, duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 sm:mt-24 w-full max-w-2xl px-4 flex flex-col items-center select-none"
+              className="mt-16 sm:mt-24 w-full max-w-2xl px-4 flex flex-col items-center select-none"
               id="integrated-systems"
             >
               <div 
-                className="w-full overflow-hidden relative py-2 select-none marquee-fade-mask"
+                className="w-full overflow-hidden relative py-2 select-none"
+                style={{
+                  WebkitMaskImage: "linear-gradient(to right, transparent, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent)",
+                  maskImage: "linear-gradient(to right, transparent, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, transparent)"
+                }}
               >
                 {/* Hardware-accelerated sliding ticker row */}
                 <div className="flex animate-marquee">
@@ -460,6 +440,6 @@ export default function Home({ isPreloaded }: HomeProps) {
 
       {/* Module 5: CTA Manifesto Section */}
       <VeilManifesto lang={lang} />
-    </div>
+    </>
   );
 }

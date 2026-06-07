@@ -17,18 +17,10 @@ export default function AdvantagesSection({
 
   return (
     <section
-      className="relative w-full bg-transparent select-none text-left z-20 pt-16 pb-0 md:py-[120px] overflow-hidden"
+      className="relative w-full bg-[#FFFFFF] border-t border-stone-200 select-none text-left z-20 pt-16 pb-0 md:py-[120px]"
       id="advantages-module"
     >
-      {/* Heavy bottom fade gradient to transition the continuous liquid neon bleed back to deep solid black */}
-      <div className="absolute bottom-0 left-0 w-full h-[250px] md:h-[400px] bg-gradient-to-t from-[#050505] via-[#050505]/75 to-transparent pointer-events-none z-0" />
-
-      {/* Dynamic atmospheric top glow bleeding from the Hero section */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[450px] bg-[radial-gradient(circle_at_center,rgba(153,69,255,0.11)_0%,rgba(0,232,250,0.03)_50%,transparent_100%)] blur-[120px] pointer-events-none select-none z-0" />
-      <div className="absolute top-[#20px] left-[15%] w-[40%] h-[40%] bg-[radial-gradient(circle_at_center,rgba(0,232,250,0.06)_0%,transparent_100%)] blur-[100px] pointer-events-none select-none z-0" />
-      <div className="absolute top-[#20px] right-[15%] w-[40%] h-[40%] bg-[radial-gradient(circle_at_center,rgba(20,241,149,0.04)_0%,transparent_100%)] blur-[100px] pointer-events-none select-none z-0" />
-
-      <div className="w-full flex flex-col justify-center items-center overflow-hidden relative z-10">
+      <div className="w-full flex flex-col justify-center items-center overflow-hidden">
         {/* 1. Header Area with fade-in motion trigger */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -40,12 +32,12 @@ export default function AdvantagesSection({
         >
           {lang === "RU" ? (
             <div className="flex flex-col items-center">
-              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
+              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-500 font-medium mb-3 block">
                 Приватный терминал:
               </span>
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
+              <h2 className="font-serif font-light text-[#1A2521] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
                 абсолютное{" "}
-                <span className="text-[#EDEAE2] font-normal italic pr-1">
+                <span className="text-[#0E523D] font-normal italic pr-1">
                   бесшумное исполнение
                 </span>{" "}
                 на дексах
@@ -53,12 +45,12 @@ export default function AdvantagesSection({
             </div>
           ) : (
             <div className="flex flex-col items-center">
-              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
+              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-500 font-medium mb-3 block">
                 The private terminal:
               </span>
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
+              <h2 className="font-serif font-light text-[#1A2521] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
                 absolute{" "}
-                <span className="text-[#EDEAE2] font-normal italic pr-1">
+                <span className="text-[#0E523D] font-normal italic pr-1">
                   silent execution
                 </span>{" "}
                 exchange
@@ -81,16 +73,16 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-[#2A1B4E]/30 md:border-none bg-[#0D0719] md:bg-transparent -mt-[30px] md:mt-0 relative z-10 animate-fade-in"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent -mt-[30px] md:mt-0 relative z-10"
               >
                 {/* SVG Shield icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
@@ -106,7 +98,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#EDEAE2] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -115,7 +107,7 @@ export default function AdvantagesSection({
                     {t.adv1_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-stone-400 leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv1_desc}
@@ -129,16 +121,16 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-[#2A1B4E]/30 md:border-none bg-[#0D0719] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Key-like / Lock icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <rect
@@ -162,7 +154,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#EDEAE2] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -171,7 +163,7 @@ export default function AdvantagesSection({
                     {t.adv2_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-stone-400 leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv2_desc}
@@ -203,16 +195,16 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-[#2A1B4E]/30 md:border-none bg-[#0D0719] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Flowing Path Lines */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
@@ -235,7 +227,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#EDEAE2] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -244,7 +236,7 @@ export default function AdvantagesSection({
                     {t.adv3_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-stone-400 leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv3_desc}
@@ -258,16 +250,16 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-[#2A1B4E]/30 md:border-none bg-[#0D0719] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-[#DDD0F6] md:border-none bg-[#EDE4FA] md:bg-transparent"
               >
                 {/* SVG Lightning Bolt icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#5B3AB3] hover:text-[#4A2CA0] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9A73EC]/25" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9A73EC]/15" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9A73EC]/10" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9A73EC]/5" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
@@ -282,7 +274,7 @@ export default function AdvantagesSection({
 
                 <div className="space-y-0.5 md:space-y-2">
                   <h3
-                    className="font-serif text-[#EDEAE2] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
+                    className="font-serif text-[#0F1412] text-[17px] md:text-[clamp(22px,2.2vw,30px)]"
                     style={{
                       fontWeight: 300,
                       letterSpacing: "0.04em",
@@ -291,7 +283,7 @@ export default function AdvantagesSection({
                     {t.adv4_title}
                   </h3>
                   <p
-                    className="font-sans text-[11px] md:text-[13px] text-stone-400 leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
+                    className="font-sans text-[11px] md:text-[13px] text-[#424C48] leading-[1.5] md:leading-[1.75] tracking-[0.01em] max-w-[280px]"
                     style={{ fontWeight: 300 }}
                   >
                     {t.adv4_desc}

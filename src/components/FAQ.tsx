@@ -24,7 +24,7 @@ export default function FAQ({ lang: propLang }: FAQProps = {}) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans content-visibility-auto">
+    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans">
       <div className="max-w-4xl mx-auto py-16">
         {/* Header */}
         <motion.div

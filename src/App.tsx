@@ -10,16 +10,13 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 
 // Routed page components
 import Home from "./pages/Home";
-import { LoaderSkeleton } from "./components/PageSkeleton";
-
-// Secondary routes lazy-loaded to minimize initial JS bundle size by over 60%!
-const Documentation = React.lazy(() => import("./components/Documentation"));
-const FAQ = React.lazy(() => import("./components/FAQ"));
-const Roadmap = React.lazy(() => import("./components/Roadmap"));
-const Terms = React.lazy(() => import("./components/Terms"));
-const Privacy = React.lazy(() => import("./components/Privacy"));
-const Risks = React.lazy(() => import("./components/Risks"));
-const Manifesto = React.lazy(() => import("./components/Manifesto"));
+import Documentation from "./components/Documentation";
+import FAQ from "./components/FAQ";
+import Roadmap from "./components/Roadmap";
+import Terms from "./components/Terms";
+import Privacy from "./components/Privacy";
+import Risks from "./components/Risks";
+import Manifesto from "./components/Manifesto";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,18 +41,16 @@ function MainAppLayout() {
       {/* Floating Header Navbar */}
       <Navbar isPreloaded={isPreloaded} />
 
-      <React.Suspense fallback={<LoaderSkeleton />}>
-        <Routes>
-          <Route path="/" element={<Home isPreloaded={isPreloaded} />} />
-          <Route path="/docs" element={<Documentation />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/roadmap" element={<Roadmap />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/risks" element={<Risks />} />
-          <Route path="/manifesto" element={<Manifesto />} />
-        </Routes>
-      </React.Suspense>
+      <Routes>
+        <Route path="/" element={<Home isPreloaded={isPreloaded} />} />
+        <Route path="/docs" element={<Documentation />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/risks" element={<Risks />} />
+        <Route path="/manifesto" element={<Manifesto />} />
+      </Routes>
 
       {/* Module 6: Footer with the Giant breathing VEIL emblem */}
       <FooterSection />

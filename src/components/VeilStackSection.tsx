@@ -138,8 +138,8 @@ export default function VeilStackSection({
         if (e.deltaY > 0) {
           // Scrolling down: lock and snap if the section is entering or partly overshot, and we haven't exited
           const canLockDown =
-            rect.top >= -150 &&
-            rect.top <= window.innerHeight * 0.28 &&
+            rect.top >= -250 &&
+            rect.top <= window.innerHeight * 0.8 &&
             stageRef.current < 3 &&
             !hasExitedDownRef.current;
           if (canLockDown) {
@@ -156,8 +156,8 @@ export default function VeilStackSection({
         } else if (e.deltaY < 0) {
           // Scrolling up: lock and snap if we are coming from below and section top is within range
           const canLockUp =
-            rect.top >= -window.innerHeight * 0.28 &&
-            rect.top <= 150 &&
+            rect.top >= -window.innerHeight * 0.8 &&
+            rect.top <= 250 &&
             stageRef.current > 0 &&
             !hasExitedUpRef.current;
           if (canLockUp) {
