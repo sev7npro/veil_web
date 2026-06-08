@@ -13,6 +13,7 @@ interface BlockData {
   leftColor: string;
   rightColor: string;
   isHero?: boolean;
+  stackedOn?: number;
 }
 
 interface VeilStackSectionProps {
@@ -28,9 +29,9 @@ export default function VeilStackSection({
   // Avoid named conflicts by preserving original or similar state setter names if needed:
   const setIsMobile = React_useState_isMobile;
 
-  // High-fidelity animation progress state for the 10 blocks (1-indexed for convenience or 0-9)
+  // High-fidelity animation progress state for the blocks (1-indexed for convenience)
   const [animateProgress, setAnimateProgress] = React.useState<number[]>(
-    new Array(11).fill(0),
+    new Array(15).fill(0),
   );
 
   const { lang: contextLang, t: translationsDict } = useLanguage();
@@ -242,18 +243,18 @@ export default function VeilStackSection({
     };
   }, [isMobile]);
 
-  // 10 blocks definition
+  // 11 blocks definition
   const allBlocks: BlockData[] = [
     {
       id: 1,
       label: blockLabels.b1,
-      gridX: 1.1,
-      gridY: 1.2,
+      gridX: -1.1,
+      gridY: -1.2,
       gridZ: 2,
-      height: 80,
-      topColor: "#1E1C30",
-      leftColor: "#100E1D",
-      rightColor: "#151325",
+      height: 110,
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 2,
@@ -261,10 +262,22 @@ export default function VeilStackSection({
       gridX: -1.1,
       gridY: 1.2,
       gridZ: 2,
-      height: 55,
-      topColor: "#1C1A2C",
-      leftColor: "#0F0E1A",
-      rightColor: "#131221",
+      height: 70,
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
+    },
+    {
+      id: 11,
+      label: blockLabels.b11 || "JITO",
+      gridX: -1.1,
+      gridY: 1.2,
+      gridZ: 2,
+      height: 60,
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
+      stackedOn: 2,
     },
     {
       id: 3,
@@ -273,9 +286,9 @@ export default function VeilStackSection({
       gridY: 1.2,
       gridZ: 2,
       height: 180,
-      topColor: "#5A4E8A",
-      leftColor: "#3A3268",
-      rightColor: "#4A4278",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
       isHero: true,
     },
     {
@@ -285,9 +298,9 @@ export default function VeilStackSection({
       gridY: -1.2,
       gridZ: 2,
       height: 100,
-      topColor: "#1E1C30",
-      leftColor: "#100E1D",
-      rightColor: "#151325",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 5,
@@ -296,9 +309,9 @@ export default function VeilStackSection({
       gridY: 1.2,
       gridZ: 2,
       height: 130,
-      topColor: "#1C1A2E",
-      leftColor: "#0E0E1C",
-      rightColor: "#121221",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 6,
@@ -306,32 +319,32 @@ export default function VeilStackSection({
       gridX: -2.2,
       gridY: 1.2,
       gridZ: 2,
-      height: 120,
-      topColor: "#2A2440",
-      leftColor: "#1A152B",
-      rightColor: "#211A34",
+      height: 160,
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 7,
       label: blockLabels.b7,
-      gridX: -1.1,
-      gridY: -1.2,
-      gridZ: 2,
-      height: 85,
-      topColor: "#24203A",
-      leftColor: "#161326",
-      rightColor: "#1C182F",
-    },
-    {
-      id: 8,
-      label: blockLabels.b8,
       gridX: 2.2,
       gridY: -1.2,
       gridZ: 2,
       height: 110,
-      topColor: "#26223C",
-      leftColor: "#171428",
-      rightColor: "#1E1931",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
+    },
+    {
+      id: 8,
+      label: blockLabels.b8,
+      gridX: 1.1,
+      gridY: 1.2,
+      gridZ: 2,
+      height: 110,
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 9,
@@ -340,9 +353,9 @@ export default function VeilStackSection({
       gridY: -1.2,
       gridZ: 2,
       height: 70,
-      topColor: "#221E36",
-      leftColor: "#141123",
-      rightColor: "#1A162B",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
     {
       id: 10,
@@ -351,9 +364,9 @@ export default function VeilStackSection({
       gridY: -1.2,
       gridZ: 2,
       height: 95,
-      topColor: "#28223E",
-      leftColor: "#18142A",
-      rightColor: "#1F1932",
+      topColor: "#221C35",
+      leftColor: "#120D22",
+      rightColor: "#171228",
     },
   ];
 
@@ -376,7 +389,7 @@ export default function VeilStackSection({
   // Handle stagger animations once section is in view
   React.useEffect(() => {
     if (isMobile) {
-      setAnimateProgress(new Array(11).fill(1));
+      setAnimateProgress(new Array(15).fill(1));
       return;
     }
 
@@ -384,7 +397,7 @@ export default function VeilStackSection({
 
     if (!showStage3) {
       // Allow re-animating if scrolled back up
-      setAnimateProgress(new Array(11).fill(0));
+      setAnimateProgress(new Array(15).fill(0));
       hasAnimated.current = false;
       return;
     }
@@ -404,7 +417,7 @@ export default function VeilStackSection({
       const elapsedTotal = timestamp - start;
       let allCompleted = true;
 
-      const nextProgress = new Array(11).fill(0);
+      const nextProgress = new Array(15).fill(0);
 
       allBlocks.forEach((block) => {
         const rank = getRank(block.id);
@@ -489,7 +502,12 @@ export default function VeilStackSection({
       if (a.gridZ !== b.gridZ) {
         return a.gridZ - b.gridZ; // Lower layer blocks drawn first (background)
       }
-      return a.gridX + a.gridY - (b.gridX + b.gridY);
+      const diffSum = (a.gridX + a.gridY) - (b.gridX + b.gridY);
+      if (Math.abs(diffSum) < 0.01) {
+        if (a.stackedOn === b.id) return 1;
+        if (b.stackedOn === a.id) return -1;
+      }
+      return diffSum;
     });
   }, [lang]);
 
@@ -512,10 +530,22 @@ export default function VeilStackSection({
     const block = allBlocks.find((b) => b.id === blockId);
     if (!block) return { x: 0, y: 0 };
     const base = project(block.gridX, block.gridY, block.gridZ);
+    const scaleId = block.stackedOn ? block.stackedOn : block.id;
     const heightScale =
-      animateProgress[block.id] !== undefined ? animateProgress[block.id] : 1;
+      animateProgress[scaleId] !== undefined ? animateProgress[scaleId] : 1;
     const currentHeight = block.height * heightScale;
-    return { x: base.x, y: base.y - currentHeight };
+
+    // Account for stack parent offset
+    let yOffset = 0;
+    if (block.stackedOn) {
+      const parent = allBlocks.find(b => b.id === block.stackedOn);
+      if (parent) {
+        const parentScale = animateProgress[parent.id] !== undefined ? animateProgress[parent.id] : 1;
+        yOffset = parent.height * parentScale;
+      }
+    }
+    const levitationGap = block.id === 11 ? 25 * heightScale : 0;
+    return { x: base.x, y: base.y - currentHeight - yOffset - levitationGap };
   };
 
   // Stages threshold visibility
@@ -739,7 +769,7 @@ export default function VeilStackSection({
               </defs>
 
               {/* We apply a translation to center around bottom-half of viewBox */}
-              <g transform="translate(600, 410)">
+              <g transform={`translate(600, ${isMobile ? 410 : 460})`}>
                 {/* ================= LAYER 1: SOLANA PLATFORM ================= */}
                 <g
                   className="transition-opacity duration-1000"
@@ -959,9 +989,11 @@ export default function VeilStackSection({
                 {/* ================= RENDER ALL BLOCKS BACK-TO-FRONT ================= */}
                 {painterSortedBlocks.map((block) => {
                   const revealedScale =
-                    animateProgress[block.id] !== undefined
-                      ? animateProgress[block.id]
-                      : 0;
+                    block.stackedOn
+                      ? (animateProgress[block.stackedOn] !== undefined ? animateProgress[block.stackedOn] : 0)
+                      : (animateProgress[block.id] !== undefined
+                          ? animateProgress[block.id]
+                          : 0);
                   const currentHeight = block.height * revealedScale;
 
                   if (currentHeight <= 0) return null;
@@ -975,6 +1007,29 @@ export default function VeilStackSection({
                   const b2 = project(block.gridX + w, block.gridY + w, zBase); // Front
                   const b3 = project(block.gridX + w, block.gridY - w, zBase); // Right
 
+                  // Support nested stacking (vertical offset in 3D projection space)
+                  let parentCurrentHeight = 0;
+                  if (block.stackedOn) {
+                    const parent = allBlocks.find(b => b.id === block.stackedOn);
+                    if (parent) {
+                      const parentScale =
+                        animateProgress[parent.id] !== undefined
+                          ? animateProgress[parent.id]
+                          : 0;
+                      parentCurrentHeight = parent.height * parentScale;
+                    }
+                  }
+
+                  const levitationGap = block.id === 11 ? 25 * revealedScale : 0;
+
+                  if (parentCurrentHeight > 0 || levitationGap > 0) {
+                    const totalYShift = parentCurrentHeight + levitationGap;
+                    b0.y -= totalYShift;
+                    b1.y -= totalYShift;
+                    b2.y -= totalYShift;
+                    b3.y -= totalYShift;
+                  }
+
                   // Top face corners (offset isometrically on screen vertically by height)
                   const t0 = { x: b0.x, y: b0.y - currentHeight };
                   const t1 = { x: b1.x, y: b1.y - currentHeight };
@@ -982,14 +1037,12 @@ export default function VeilStackSection({
                   const t3 = { x: b3.x, y: b3.y - currentHeight };
 
                   const isHero = block.isHero;
-                  const topColor = isHero
-                    ? "url(#hero-top-grad)"
-                    : block.topColor;
+                  const topColor = block.topColor;
                   const leftColor = block.leftColor;
                   const rightColor = block.rightColor;
-                  const strokeColor = isHero
-                    ? "rgba(180,160,240,0.60)"
-                    : "rgba(160,140,210,0.18)";
+                  const strokeColor = effectiveHoveredBlockId === block.id
+                    ? "rgba(180,160,240,0.70)"
+                    : "rgba(160,140,210,0.22)";
 
                   // Top face center for rotating labels cleanly
                   const tcX = (t0.x + t1.x + t2.x + t3.x) / 4;
@@ -1064,18 +1117,16 @@ export default function VeilStackSection({
                         transform={`translate(${lfcX}, ${lfcY}) rotate(-90) skewX(-30)`}
                         style={{
                           fontFamily: "'Inter', sans-serif",
-                          fontWeight: isHero || block.id === 7 ? 600 : 400,
-                          fontSize: isHero || block.id === 7 ? "9px" : "8px",
+                          fontWeight: 500,
+                          fontSize: "8.5px",
                           fill:
                             effectiveHoveredBlockId === block.id
                               ? "#C084FC"
-                              : isHero
-                                ? "#E5D9C4"
-                                : "#6b7280",
+                              : "#E5D9C4",
                           fillOpacity:
-                            isHero || block.id === 7 || effectiveHoveredBlockId === block.id
+                            effectiveHoveredBlockId === block.id
                               ? 1.0
-                              : 0.4,
+                              : 0.8,
                           letterSpacing: "0.12em",
                           textTransform: "uppercase",
                           pointerEvents: "none",

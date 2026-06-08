@@ -75,7 +75,7 @@
     "nexus_desc": "Professional derivative track for perpetual contracts. Direct backend integration with decentralized perpetual liquidity protocols is launched and successfully functioning. Local risk engine ensures margin and liquidation control, isolated positions operate via Stels wallets, and fee payments are processed via private relayers without binding Master and Stels addresses.",
     "blockLabels": {
       "b1": "Private RPC",
-      "b2": "MEV Shield",
+      "b2": "MEV SHIELD",
       "b3": "MINI APP TERMINAL",
       "b4": "Order Router",
       "b5": "Liquidity Agg.",
@@ -83,7 +83,8 @@
       "b7": "NEXUS",
       "b8": "Analytics",
       "b9": "Portfolio",
-      "b10": "More Apps"
+      "b10": "More Apps",
+      "b11": "JITO"
     }
   },
   "footer": {
