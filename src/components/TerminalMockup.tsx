@@ -3,12 +3,16 @@ import { motion } from "motion/react";
 import VeilLinesLogo from "./VeilLinesLogo";
 // @ts-ignore
 import terminalScreenshot from "../public/terminal.png";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface TerminalMockupProps {
   lang?: "EN" | "RU";
 }
 
-export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
+export default function TerminalMockup({ lang: propLang }: TerminalMockupProps) {
+  const { lang: contextLang, t: translationsDict } = useLanguage();
+  const lang = propLang || contextLang;
+  const t = translationsDict.terminal;
   const [imageFailed, setImageFailed] = React.useState(false);
   const screenshotUrl = terminalScreenshot;
 
@@ -110,7 +114,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
           >
             <motion.div variants={itemVariants} className="flex flex-col">
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
-                {lang === "RU" ? "ОБЪЕМ (24Ч)" : "VOL (24H)"}
+                {t.vol}
               </span>
               <span className="text-xs text-stone-100 font-mono font-medium">
                 $24.5M
@@ -118,7 +122,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
             </motion.div>
             <motion.div variants={itemVariants} className="flex flex-col">
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
-                {lang === "RU" ? "МАКС (24Ч)" : "HIGH (24H)"}
+                {t.high}
               </span>
               <span className="text-xs text-[#14F195] font-mono font-semibold">
                 83.45
@@ -126,7 +130,7 @@ export default function TerminalMockup({ lang = "EN" }: TerminalMockupProps) {
             </motion.div>
             <motion.div variants={itemVariants} className="flex flex-col">
               <span className="text-[9px] text-stone-400 font-medium tracking-wider mb-0.5">
-                {lang === "RU" ? "МИН (24Ч)" : "LOW (24H)"}
+                {t.low}
               </span>
               <span className="text-xs text-[#F43F5E] font-mono font-semibold">
                 81.40

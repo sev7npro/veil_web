@@ -324,8 +324,8 @@ export default function Home({ isPreloaded }: HomeProps) {
                 >
                   {isMobile ? (
                     <div className="flex flex-col items-center gap-1.5 text-center font-sans font-light tracking-[0.20em] uppercase text-white/70 text-[10px] min-[375px]:text-[11px] leading-relaxed">
-                      <span>{lang === "RU" ? "БЕСШУМНОЕ ИСПОЛНЕНИЕ." : "QUIET EXECUTION."}</span>
-                      <span>{lang === "RU" ? "ИНТЕЛЛЕКТУАЛЬНАЯ МАРШРУТИЗАЦИЯ." : "INTELLIGENT ROUTING."}</span>
+                      <span>{t.taglineLine1}</span>
+                      <span>{t.taglineLine2}</span>
                     </div>
                   ) : (
                     <span
@@ -366,7 +366,7 @@ export default function Home({ isPreloaded }: HomeProps) {
                     transition={{ duration: 0.2 }}
                     className="px-1"
                   >
-                    {isMobile ? (lang === "RU" ? "ЗАПУСТИТЬ" : "LAUNCH") : t.launch}
+                    {isMobile ? t.launchShort : t.launch}
                   </motion.span>
                 </AnimatePresence>
               </button>
@@ -386,7 +386,7 @@ export default function Home({ isPreloaded }: HomeProps) {
                     transition={{ duration: 0.2 }}
                     className="px-1"
                   >
-                    {isMobile ? (lang === "RU" ? "ДОКИ" : "DOCS") : t.docs}
+                    {isMobile ? t.docsShort : t.docs}
                   </motion.span>
                 </AnimatePresence>
               </button>

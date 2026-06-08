@@ -36,25 +36,14 @@ export default function AdvantagesSection({
           className="w-full text-center px-6 mb-8 md:mb-[64px]"
           id="advantages-header"
         >
-          {lang === "RU" ? (
-            <div className="flex flex-col items-center">
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.03em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px]">
-                Суверенный DEX
-              </h2>
-              <p className="font-sans font-light text-stone-400 tracking-[0.05em] text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
-                абсолютно бесшумное исполнение сделок
-              </p>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center">
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.03em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px]">
-                Sovereign DEX
-              </h2>
-              <p className="font-sans font-light text-stone-400 tracking-[0.05em] text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
-                absolute silent execution of trades
-              </p>
-            </div>
-          )}
+          <div className="flex flex-col items-center">
+            <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.03em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px]">
+              {t.sectionTitle}
+            </h2>
+            <p className="font-sans font-light text-stone-400 tracking-[0.05em] text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
+              {t.sectionDesc}
+            </p>
+          </div>
         </motion.div>
 
         {/* 2. Responsive advantages grid stack (Static and visible) */}

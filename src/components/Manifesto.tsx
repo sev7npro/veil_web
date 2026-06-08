@@ -274,7 +274,7 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
               {/* Header block with 01 // TITLE */}
               <div className="flex items-center gap-4 sm:gap-6">
                 <span className="text-[#E5D9C4] font-mono text-xs tracking-[0.25em] font-light min-w-[2rem] sm:min-w-[2.5rem]">
-                  {section.num}
+                  <ScrambledText text={section.num} delay={450 + idx * 100} duration={600} />
                 </span>
                 <span className="text-[#E5D9C4]/40 font-mono text-xs tracking-[0.25em] font-light mx-1">
                   //
@@ -287,7 +287,7 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
               {/* Text Description */}
               <div className="pl-0 sm:pl-[4.5rem] pt-6">
                 <p className="font-sans text-stone-400 font-light text-xs sm:text-sm leading-relaxed whitespace-pre-wrap">
-                  {section.desc}
+                  <ScrambledText text={section.desc} delay={700 + idx * 120} duration={1400} />
                 </p>
               </div>
             </motion.div>

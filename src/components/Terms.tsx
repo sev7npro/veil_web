@@ -151,8 +151,8 @@ export default function Terms({ lang: propLang, onNavigate }: TermsProps) {
           >
             <ArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1 text-[#E5D9C4]" />
             <div className="flex flex-col items-start">
-              <span className="text-[10px] tracking-[0.2em] text-stone-600 uppercase font-mono">{lang === "EN" ? "PREVIOUS" : "НАЗАД"}</span>
-              <span className="text-xs tracking-wider font-light text-stone-400 group-hover:text-[#E5D9C4] transition-colors">{lang === "EN" ? "Risk Disclosure" : "Раскрытие рисков"}</span>
+              <span className="text-[10px] tracking-[0.2em] text-stone-600 uppercase font-mono">{t.common.previous}</span>
+              <span className="text-xs tracking-wider font-light text-stone-400 group-hover:text-[#E5D9C4] transition-colors">{t.footer.risks}</span>
             </div>
           </button>
 
@@ -161,8 +161,8 @@ export default function Terms({ lang: propLang, onNavigate }: TermsProps) {
             className="flex items-center gap-3 text-stone-500 hover:text-white transition-all duration-300 group focus:outline-none cursor-pointer"
           >
             <div className="flex flex-col items-end">
-              <span className="text-[10px] tracking-[0.2em] text-stone-600 uppercase font-mono">{lang === "EN" ? "NEXT" : "ДАЛЕЕ"}</span>
-              <span className="text-xs tracking-wider font-light text-stone-400 group-hover:text-[#E5D9C4] transition-colors">{lang === "EN" ? "Privacy Policy" : "Политика конфиденциальности"}</span>
+              <span className="text-[10px] tracking-[0.2em] text-stone-600 uppercase font-mono">{t.common.next}</span>
+              <span className="text-xs tracking-wider font-light text-stone-400 group-hover:text-[#E5D9C4] transition-colors">{t.footer.privacy}</span>
             </div>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-[#E5D9C4]" />
           </button>

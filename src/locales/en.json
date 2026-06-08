@@ -1,10 +1,25 @@
 {
+  "common": {
+    "previous": "PREVIOUS",
+    "next": "NEXT"
+  },
+  "terminal": {
+    "vol": "VOL (24H)",
+    "high": "HIGH (24H)",
+    "low": "LOW (24H)"
+  },
   "home": {
     "tagline": "EXECUTE SILENTLY. ROUTE INTELLIGENTLY.",
+    "taglineLine1": "QUIET EXECUTION.",
+    "taglineLine2": "INTELLIGENT ROUTING.",
     "launch": "LAUNCH APP",
-    "docs": "DOCUMENTATION"
+    "launchShort": "LAUNCH",
+    "docs": "DOCUMENTATION",
+    "docsShort": "DOCS"
   },
   "advantages": {
+    "sectionTitle": "Sovereign DEX",
+    "sectionDesc": "absolute silent execution of trades",
     "adv1_title": "Zero MEV",
     "adv1_desc": "Your orders are fully protected from front-running and destructive sandwich attacks at the Jito validator level.",
     "adv2_title": "Non-Custodial",
