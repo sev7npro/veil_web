@@ -38,29 +38,21 @@ export default function AdvantagesSection({
         >
           {lang === "RU" ? (
             <div className="flex flex-col items-center">
-              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
-                СУВЕРЕННЫЙ DEX:
-              </span>
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
-                абсолютно{" "}
-                <span className="text-[#EDEAE2] font-normal italic pr-1">
-                  бесшумное исполнение
-                </span>{" "}
-                сделок
+              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.03em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px]">
+                Суверенный DEX
               </h2>
+              <p className="font-sans font-light text-stone-400 tracking-[0.05em] text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
+                абсолютно бесшумное исполнение сделок
+              </p>
             </div>
           ) : (
             <div className="flex flex-col items-center">
-              <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
-                SOVEREIGN DEX:
-              </span>
-              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
-                absolute{" "}
-                <span className="text-[#EDEAE2] font-normal italic pr-1">
-                  silent execution
-                </span>{" "}
-                of trades
+              <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.03em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px]">
+                Sovereign DEX
               </h2>
+              <p className="font-sans font-light text-stone-400 tracking-[0.05em] text-sm sm:text-base mt-2.5 max-w-2xl mx-auto">
+                absolute silent execution of trades
+              </p>
             </div>
           )}
         </motion.div>
@@ -82,13 +74,13 @@ export default function AdvantagesSection({
                 className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent -mt-[30px] md:mt-0 relative z-10 animate-fade-in"
               >
                 {/* SVG Shield icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#8C72C3] hover:text-[#A38FCE] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#8C72C3]/20" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#8C72C3]/12" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#8C72C3]/8" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#8C72C3]/4" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
@@ -130,13 +122,13 @@ export default function AdvantagesSection({
                 className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Key-like / Lock icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#8C72C3] hover:text-[#A38FCE] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#8C72C3]/20" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#8C72C3]/12" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#8C72C3]/8" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#8C72C3]/4" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <rect
@@ -204,13 +196,13 @@ export default function AdvantagesSection({
                 className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Flowing Path Lines */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#8C72C3] hover:text-[#A38FCE] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#8C72C3]/20" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#8C72C3]/12" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#8C72C3]/8" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#8C72C3]/4" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
@@ -259,13 +251,13 @@ export default function AdvantagesSection({
                 className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Lightning Bolt icon */}
-                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
+                <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#8C72C3] hover:text-[#A38FCE] transition-colors duration-300">
                   {/* Concentric ripples around the icon for mobile */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none md:hidden">
-                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#9945FF]/20" />
-                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#9945FF]/12" />
-                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#9945FF]/8" />
-                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#9945FF]/4" />
+                    <div className="absolute w-[34px] h-[34px] rounded-full border border-[#8C72C3]/20" />
+                    <div className="absolute w-[44px] h-[44px] rounded-full border border-[#8C72C3]/12" />
+                    <div className="absolute w-[54px] h-[54px] rounded-full border border-[#8C72C3]/8" />
+                    <div className="absolute w-[64px] h-[64px] rounded-full border border-[#8C72C3]/4" />
                   </div>
                   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="w-[20px] h-[20px] md:w-full md:h-full relative z-10">
                     <path
