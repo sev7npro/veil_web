@@ -39,27 +39,27 @@ export default function AdvantagesSection({
           {lang === "RU" ? (
             <div className="flex flex-col items-center">
               <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
-                Приватный терминал:
+                СУВЕРЕННЫЙ DEX:
               </span>
               <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
-                абсолютное{" "}
+                абсолютно{" "}
                 <span className="text-[#EDEAE2] font-normal italic pr-1">
                   бесшумное исполнение
                 </span>{" "}
-                на дексах
+                сделок
               </h2>
             </div>
           ) : (
             <div className="flex flex-col items-center">
               <span className="font-sans text-[11px] md:text-xs tracking-[0.2em] uppercase text-stone-400 font-medium mb-3 block">
-                The private terminal:
+                SOVEREIGN DEX:
               </span>
               <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto">
                 absolute{" "}
                 <span className="text-[#EDEAE2] font-normal italic pr-1">
                   silent execution
                 </span>{" "}
-                exchange
+                of trades
               </h2>
             </div>
           )}

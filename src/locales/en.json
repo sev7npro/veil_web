@@ -6,13 +6,13 @@
   },
   "advantages": {
     "adv1_title": "Zero MEV",
-    "adv1_desc": "Your orders are fully protected from front-running and sandwich attacks. Execute with confidence.",
+    "adv1_desc": "Your orders are fully protected from front-running and destructive sandwich attacks at the Jito validator level.",
     "adv2_title": "Non-Custodial",
-    "adv2_desc": "Your keys, your assets. VEIL is a fully self-custodial terminal. Your secure wallets are generated and encrypted locally on your device. We never hold your funds",
-    "adv3_title": "Silent Routing",
-    "adv3_desc": "Intelligent order routing across Solana liquidity. Maximum fill, minimum slippage, zero noise.",
+    "adv2_desc": "Your keys, your assets. VEIL is an absolutely non-custodial protocol. Your wallets are generated and encrypted locally on your device. We have no access to your funds.",
+    "adv3_title": "STELS Routing",
+    "adv3_desc": "Smart order distribution across the full depth of Solana liquidity. Optimal trade trajectory, minimal slippage, zero trace.",
     "adv4_title": "Instant Execution",
-    "adv4_desc": "Sub-400ms execution on Solana. No waiting, no delays. Your edge is preserved every trade."
+    "adv4_desc": "Transaction landing in a block in under 400ms via the Jito private circuit. No waiting, no mempool delays in every trading decision."
   },
   "stats": [
     {
@@ -29,14 +29,14 @@
     },
     {
       "value": "None",
-      "subtext": "BACKDOORS // ARGON2ID STORAGE"
+      "subtext": "BACKDOORS // SERVER-SIDE KEY STORAGE"
     }
   ],
   "manifesto": {
     "headline": "SOVEREIGNTY IS NOT GIVEN.\nIT IS TAKEN.",
     "core": "Protect, trade, and route your capital through VEIL — the only financial bastion on the Solana network built for total control over liquidity.",
-    "subhead": "Cut out intermediaries. Eliminate surveillance. Become the Operator of your destiny today.",
-    "btn1": "TERMINAL",
+    "subhead": "Cut out intermediaries. Eliminate surveillance. Become the Operator of your destiny.",
+    "btn1": "LAUNCH",
     "btn2": "MANIFESTO"
   },
   "veilStack": {
@@ -51,13 +51,13 @@
     "block1_desc": "Private trading without compromise. Transaction routing via private Jito bundles bypassing the public mempool using hidden STELS addresses. Transactions are fully protected against sandwich attacks and front-running.",
     "block2_meta": "CURRENT STATE // SECURE BASTION",
     "block2_title": "Sovereign custody.",
-    "block2_desc": "Two-wallet model (Master/Stels) with local key generation and AES-256-GCM encryption on the basis of Argon2id right in your device. Autonomous control of the database with encrypted backups. Your keys — your rules.",
+    "block2_desc": "Two-wallet model (Master/Stels) with local key generation and AES-256-GCM encryption on the basis of Argon2id right on your device. Autonomous control of the local database with encrypted backups. Your keys — your rules.",
     "block3_meta": "STAGE // 03   -   TELEGRAM ACCESS DESK",
     "block3_title": "MINI APP & BOT TERMINAL",
-    "block3_desc": "Complete independence from centralized servers. Your messenger is your sovereign trading gateway. Two parallel interfaces (bot text-based FSM console and graphical Mini App) guarantee 100% fault tolerance and liquidity management freedom.",
+    "block3_desc": "Complete independence from centralized servers. Your messenger is your sovereign trading gateway. Two parallel interfaces (bot text-based FSM console and graphical Mini App) guarantee absolute fault tolerance and liquidity management freedom.",
     "nexus_meta": "CURRENT STATE // NEXUS V3 - DERIVATIVES TRACK",
     "nexus_title": "Perpetual trading.",
-    "nexus_desc": "Professional derivative track for perpetual contracts. Direct backend integration with the Jupiter Perpetuals protocol is launched and successfully functioning. Local risk engine ensures margin and liquidation control, isolated positions operate via Stels wallets, and fee payments are processed via private relayers without binding Master and Stels addresses.",
+    "nexus_desc": "Professional derivative track for perpetual contracts. Direct backend integration with decentralized perpetual liquidity protocols is launched and successfully functioning. Local risk engine ensures margin and liquidation control, isolated positions operate via Stels wallets, and fee payments are processed via private relayers without binding Master and Stels addresses.",
     "blockLabels": {
       "b1": "Private RPC",
       "b2": "MEV Shield",
@@ -75,7 +75,7 @@
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "risks": "Risk Disclosure",
-    "disclaimer": "Veil provides non-custodial routing software. We do not hold, manage, or control user assets. Trading cryptocurrencies involves substantial risk. By accessing the terminal, you agree to our strict execution policies. Verify everything. Trust math."
+    "disclaimer": "VEIL provides non-custodial routing software. We do not hold, manage, or control user assets. Trading cryptocurrencies involves substantial risk. By accessing the interface, you agree to our strict execution policies. Verify everything. Trust math."
   },
   "privacyBanner": {
     "title": "ZERO TRACE // COOKIE ANNIHILATION PROTOCOL",
@@ -100,7 +100,7 @@
           {
             "num": "01",
             "title": "DO YOU STORE MY PRIVATE KEYS?",
-            "desc": "No. Never. Your PIN derives your keys locally via Argon2id + HKDF. Only ciphertext and nonce are stored on the server. Without your PIN — it is just encrypted noise."
+            "desc": "No. Never. Your PIN derives your keys locally via Argon2id + HKDF. Only ciphertext and nonce are stored in your secure local browser database (IndexedDB). Without your PIN — it is just encrypted noise."
           },
           {
             "num": "02",
@@ -110,7 +110,7 @@
           {
             "num": "03",
             "title": "WHAT HAPPENS TO KEYS AFTER A TRANSACTION?",
-            "desc": "Immediately after Ed25519 signing, the key is wiped from RAM via the Zeroize trait. A full memory dump of the server at that moment yields nothing."
+            "desc": "Immediately after Ed25519 signing, the key is wiped from RAM via the Zeroize trait. A full memory dump of the active application process at that moment yields nothing."
           },
           {
             "num": "04",
@@ -160,7 +160,7 @@
           {
             "num": "11",
             "title": "WHAT IS VEIL FLOW?",
-            "desc": "Stealth routing — a mechanism for breaking the on-chain graph. Your amount is split and routed through a series of one-time ephemeral addresses inside a single Jito bundle. Analytics see the transactions. The link between you and the recipient — they do not."
+            "desc": "Stealth routing — a mechanism for introducing controlled entropy into Solana transaction chains. Flows fragment on-the-fly and pass through ephemeral cryptographic circuits within a single Jito bundle, eliminating any possibility of end-to-end balance monitoring by third parties."
           },
           {
             "num": "12",
@@ -190,7 +190,7 @@
           {
             "num": "16",
             "title": "WHICH ASSETS ARE SUPPORTED?",
-            "desc": "All tokens on Solana available through Jupiter V6 — SOL, USDC, USDT, and the full long tail of SPL tokens including memecoins."
+            "desc": "All tokens on Solana available across major liquidity pools — SOL, USDC, USDT, and the full long tail of SPL tokens including memecoins."
           },
           {
             "num": "17",
@@ -223,7 +223,7 @@
           {
             "title": "2.2.",
             "items": [
-              "Helius, Jito, Jupiter — external infrastructure. Failures on their side can temporarily restrict access to market data and execution."
+              "Helius, Jito, and external liquidity pools — external infrastructure. Failures on their side can temporarily restrict access to market data and execution."
             ]
           }
         ]
@@ -280,7 +280,7 @@
           {
             "title": "2.2.",
             "items": [
-              "The server receives only ciphertext and nonce. Without your PIN — decryption is mathematically impossible."
+              "The server never receives your encrypted data. All files (ciphertext and nonce) are stored strictly locally on your device. Without your PIN — decryption is mathematically impossible."
             ]
           },
           {
@@ -298,7 +298,7 @@
           {
             "title": "3.1.",
             "items": [
-              "Veil Flow obfuscates the transaction routing. Logs connecting the main wallet and ephemeral nodes are not kept."
+              "Veil Flow obfuscates transaction trajectories. No logs of network activity or metadata within cryptographic circuits are stored."
             ]
           },
           {
@@ -312,7 +312,7 @@
       {
         "num": "4.0",
         "title": "LOCAL STORAGE",
-        "desc": "Operation history, address book, and settings are stored in an encrypted SQLite database within the isolated container of your account.\n\nThe /purge command or account deletion destroys data without the possibility of recovery. Irreversible."
+        "desc": "Operation history, address book, and settings are stored in your local browser database (IndexedDB) in encrypted form.\n\nThe /purge command or account deletion destroys data without the possibility of recovery. Irreversible."
       },
       {
         "num": "5.0",
@@ -328,12 +328,12 @@
       {
         "num": "1.0",
         "title": "WHAT THIS IS",
-        "desc": "VEIL is a software interface for interacting with the Solana blockchain. Not a bank. Not a custodian. Not a financial advisor. Not an exchange.\n\nThis is a tool. You decide what to do with it."
+        "desc": "VEIL is a software interface for interacting with the Solana blockchain. Not a bank. Not a custodian. Not a financial advisor. Not a centralized exchange.\n\nThis is a tool. You decide what to do with it."
       },
       {
         "num": "2.0",
         "title": "YOUR KEYS — YOUR RESPONSIBILITY",
-        "desc": "We do not store your keys. Your PIN derives your keys. We store only encrypted bytes. Without your PIN — decryption is mathematically impossible.",
+        "desc": "Your PIN derives your keys locally. Encrypted bytes are stored strictly on your local device (IndexedDB). Without your PIN — decryption is mathematically impossible.",
         "subsections": [
           {
             "title": "2.1.",
@@ -352,7 +352,7 @@
       {
         "num": "3.0",
         "title": "TRANSACTION EXECUTION",
-        "desc": "VEIL provides access to third-party execution infrastructure — Jito Block Engine, Jupiter V6.",
+        "desc": "VEIL provides access to third-party execution infrastructure — Jito Block Engine and decentralized liquidity protocols.",
         "subsections": [
           {
             "title": "3.1.",
@@ -410,7 +410,7 @@
   },
   "documentation": {
     "hero": "DOCUMENTATION",
-    "subhero": "TRADING TERMINAL ON SOLANA",
+    "subhero": "CLANDESTINE SPOT & PERPETUAL EXCHANGE ON SOLANA",
     "sections": [
       {
         "num": "01",
@@ -419,7 +419,7 @@
         "items": [
           "Custodial risk: Most trading bots in Telegram store private keys on centralized servers in plaintext.",
           "MEV extraction: Transactions in the public mempool are subject to sandwich attacks. You pay the spread to bots, not the market.",
-          "On-chain tracking: Analytical platforms (Nansen, Arkham) link sender and receiver addresses in real-time. Your strategy is visible.",
+          "On-chain tracking: Analytical platforms (Nansen, Arkham) link sender and receiver addresses in real time. Your strategy is visible.",
           "Veil addresses all three through local encryption, private mempool bundling, and multi-hop routing. Your keys stay on your device, orders are shielded until confirmed, and transaction graphs are fragmented."
         ]
       },
@@ -460,9 +460,9 @@
             ]
           },
           {
-            "title": "3.2. JUPITER V6 ROUTING",
+            "title": "3.2. STELS MULTI-EXCHANGE ROUTING",
             "items": [
-              "Jupiter V6 automatically finds the optimal swap paths across all Solana DEXs. Minimal price impact. No manual route selection."
+              "VEIL's intelligent routing engine calculates optimal swap paths across the entire Solana market depth in real time. Automatic liquidity distribution minimizes price impact."
             ]
           }
         ]
@@ -475,7 +475,7 @@
       {
         "num": "05",
         "title": "INTERFACES",
-        "desc": "Graphical User Interface (GUI) for visual-oriented traders. Command Line Interface (CLI) for those who think in commands.",
+        "desc": "Graphical User Interface (GUI) for visually-oriented traders. Command Line Interface (CLI) for those who think in commands.",
         "subsections": [
           {
             "title": "5.1. TELEGRAM TERMINAL (MINI APP)",

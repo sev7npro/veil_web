@@ -24,8 +24,8 @@ const roadmapContent = {
             desc: "Full-featured GUI inside Telegram WebView (React/Vite + Axum API). Live charts, order books, and real-time asset profiles.",
           },
           {
-            name: "Jupiter V6",
-            desc: "Liquidity aggregator. Precise Price Impact calculation. Slippage is calculated and minimized automatically.",
+            name: "STELS ROUTING ENGINE",
+            desc: "Proprietary multi-DEX liquidity aggregator. Precise price impact calculation. Slippage is analyzed and minimized automatically.",
           },
           {
             name: "Jito MEV Shield",
@@ -128,8 +128,8 @@ const roadmapContent = {
             desc: "Полнофункциональный GUI внутри Telegram WebView (React/Vite + Axum API). Живые графики, стаканы ордеров и профили активов в реальном времени.",
           },
           {
-            name: "Jupiter V6",
-            desc: "Агрегатор ликвидности. Точный расчет Price Impact. Проскальзывание рассчитывается и минимизируется автоматически.",
+            name: "STELS ROUTING ENGINE",
+            desc: "Собственный агрегатор ликвидности multi-DEX. Точный расчет Price Impact. Проскальзывание анализируется и минимизируется автоматически.",
           },
           {
             name: "Jito MEV Shield",
