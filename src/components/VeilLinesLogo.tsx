@@ -13,7 +13,7 @@ export default function VeilLinesLogo({
   className = "w-12 h-12",
   lineColor = "#FFFFFF",
   bgMode = "transparent",
-  strokeWidth = 10,
+  strokeWidth = 6,
   isStatic = false,
 }: VeilLinesLogoProps) {
   const bgColor =

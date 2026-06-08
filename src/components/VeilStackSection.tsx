@@ -573,15 +573,9 @@ export default function VeilStackSection({
             marginBottom: isMobile ? "24px" : "0",
           }}
         >
-          <h2
-            className="font-sans font-light text-[#b3afb8]"
-            style={{
-              fontSize: "clamp(20px, 2.5vw, 34px)",
-              letterSpacing: "0.02em",
-            }}
-          >
+          <h2 className="font-serif font-light text-[#EDEAE2] tracking-[0.01em] leading-[1.2] text-3xl sm:text-[38px] md:text-[46px] lg:text-[50px] max-w-2xl mx-auto text-center">
             {t.stackTitle}{" "}
-            <span className="text-[#EDEAE2] font-medium tracking-wide">
+            <span className="text-[#EDEAE2] font-normal italic pr-1">
               {t.stackTitleItalic}
             </span>
           </h2>

@@ -135,9 +135,18 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
   const content = manifestoContent[lang];
 
   const [activeSection, setActiveSection] = React.useState("01");
+  const activeIndex = Math.max(0, content.sections.findIndex((sect) => sect.num === activeSection));
 
   React.useEffect(() => {
     const handleScroll = () => {
+      // Check if user is scrolled to the bottom of the scroll container / page
+      const isAtBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 60;
+      
+      if (isAtBottom && content.sections.length > 0) {
+        setActiveSection(content.sections[content.sections.length - 1].num);
+        return;
+      }
+
       let currentSection = "01";
       const scrollPosition = window.scrollY + window.innerHeight / 3;
 
@@ -155,7 +164,17 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    const t1 = setTimeout(handleScroll, 50);
+    const t2 = setTimeout(handleScroll, 200);
+    const t3 = setTimeout(handleScroll, 600);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
   }, [content.sections]);
 
   const scrollToSection = (num: string) => {
@@ -166,53 +185,61 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden content-visibility-auto">
+    <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative overflow-hidden">
       {/* 
         ========================================================================
         SPECTACULAR SCI-FI PAGE ASSEMBLY SYSTEM
         ========================================================================
       */}
-      
-      {/* Decorative dot grid background for the vertical right navigation */}
-      <div className="hidden xl:block fixed right-4 top-1/2 -translate-y-1/2 w-48 h-80 pointer-events-none opacity-20 -z-5">
-        <div 
-          className="w-full h-full"
-          style={{
-            backgroundImage: "radial-gradient(#FFFFFF 1.5px, transparent 1.5px)",
-            backgroundSize: "24px 24px",
+
+      {/* Sleek Moving Navigation Indicator with absolute pixel-aligned coordinate offsets */}
+      <div 
+        className="hidden md:block fixed right-3 md:right-12 top-1/2 -translate-y-1/2 z-40 h-[176px] w-6"
+        id="manifesto-scroll-rail"
+      >
+        {/* Faint rail track */}
+        <div className="absolute top-[12px] bottom-[12px] left-[11px] w-[1px] bg-white/10 pointer-events-none" />
+
+        {/* Dynamic sliding white bead with gorgeous neon shadow glow */}
+        <motion.div
+          className="absolute w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.95),0_0_4px_rgba(255,255,255,0.6)] z-20 pointer-events-none left-[7px]"
+          initial={false}
+          animate={{
+            top: 12 + activeIndex * 38 - 5,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 120,
+            damping: 16,
           }}
         />
-      </div>
 
-      {/* Vertical Interactive Navigation */}
-      <div className="hidden xl:flex fixed right-12 top-1/2 -translate-y-1/2 flex-col items-end gap-7 z-40">
-        {content.sections.map((sect) => {
+        {/* The clickable guide elements */}
+        {content.sections.map((sect, idx) => {
           const isActive = activeSection === sect.num;
           return (
             <button
               key={sect.num}
               onClick={() => scrollToSection(sect.num)}
-              className="group flex items-center gap-4 focus:outline-none cursor-pointer"
+              className="absolute left-0 w-6 h-6 z-10 flex items-center justify-center focus:outline-none cursor-pointer group"
+              style={{
+                top: `${12 + idx * 38 - 12}px`,
+              }}
+              title={sect.title}
             >
-              {/* Text Label on the left - visible when active, or on hover */}
+              {/* Text Label on the left - shown on sm+ for better visibility */}
               <span
-                className={`font-sans text-[9px] sm:text-[10px] tracking-[0.2em] uppercase font-light transition-all duration-300 ${
+                className={`hidden sm:block absolute right-7 font-sans text-[10px] tracking-[0.2em] uppercase font-light transition-all duration-300 whitespace-nowrap ${
                   isActive
                     ? "opacity-100 translate-x-0 text-[#E5D9C4]"
-                    : "opacity-0 translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 text-stone-400"
+                    : "opacity-0 translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 text-stone-500"
                 }`}
               >
                 {sect.title}
               </span>
 
-              {/* Dot on the right */}
-              <div className="relative flex items-center justify-center w-5 h-5">
-                {isActive ? (
-                  <div className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8),0_0_3px_rgba(255,255,255,0.5)] z-10" />
-                ) : (
-                  <div className="h-1.5 w-1.5 rounded-full bg-stone-700 group-hover:bg-stone-400 group-hover:scale-125 transition-all duration-300" />
-                )}
-              </div>
+              {/* Subtly brighter node placeholder on the track */}
+              <span className={`w-1.5 h-1.5 rounded-full transition-colors duration-250 ${isActive ? 'bg-white/80' : 'bg-white/20 group-hover:bg-white/80'}`} />
             </button>
           );
         })}
@@ -227,12 +254,6 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
           <p className="font-sans text-[10px] sm:text-xs tracking-[0.25em] uppercase text-[#E5D9C4]">
             <ScrambledText text={content.subhero} delay={450} duration={800} />
           </p>
-          <motion.div 
-            initial={{ height: 0 }}
-            animate={{ height: 64 }}
-            transition={{ delay: 0.9, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-8 w-px bg-gradient-to-b from-[#E5D9C4]/35 to-transparent mx-auto" 
-          />
         </div>
 
         {/* Flat Rows of Manifesto */}

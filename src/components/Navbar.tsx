@@ -122,7 +122,7 @@ export default function Navbar({
             className="w-full h-full"
             lineColor="#0A0A0C"
             bgMode="transparent"
-            strokeWidth={18}
+            strokeWidth={10}
             isStatic={true}
           />
         </div>

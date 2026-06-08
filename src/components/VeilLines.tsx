@@ -54,9 +54,9 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
     for (let i = 0; i < N; i++) {
       const f = i / (N - 1); // 0 to 1
       // Thinner, elegant, dynamic stroke width on mobile resembling PC variant but scaled down
-      const thickness = isMobile ? 0.1 + f * 0.15 : 0.2 + f * 0.5;
+      const thickness = isMobile ? 0.18 + f * 0.38 : 0.2 + f * 0.5;
       // Translucent varied opacity like PC version
-      const opacity = isMobile ? 0.14 + (1 - f) * 0.32 : 0.14 + (1 - f) * 0.45;
+      const opacity = isMobile ? 0.14 + (1 - f) * 0.42 : 0.14 + (1 - f) * 0.45;
 
       // Glow effect enabled on both PC and mobile for consistent premium neon styling
       const isGlow = i >= 4 && i <= 8;
@@ -106,8 +106,8 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
       const scaleX = Math.max(W, 1000) / 2;
 
       // Reallocate spacings closer to PC parameters for a majestic spaced out display
-      const baseGap = isMobile ? 11 : 14;
-      const lineSpacing = isMobile ? 3.1 : 3.8;
+      const baseGap = isMobile ? 13.5 : 14;
+      const lineSpacing = isMobile ? 3.6 : 3.8;
 
       // Precompute time variables outside current loops
       const time0_8 = time * 0.8;
@@ -127,7 +127,7 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
           Math.sin(time1_9 - i * 0.25) * (isMobile ? 5.0 : 7.0);
         const animPhase = time2_2 + i * 0.15;
         const customAmplitude =
-          (isMobile ? 38 : 48) + i * (isMobile ? 13.5 : 17.5) + lineHumpOffset;
+          (isMobile ? 46 : 48) + i * (isMobile ? 16.5 : 17.5) + lineHumpOffset;
 
         let dUpper = "";
         let dLower = "";
@@ -195,7 +195,7 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
           width="140%"
           height="140%"
         >
-          <feGaussianBlur stdDeviation={isMobile ? "1.6" : "3.5"} />
+          <feGaussianBlur stdDeviation={isMobile ? "2.6" : "3.5"} />
         </filter>
 
         {lineStyles.map((line) => {
@@ -206,21 +206,39 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
           let midCol = "#00f5c4"; // Neon mint cyan
           let endCol = "#3b82f6"; // Neon blue
 
-          if (i >= 0 && i < 6) {
-            // Inner lines - pure magical cyan
-            startCol = "#4f46e5";
-            midCol = "#00F5D4";
-            endCol = "#06b6d4";
-          } else if (i >= 6 && i < 12) {
-            // Middle lines - beautiful emerald to cyan transition
-            startCol = "#7c3aed";
-            midCol = "#10b981";
-            endCol = "#3b82f6";
+          if (isMobile) {
+            // Mobile-specific gorgeous purple/violet shades to fulfill "make bluish/cyan ones purple/violet"
+            if (i >= 0 && i < 6) {
+              startCol = "#7c3aed";
+              midCol = "#c084fc";
+              endCol = "#6366f1";
+            } else if (i >= 6 && i < 12) {
+              startCol = "#6366f1";
+              midCol = "#a855f7";
+              endCol = "#7c3aed";
+            } else {
+              startCol = "#c084fc";
+              midCol = "#6366f1";
+              endCol = "#9333ea";
+            }
           } else {
-            // Outer lines - rich indigo to purple
-            startCol = "#c084fc";
-            midCol = "#6366f1";
-            endCol = "#9333ea";
+            // PC original colors
+            if (i >= 0 && i < 6) {
+              // Inner lines - pure magical cyan
+              startCol = "#4f46e5";
+              midCol = "#00F5D4";
+              endCol = "#06b6d4";
+            } else if (i >= 6 && i < 12) {
+              // Middle lines - beautiful emerald to cyan transition
+              startCol = "#7c3aed";
+              midCol = "#10b981";
+              endCol = "#3b82f6";
+            } else {
+              // Outer lines - rich indigo to purple
+              startCol = "#c084fc";
+              midCol = "#6366f1";
+              endCol = "#9333ea";
+            }
           }
 
           return (
@@ -267,11 +285,11 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
               }}
               fill="none"
               stroke={`url(#veil-custom-grad-${i})`}
-              strokeWidth={line.thickness * (isMobile ? 1.8 : 2.8)}
+              strokeWidth={line.thickness * (isMobile ? 2.5 : 2.8)}
               strokeLinecap="round"
               strokeLinejoin="round"
               filter="url(#veil-glow-blur)"
-              opacity={isMobile ? 0.16 : 0.25}
+              opacity={isMobile ? 0.22 : 0.25}
             />
             <path
               ref={(el) => {
@@ -280,11 +298,11 @@ export default function VeilLines({ lang }: { lang?: any } = {}) {
               }}
               fill="none"
               stroke={`url(#veil-custom-grad-${i})`}
-              strokeWidth={line.thickness * (isMobile ? 1.8 : 2.8)}
+              strokeWidth={line.thickness * (isMobile ? 2.5 : 2.8)}
               strokeLinecap="round"
               strokeLinejoin="round"
               filter="url(#veil-glow-blur)"
-              opacity={isMobile ? 0.16 : 0.25}
+              opacity={isMobile ? 0.22 : 0.25}
             />
           </g>
         );

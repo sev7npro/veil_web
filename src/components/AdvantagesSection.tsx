@@ -79,7 +79,7 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-transparent md:border-none bg-[#050505] md:bg-transparent -mt-[30px] md:mt-0 relative z-10 animate-fade-in"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-t border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent -mt-[30px] md:mt-0 relative z-10 animate-fade-in"
               >
                 {/* SVG Shield icon */}
                 <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
@@ -127,7 +127,7 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-transparent md:border-none bg-[#050505] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-end w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left md:text-right border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Key-like / Lock icon */}
                 <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
@@ -187,7 +187,7 @@ export default function AdvantagesSection({
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="order-1 md:order-2 flex justify-center w-full min-w-0 mt-0 mb-0 md:mt-0 md:mb-0 relative z-0"
           >
-            <div className="w-full max-w-[155px] md:max-w-[310px]">
+            <div className="w-full max-w-[185px] md:max-w-[310px]">
               <TerminalMockup lang={lang} />
             </div>
           </motion.div>
@@ -201,7 +201,7 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-transparent md:border-none bg-[#050505] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-t border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Flowing Path Lines */}
                 <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">
@@ -256,7 +256,7 @@ export default function AdvantagesSection({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-transparent md:border-none bg-[#050505] md:bg-transparent"
+                className="flex flex-row md:flex-col gap-4 items-center md:items-start w-[calc(100%+3rem)] -mx-6 px-6 py-5 md:w-full md:mx-0 md:px-0 md:py-0 text-left border-b border-transparent md:border-none bg-[#0D0719] md:bg-transparent"
               >
                 {/* SVG Lightning Bolt icon */}
                 <div className="relative w-[36px] h-[36px] md:w-[40px] md:h-[40px] flex items-center justify-center shrink-0 bg-transparent text-[#9945FF] hover:text-[#B171FF] transition-colors duration-300">

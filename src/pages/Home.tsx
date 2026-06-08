@@ -14,12 +14,12 @@ const PROT_ITEMS = [
   {
     id: "solana",
     label: (
-      <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.2em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
+      <span className="font-sans text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] xl:text-[17px] tracking-[0.22em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
         solana
       </span>
     ),
     icon: (
-      <svg className="w-[18px] h-[15px] sm:w-[25px] sm:h-[20px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
+      <svg className="w-[18px] h-[15px] sm:w-[25px] sm:h-[20px] md:w-[32px] md:h-[26px] lg:w-[40px] lg:h-[32px] xl:w-[46px] xl:h-[37px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
         <path d="M23.8764 18.0313l-3.962 4.1393a.9201.9201 0 01-.306.2106.9407.9407 0 01-.367.0742H.4599a.4689.4689 0 01-.2522-.0733.4513.4513 0 01-.1696-.1962.4375.4375 0 01-.0314-.2545.4438.4438 0 01.117-.2298l3.9649-4.1393a.92.92 0 01.3052-.2102.9407.9407 0 01.3658-.0746H23.54a.4692.4692 0 01.2523.0734.4531.4531 0 01.1697.196.438.438 0 01.0313.2547.4442.4442 0 01-.1169.2297zm-3.962-8.3355a.9202.9202 0 00-.306-.2106.941.941 0 00-.367-.0742H.4599a.4687.4687 0 00-.2522.0734.4513.4513 0 00-.1696.1961.4376.4376 0 00-.0314.2546.444.444 0 00.117.2297l3.9649 4.1394a.9204.9204 0 00.3052.2102c.1154.049.24.0744.3658.0746H23.54a.469.469 0 00.2523-.0734.453.453 0 00.1697-.1961.4382.4382 0 00.0313-.2546.4444.4444 0 00-.1169-.2297zM.46 6.7225h18.7815a.9411.9411 0 00.367-.0742.9202.9202 0 00.306-.2106l3.962-4.1394a.4442.4442 0 00.117-.2297.4378.4378 0 00-.0314-.2546.453.453 0 00-.1697-.196.469.469 0 00-.2523-.0734H4.7596a.941.941 0 00-.3658.0745.9203.9203 0 00-.3052.2102L.1246 5.9687a.4438.4438 0 00-.1169.2295.4375.4375 0 00.0312.2544.4512.4512 0 00.1692.196.4689.4689 0 00.2518.0739z" />
       </svg>
     )
@@ -27,12 +27,12 @@ const PROT_ITEMS = [
   {
     id: "jup",
     label: (
-      <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.2em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
+      <span className="font-sans text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] xl:text-[17px] tracking-[0.22em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
         jupiter
       </span>
     ),
     icon: (
-      <svg className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 80 800 640" fill="currentColor">
+      <svg className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] lg:w-[40px] lg:h-[40px] xl:w-[46px] xl:h-[46px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 80 800 640" fill="currentColor">
         <path d="M536,568.9c-66.8-108.5-166.4-170-289.4-195.6c-43.5-9-87.2-8.9-129.4,7.7c-28.9,11.4-33.3,23.4-19.7,53.7 c92.4-21.9,178.4-1.5,258.9,45c81.1,46.9,141.6,112.2,169.1,205c38.6-11.8,43.6-18.3,34.3-54.2C554.3,609.4,547.4,587.4,536,568.9 L536,568.9z" />
         <path d="M609.1,480.6c-85.8-125-207.3-194.9-355.8-218.3c-39.3-6.2-79.4-4.5-116.2,14.3c-17.6,9-33.2,20.5-37.4,44.9 c115.8-31.9,219.7-3.7,317.5,53c98.3,57,175.1,133.5,205,251.1c20.8-18.4,24.5-41,19.1-62C633.9,534.8,625.5,504.5,609.1,480.6 L609.1,480.6z" />
         <path d="M105,488.6c7.3,16.2,12.1,34.5,23,47.6c5.5,6.7,22.2,4.1,33.8,5.7c1.8,0.2,3.6,0.5,5.4,0.7 c102.9,15.3,184.1,65.1,242.1,152c3.4,5.1,8.9,12.7,13.4,12.7c17.4-0.1,34.9-2.8,52.5-4.5C449,557.5,232.8,438.3,105,488.6 L105,488.6z" />
@@ -45,12 +45,12 @@ const PROT_ITEMS = [
   {
     id: "jito",
     label: (
-      <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.2em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
+      <span className="font-sans text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] xl:text-[17px] tracking-[0.22em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
         jito
       </span>
     ),
     icon: (
-      <svg className="w-[14px] h-[17px] sm:w-[20px] sm:h-[24px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
+      <svg className="w-[14px] h-[17px] sm:w-[20px] sm:h-[24px] md:w-[26px] md:h-[31px] lg:w-[32px] lg:h-[38px] xl:w-[38px] xl:h-[45px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="currentColor">
         <path d="M2.5,21.5 C2.5,14 7,9 13,9 C13.5,9 14,9.2 14,9.8 C14,15.5 10,21.5 2.5,21.5 Z" />
         <path d="M7.5,21.5 C7.5,16 11,12 16.5,12 C17,12 17.5,12.2 17.5,12.8 C17.5,17.5 14,21.5 7.5,21.5 Z" opacity="0.8" />
         <path d="M12.5,21.5 C12.5,18 15,15 19.5,15 C20,15 20.5,15.2 20.5,15.8 C20.5,19 18,21.5 12.5,21.5 Z" opacity="0.6" />
@@ -60,12 +60,12 @@ const PROT_ITEMS = [
   {
     id: "arcium",
     label: (
-      <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.2em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
+      <span className="font-sans text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] xl:text-[17px] tracking-[0.22em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
         arcium
       </span>
     ),
     icon: (
-      <svg className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="none">
+      <svg className="w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] md:w-[32px] md:h-[32px] lg:w-[40px] lg:h-[40px] xl:w-[46px] xl:h-[46px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="none">
         <path
           d="M12 3 L3 21 M12 3 L21 21"
           stroke="currentColor"
@@ -87,12 +87,12 @@ const PROT_ITEMS = [
   {
     id: "argon2id",
     label: (
-      <span className="font-sans text-[9px] sm:text-[10px] md:text-[11px] tracking-[0.2em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
+      <span className="font-sans text-[9px] sm:text-[11px] md:text-[13px] lg:text-[15px] xl:text-[17px] tracking-[0.22em] font-normal text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300">
         argon2id
       </span>
     ),
     icon: (
-      <svg className="w-[14px] h-[14px] sm:w-[20px] sm:h-[20px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="none">
+      <svg className="w-[14px] h-[14px] sm:w-[20px] sm:h-[20px] md:w-[28px] md:h-[28px] lg:w-[36px] lg:h-[36px] xl:w-[42px] xl:h-[42px] flex-shrink-0 text-[#EDEAE2]/45 group-hover:text-[#EDEAE2]/90 transition-colors duration-300" viewBox="0 0 24 24" fill="none">
         <path
           d="M12,1 L3,5 L3,13 C3,18.5 7,22.5 12,23.8 C17,22.5 21,18.5 21,13 L21,5 L12,1 Z M12,3.2 L19,6.3 L19,13 C19,17.2 16,20.4 12,21.6 C8,20.4 5,17.2 5,13 L5,6.3 L12,3.2 Z"
           fill="currentColor"
@@ -247,16 +247,16 @@ export default function Home({ isPreloaded }: HomeProps) {
         transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] as const }}
         className="relative w-full min-h-screen flex flex-col justify-center items-center overflow-hidden shrink-0 bg-transparent"
       >
-        {/* Ambient background cryptographic cyber routes animation with interactive 3D sway */}
-        <VeilBlockchainRoutes isPreloaded={isPreloaded} />
+        {/* Mobile translation container to lift both routes (cables) and content by 50px as requested */}
+        <div className="absolute inset-0 w-full h-full flex flex-col justify-center items-center -translate-y-[50px] md:translate-y-0">
+          {/* Ambient background cryptographic cyber routes animation with interactive 3D sway */}
+          <VeilBlockchainRoutes isPreloaded={isPreloaded} />
 
-
-
-        {/* Content Vertical Stack with flawless padding for mobile */}
-        <div
-          className="relative flex flex-col items-center justify-center text-center z-10 px-6 max-w-4xl pt-24 sm:pt-0 translate-y-[20px] sm:translate-y-0"
-          id="veil-content-wrapper"
-        >
+          {/* Content Vertical Stack with flawless padding for mobile */}
+          <div
+            className="relative flex flex-col items-center justify-center text-center z-10 px-6 max-w-4xl pt-24 sm:pt-0 translate-y-[20px] sm:translate-y-0"
+            id="veil-content-wrapper"
+          >
           {/* Premium minimal vertical lines curtain logo - cleanly positioned without negative overlaps on mobile */}
           <motion.div
             initial={{ opacity: 0, y: isMobile ? -65 : 15, scale: 0.95 }}
@@ -266,14 +266,14 @@ export default function Home({ isPreloaded }: HomeProps) {
               ease: [0.16, 1, 0.3, 1],
               delay: 0.1,
             }}
-            className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mb-8 md:mb-12 text-center opacity-95 flex items-center justify-center"
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 mb-8 md:mb-12 text-center opacity-95 flex items-center justify-center translate-y-[20px] sm:translate-y-0"
             id="veil-hero-logo-wrapper"
           >
             <VeilLinesLogo
               className="w-full h-full"
-              lineColor="#EDEAE2"
+              lineColor="#FFFFFF"
               bgMode="transparent"
-              strokeWidth={11}
+              strokeWidth={6}
             />
           </motion.div>
 
@@ -392,12 +392,11 @@ export default function Home({ isPreloaded }: HomeProps) {
               </button>
             </motion.div>
 
-            {/* Seamless ambient background protocols / cryptographic integrations bar */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={isPreloaded ? { opacity: 0.6, y: 0 } : { opacity: 0, y: 15 }}
               transition={{ delay: 1.0, duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 sm:mt-24 w-full max-w-2xl px-4 flex flex-col items-center select-none"
+              className="mt-6 sm:mt-24 w-[85%] max-w-[340px] sm:w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-0 sm:px-4 flex flex-col items-center select-none"
               id="integrated-systems"
             >
               <div 
@@ -407,14 +406,14 @@ export default function Home({ isPreloaded }: HomeProps) {
                 <div className="flex animate-marquee">
                   {/* First complete pass of brand items */}
                   {PROT_ITEMS.map((item) => (
-                    <div key={`p1-${item.id}`} className="flex items-center gap-2 md:gap-3 shrink-0 mx-6 sm:mx-9 md:mx-12 group hover:scale-[1.03] duration-300 transition-all select-none col-span-1">
+                    <div key={`p1-${item.id}`} className="flex items-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12 group hover:scale-[1.03] duration-300 transition-all select-none col-span-1">
                       {item.icon}
                       {item.label}
                     </div>
                   ))}
                   {/* Identical repeat pass for a 100% seamless transition joint */}
                   {PROT_ITEMS.map((item) => (
-                    <div key={`p2-${item.id}`} className="flex items-center gap-2 md:gap-3 shrink-0 mx-6 sm:mx-9 md:mx-12 group hover:scale-[1.03] duration-300 transition-all select-none col-span-1">
+                    <div key={`p2-${item.id}`} className="flex items-center gap-2.5 sm:gap-3 md:gap-4 lg:gap-5 shrink-0 mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12 group hover:scale-[1.03] duration-300 transition-all select-none col-span-1">
                       {item.icon}
                       {item.label}
                     </div>
@@ -423,6 +422,7 @@ export default function Home({ isPreloaded }: HomeProps) {
               </div>
             </motion.div>
           </div>
+        </div>
         </div>
       </motion.div>
 

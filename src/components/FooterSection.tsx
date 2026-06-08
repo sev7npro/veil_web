@@ -82,7 +82,7 @@ export default function FooterSection({
                 className="w-full h-full"
                 lineColor="currentColor"
                 bgMode="transparent"
-                strokeWidth={11}
+                strokeWidth={6}
               />
             </div>
           </div>

@@ -62,7 +62,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
     line4a: { delay: 0.8, fromY: -300, targetY: 128 }, // Mid split-top
   };
 
-  const strokeWidth = 11;
+  const strokeWidth = 6;
   const offset = strokeWidth / 2;
   const r = strokeWidth / 2;
 
@@ -107,7 +107,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={256}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Bottom-up Riser: Line 2 */}
@@ -119,7 +119,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={224}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Bottom-up Riser: Line 3 */}
@@ -131,7 +131,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={160}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Top-down Faller: Line 4a (Mid split-top) */}
@@ -143,7 +143,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={32}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Bottom-up Riser: Line 4b (Mid split-bottom) */}
@@ -155,7 +155,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={128}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Top-down Faller: Line 5 */}
@@ -167,7 +167,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={160}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Top-down Faller: Line 6 */}
@@ -179,7 +179,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={224}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
 
                     {/* Top-down Faller: Line 7 (Far Right) */}
@@ -191,7 +191,7 @@ export default function VeilPreloader({ onComplete, lang }: VeilPreloaderProps) 
                       width={strokeWidth}
                       height={256}
                       rx={r}
-                      fill="#EDEAE2"
+                      fill="#FFFFFF"
                     />
                   </g>
                 </svg>
