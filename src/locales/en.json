@@ -94,9 +94,9 @@
     "disclaimer": "VEIL provides non-custodial routing software. We do not hold, manage, or control user assets. Trading cryptocurrencies involves substantial risk. By accessing the interface, you agree to our strict execution policies. Verify everything. Trust math."
   },
   "privacyBanner": {
-    "title": "ZERO TRACE // COOKIE ANNIHILATION PROTOCOL",
-    "desc": "We refuse to store your presence. This space collects zero metadata, records no IPs, and leaves no cookies. To enforce absolute anonymity, every page refresh instantly zeroizes the session state, rendering your previous connection an unrecoverable void. To the network, you are always a ghost.",
-    "button": "PROCEED"
+    "title": "● STATUS // ZERO FOOTPRINT",
+    "desc": "This interface functions without cookies, trackers, or analytical scripts. The session runs in isolated volatile memory on your device and is completely wiped upon page refresh.",
+    "button": "ACKNOWLEDGE"
   },
   "privacyFirst": {
     "topLabel": "No VCs. No paid insiders. No extraction.",

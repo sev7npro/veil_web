@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface PrivacyProps {
   lang?: "EN" | "RU";
@@ -16,6 +17,21 @@ export default function Privacy({ lang: propLang, onNavigate }: PrivacyProps) {
   const lang = propLang || contextLang;
   const navigate = useNavigate();
   const content = t.privacy;
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Политика конфиденциальности | VEIL — Нулевой след",
+        description: "Нулевой сбор метаданных, логов и IP. Читайте о том, как ваши приватные ключи полностью стираются из оперативной памяти мгновенно после подписания."
+      };
+    }
+    return {
+      title: "Privacy Policy | VEIL — Zero Trace Commitment",
+      description: "Zero metadata, zero logs, zero IP tracking. Read about how your private keys are completely wiped from active memory immediately after signing."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

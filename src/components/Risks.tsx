@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface RisksProps {
   lang?: "EN" | "RU";
@@ -16,6 +17,21 @@ export default function Risks({ lang: propLang, onNavigate }: RisksProps) {
   const lang = propLang || contextLang;
   const navigate = useNavigate();
   const content = t.risks;
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Раскрытие рисков | VEIL — Суверенная торговля",
+        description: "Обзор рисков, связанных с рыночной волатильностью, смарт-контрактами внешних DEX и экспериментальными протоколами маршрутизации."
+      };
+    }
+    return {
+      title: "Risk Disclosure | VEIL — Algorithmic Integrity",
+      description: "Review the risks associated with market volatility, smart contracts on third-party DEXs, and experimental zero-knowledge routing protocols."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

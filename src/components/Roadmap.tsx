@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface RoadmapProps {
   lang?: "EN" | "RU";
@@ -221,6 +222,21 @@ export default function Roadmap({ lang: propLang }: RoadmapProps) {
   const { lang: contextLang } = useLanguage();
   const lang = propLang || contextLang;
   const content = roadmapContent[lang];
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Дорожная карта | VEIL — Этапы разработки",
+        description: "Этапы развития VEIL: от многопутевой маршрутизации и stealth-обменов до глубокой интеграции доверенной среды исполнения (TEE) на Solana."
+      };
+    }
+    return {
+      title: "Roadmap | VEIL — Development Milestones",
+      description: "Explore our timeline of features from stealth multi-route engine and perpetual tracking to deep TEE coprocessor integrations on Solana."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   return (
     <div className="w-full min-h-screen bg-[#050505] text-[#FFFFFF] pt-32 pb-24 px-6 font-sans relative">

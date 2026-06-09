@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface TermsProps {
   lang?: "EN" | "RU";
@@ -16,6 +17,21 @@ export default function Terms({ lang: propLang, onNavigate }: TermsProps) {
   const lang = propLang || contextLang;
   const navigate = useNavigate();
   const content = t.terms;
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Условия использования | VEIL",
+        description: "Правила использования некастодиального программного интерфейса VEIL, локальное владение ключами и децентрализованная маршрутизация ликвидности."
+      };
+    }
+    return {
+      title: "Terms of Use | VEIL — Non-Custodial Agreement",
+      description: "Review the terms and policies of accessing the VEIL software interface, local key custody, and decentralized liquidity routing."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

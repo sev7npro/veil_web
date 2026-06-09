@@ -544,7 +544,7 @@ export default function VeilStackSection({
         yOffset = parent.height * parentScale;
       }
     }
-    const levitationGap = block.id === 11 ? 25 * heightScale : 0;
+    const levitationGap = block.id === 11 ? 12 * heightScale : 0;
     return { x: base.x, y: base.y - currentHeight - yOffset - levitationGap };
   };
 
@@ -1020,7 +1020,7 @@ export default function VeilStackSection({
                     }
                   }
 
-                  const levitationGap = block.id === 11 ? 25 * revealedScale : 0;
+                  const levitationGap = block.id === 11 ? 12 * revealedScale : 0;
 
                   if (parentCurrentHeight > 0 || levitationGap > 0) {
                     const totalYShift = parentCurrentHeight + levitationGap;

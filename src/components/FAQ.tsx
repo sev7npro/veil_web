@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface FAQProps {
   lang?: "EN" | "RU";
@@ -8,7 +9,23 @@ interface FAQProps {
 
 export default function FAQ({ lang: propLang }: FAQProps = {}) {
   const { lang: contextLang, t } = useLanguage();
+  const lang = propLang || contextLang;
   const content = t.faq;
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "FAQ | VEIL — Безопасность и суверенность",
+        description: "Часто задаваемые вопросы о безопасности ключей, некастодиальном хранении, шифровании Argon2id и механизмах защиты от MEV."
+      };
+    }
+    return {
+      title: "FAQ | VEIL — Security & Sovereign Execution",
+      description: "Frequently Asked Questions about key security, non-custodial storage, private router, Argon2id encryption, and MEV protection."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   const [openSections, setOpenSections] = React.useState<{
     [key: string]: boolean;

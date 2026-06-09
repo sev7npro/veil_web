@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface DocumentationProps {
   lang?: "EN" | "RU";
@@ -10,6 +11,21 @@ export default function Documentation({ lang: propLang }: DocumentationProps = {
   const { lang: contextLang, t: translationsDict } = useLanguage();
   const lang = propLang || contextLang;
   const content = translationsDict.documentation;
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Документация | VEIL — Модульная архитектура",
+        description: "Подробный разбор безопасности VEIL: локальное шифрование AES-256-GCM, приватный обход мемпула через Jito и обфускация транзакций."
+      };
+    }
+    return {
+      title: "Documentation | VEIL — Modular Architecture",
+      description: "Deep dive into VEIL's secure trade signing, local AES-256-GCM encryption, Jito private mempool bypass, and transaction obfuscation."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   // Track which sections are open (default to empty or open first section)
   const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({

@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useDocumentMetadata } from "../hooks/useDocumentMetadata";
 
 interface ManifestoProps {
   lang?: "EN" | "RU";
@@ -133,6 +134,21 @@ export default function Manifesto({ lang: propLang }: ManifestoProps) {
   const { lang: contextLang } = useLanguage();
   const lang = propLang || contextLang;
   const content = manifestoContent[lang];
+
+  const metadata = React.useMemo(() => {
+    if (lang === "RU") {
+      return {
+        title: "Манифест | VEIL — Суверенитет или слежка",
+        description: "Философская основа VEIL. Верните себе финансовую независимость, уничтожьте слежку и станьте оператором своего капитала."
+      };
+    }
+    return {
+      title: "Manifesto | VEIL — Sovereignty or Surveillance",
+      description: "The philosophical backbone of VEIL. Reclaim financial sovereignty, eliminate surveillance, and become the Operator of your capital."
+    };
+  }, [lang]);
+
+  useDocumentMetadata(metadata);
 
   const [activeSection, setActiveSection] = React.useState("01");
   const activeIndex = Math.max(0, content.sections.findIndex((sect) => sect.num === activeSection));
