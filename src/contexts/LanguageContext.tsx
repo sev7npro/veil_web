@@ -17,6 +17,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLangState] = useState<Language>(() => {
     const saved = localStorage.getItem("veil-lang");
     if (saved === "EN" || saved === "RU") return saved;
+    
+    // Auto-detect browser/navigator language
+    if (typeof navigator !== "undefined") {
+      const userLang = (navigator.language || (navigator as any).userLanguage || "").toLowerCase();
+      if (userLang.includes("ru") || userLang.includes("be") || userLang.includes("kk") || userLang.includes("uk")) {
+        return "RU";
+      }
+    }
     return "EN";
   });
 

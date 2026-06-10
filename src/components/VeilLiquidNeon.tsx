@@ -1,6 +1,6 @@
 import { Canvas, useFrame, useThree, extend } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useRef, useEffect, useState, useMemo } from 'react';
+import React, { useRef, useEffect, useState, useMemo, Suspense } from 'react';
 
 // Custom shader material extending THREE.ShaderMaterial
 class VeilShaderMaterial extends THREE.ShaderMaterial {
@@ -313,19 +313,21 @@ export default function VeilLiquidNeon({
       style={{ opacity, backgroundColor: 'transparent' }}
     >
       {webGLSupported !== null && isVisible && (
-        <Canvas
-          dpr={isMobile ? 0.65 : [1, 1.5]}
-          gl={{ 
-            antialias: false,
-            powerPreference: 'high-performance',
-            preserveDrawingBuffer: false
-          }}
-          orthographic={true}
-          camera={{ zoom: 1 }}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <LiquidPlane speed={speed} intensity={intensity} interactive={interactive} />
-        </Canvas>
+        <Suspense fallback={<div className="absolute inset-0 bg-[#050505]" />}>
+          <Canvas
+            dpr={isMobile ? 0.65 : [1, 1.5]}
+            gl={{ 
+              antialias: false,
+              powerPreference: 'high-performance',
+              preserveDrawingBuffer: false
+            }}
+            orthographic={true}
+            camera={{ zoom: 1 }}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <LiquidPlane speed={speed} intensity={intensity} interactive={interactive} />
+          </Canvas>
+        </Suspense>
       )}
     </div>
   );
